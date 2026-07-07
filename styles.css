@@ -19,12 +19,15 @@
   --moss:    #41543A;   /* глубокий зелёный фон */
   --green-deep: #34432C;
   --rose:    #C6A199;
+  --blush:   #E4C4C6;   /* пудрово-розовый (из оформления зала) */
+  --blush-deep: #93585E; /* глубокий розовый для акцентного текста (WCAG AA на креме) */
   --ink:     #2A2822;
   --ink-soft:#5C5344;
 
   /* Шрифты */
-  --f-script: "Marck Script", "Segoe Script", "Brush Script MT", cursive;
-  --f-serif:  "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --f-script:  "Marck Script", "Segoe Script", "Brush Script MT", cursive;
+  --f-serif:   "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --f-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;   /* высокий контраст — цифры и даты */
 
   /* Ритм */
   --shell: 1080px;
@@ -44,7 +47,7 @@ body {
   /* тёплый бумажный фон с мягкими акварельными размывками */
   background:
     radial-gradient(60% 40% at 12% 8%, rgba(174,190,159,0.30), transparent 60%),
-    radial-gradient(50% 45% at 92% 30%, rgba(198,161,153,0.16), transparent 60%),
+    radial-gradient(46% 42% at 90% 22%, rgba(228,196,198,0.26), transparent 60%),
     radial-gradient(70% 50% at 80% 96%, rgba(124,144,112,0.22), transparent 60%),
     linear-gradient(180deg, var(--cream-0), var(--cream-1) 45%, var(--cream-2));
   background-attachment: fixed;
@@ -102,17 +105,16 @@ em { font-style: italic; }
   overflow: hidden;
 }
 .hero__inner {
-  width: min(760px, 100%);
+  width: min(780px, 100%);
   margin-right: auto;           /* смещение влево — уход от центра */
   text-align: left;
 }
-.hero__over {
+.hero__place {
   font-style: italic;
-  font-size: clamp(0.95rem, 0.8rem + 0.6vw, 1.2rem);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   color: var(--brown-2);
-  margin: 0 0 clamp(1rem, 3vw, 2rem);
-  max-width: 30ch;
+  font-size: clamp(0.95rem, 0.8rem + 0.5vw, 1.15rem);
+  margin: 0 0 clamp(0.8rem, 2.5vw, 1.4rem);
 }
 .names {
   font-family: var(--f-script);
@@ -123,22 +125,30 @@ em { font-style: italic; }
   font-size: clamp(4.2rem, 1.5rem + 17vw, 10rem);
 }
 .names span { display: block; }
-.names__amp { color: var(--rose); font-size: 0.42em; margin: 0.04em 0 0.04em 1.1em; }
+.names__amp { color: var(--blush-deep); font-size: 0.42em; margin: 0.04em 0 0.04em 1.1em; }
 .names__b { margin-left: 1.9em; }
+.hero__date {
+  display: flex; align-items: center; gap: clamp(0.8rem, 2vw, 1.4rem);
+  margin: clamp(1.5rem, 4vw, 2.4rem) 0 clamp(1.4rem, 3vw, 2rem);
+  color: var(--green-deep);
+}
+.hero__date::after {
+  content: ""; height: 1px; flex: 0 0 clamp(48px, 12vw, 120px);
+  background: linear-gradient(90deg, var(--sage-2), transparent);
+}
+.hero__date time {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 1rem + 2.4vw, 2.7rem);
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+}
 .hero__line {
   font-size: clamp(1.2rem, 0.9rem + 1.3vw, 1.7rem);
   color: var(--ink-soft);
-  margin: clamp(1.6rem, 4vw, 2.6rem) 0 1rem;
+  margin: 0;
   line-height: 1.4;
 }
-.hero__place {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.6em;
-  font-style: italic;
-  color: var(--brown-2);
-  font-size: clamp(1rem, 0.85rem + 0.6vw, 1.25rem);
-  margin: 0;
-}
-.hero__place i { color: var(--sage-2); font-style: normal; }
 
 .hero__down {
   position: absolute; left: 50%; bottom: 2.2rem; transform: translateX(-50%);
@@ -152,6 +162,26 @@ em { font-style: italic; }
   animation: drop 2.4s ease-in-out infinite;
 }
 @keyframes drop { 0%{transform:translateY(-100%);} 60%,100%{transform:translateY(100%);} }
+
+/* ============================================================
+   ПРИГЛАШЕНИЕ  (тихий вступительный блок)
+   ============================================================ */
+.invite { padding: clamp(4rem, 10vw, 7rem) 0 clamp(2rem, 6vw, 4rem); }
+.invite__grid { max-width: 760px; text-align: center; }
+.invite__sprig { width: 140px; height: 80px; margin: 0 auto 1.6rem; color: var(--sage-2); opacity: 0.75; }
+.invite__text {
+  font-size: clamp(1.35rem, 1rem + 1.8vw, 2.15rem);
+  line-height: 1.5;
+  color: var(--green-deep);
+  margin: 0 0 1.4rem;
+  text-wrap: balance;
+}
+.invite__sign {
+  font-family: var(--f-script);
+  font-size: clamp(1.6rem, 1rem + 2.4vw, 2.6rem);
+  color: var(--blush-deep);
+  margin: 0;
+}
 
 /* ============================================================
    ОТСЧЁТ  (глубокий зелёный wash)
@@ -173,12 +203,13 @@ em { font-style: italic; }
 }
 .count__unit { display: flex; flex-direction: column; align-items: flex-start; }
 .count__unit b {
+  font-family: var(--f-display);
   font-weight: 500;
   font-size: clamp(3rem, 1rem + 10vw, 7rem);
   line-height: 0.9;
   color: #fff;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 .count__unit i {
   font-style: italic;
@@ -194,6 +225,44 @@ em { font-style: italic; }
   align-self: center;
 }
 .count__done { font-family: var(--f-script); font-size: clamp(2.4rem,1rem+6vw,4rem); color: #fff; margin: 0; }
+
+/* ============================================================
+   ПРОГРАММА ДНЯ  (асимметричный тайминг)
+   ============================================================ */
+.program { padding: var(--sy) 0; }
+.program__grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(1.6rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.program__note { font-style: italic; color: var(--ink-soft); margin: 0.8rem 0 0; max-width: 24ch; }
+.timeline { list-style: none; margin: 0; padding: 0; }
+.tl {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, auto) 1fr;
+  gap: clamp(1rem, 3vw, 2.4rem);
+  padding: clamp(1.1rem, 3vw, 1.7rem) 0;
+  border-top: 1px solid rgba(107,88,66,0.26);
+  align-items: baseline;
+}
+.tl:last-child { border-bottom: 1px solid rgba(107,88,66,0.26); }
+.tl__time {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 1rem + 4vw, 3.4rem);
+  line-height: 0.9;
+  color: var(--moss);
+  font-variant-numeric: tabular-nums;
+}
+.tl__time i { font-style: normal; font-size: 0.5em; color: var(--sage-2); vertical-align: 0.15em; }
+.tl__body { display: flex; flex-direction: column; gap: 0.2rem; }
+.tl__body b {
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.7rem);
+  color: var(--green-deep);
+}
+.tl__body em { font-style: italic; color: var(--ink-soft); font-size: 1.02rem; line-height: 1.4; }
 
 /* ============================================================
    ДЕТАЛИ  (асимметричный разворот, без карточек)
@@ -228,6 +297,29 @@ em { font-style: italic; }
   line-height: 1.28;
 }
 .details__v em { display: inline-block; font-size: 0.78em; color: var(--ink-soft); margin-top: 0.2rem; }
+
+/* ============================================================
+   АТМОСФЕРА  (тёмный wash с пудровым свечением — отсылка к залу)
+   ============================================================ */
+.mood {
+  position: relative;
+  padding: var(--sy) 0;
+  color: var(--cream-0);
+  overflow: hidden;
+  background:
+    radial-gradient(55% 80% at 82% 12%, rgba(228,196,198,0.32), transparent 60%),
+    radial-gradient(70% 90% at 10% 100%, #2c3a24, transparent 55%),
+    linear-gradient(155deg, var(--moss), var(--green-deep));
+}
+.mood__text {
+  font-size: clamp(1.4rem, 1rem + 2vw, 2.3rem);
+  line-height: 1.45;
+  color: var(--cream-1);
+  max-width: 30ch;
+  margin: 0 0 1.2rem;
+  text-wrap: balance;
+}
+.mood__text--soft { font-style: italic; color: var(--blush); font-size: clamp(1.2rem, 1rem + 1.2vw, 1.8rem); margin: 0; }
 
 /* ============================================================
    КАРТА  (фотокарточка с наклоном + текстовые ссылки)
@@ -390,7 +482,7 @@ em { font-style: italic; }
 .reveal.is-visible { opacity: 1; transform: none; }
 
 @media (max-width: 780px) {
-  .details__grid, .map__grid { grid-template-columns: 1fr; }
+  .details__grid, .map__grid, .program__grid { grid-template-columns: 1fr; }
   .map__card { transform: none; margin-top: 1rem; }
   .dress__cols { grid-template-columns: 1fr; }
   .dress__col + .dress__col { border-left: 0; border-top: 1px solid rgba(107,88,66,0.28); padding-left: 0; padding-top: 1.6rem; }
