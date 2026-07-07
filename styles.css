@@ -1,0 +1,458 @@
+/* ============================================================
+   Свадебный сайт «Никита и Лера» — 13.09.2026
+   Единая система: все цвета, шрифты и ритм заданы токенами ниже.
+   Осознанно однотемный дизайн — «тёплое природное приглашение».
+   ============================================================ */
+
+:root {
+  /* --- Палитра (снята с референсов) --- */
+  --cream-1: #F4EFE4;   /* основной фон */
+  --cream-2: #EBE3D4;   /* фон карточек */
+  --beige:   #DCC7A8;
+  --brown-1: #8B7355;
+  --brown-2: #6B5842;
+  --brown-3: #4A3B2A;
+  --sage-1:  #AEBE9F;
+  --sage-2:  #7C9070;      /* декоративный шалфей: иконки, листья, разделители */
+  --panel:   #4F6344;      /* фон зелёных секций — глубже, чтобы светлый текст читался (WCAG AA) */
+  --green-deep: #3D4F36;   /* основной «чернильный» акцент */
+  --rose:    #C9A8A0;    /* пыльно-розовый, дозированно */
+  --ink:     #2A2822;    /* текст */
+  --ink-soft:#5A5346;    /* приглушённый текст */
+  --white:   #FFFFFF;
+
+  /* --- Роли --- */
+  --bg:        var(--cream-1);
+  --bg-panel:  var(--sage-2);
+  --text:      var(--ink);
+  --text-soft: var(--ink-soft);
+  --accent:    var(--green-deep);
+
+  /* --- Типографика --- */
+  --f-script: "Marck Script", "Segoe Script", cursive;
+  --f-serif:  "Cormorant Garamond", "Georgia", "Times New Roman", serif;
+  --f-sans:   "Jost", "Helvetica Neue", Arial, sans-serif;
+
+  /* --- Ритм --- */
+  --wrap: 860px;
+  --pad: clamp(1.25rem, 5vw, 3rem);
+  --section-y: clamp(4rem, 11vw, 8rem);
+  --radius: 14px;
+}
+
+/* --- Reset / базовое --- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--f-serif);
+  font-size: clamp(1.05rem, 0.6rem + 1vw, 1.2rem);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+img, svg, iframe { max-width: 100%; display: block; }
+a { color: inherit; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   Декоративные листья фона
+   ============================================================ */
+.leaf-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  color: var(--sage-2);
+  overflow: hidden;
+}
+.leaf { position: absolute; opacity: 0.14; }
+.leaf--a { width: 120px; top: 8%;  left: -32px; transform: rotate(24deg); }
+.leaf--b { width: 90px;  top: 46%; right: -26px; transform: rotate(-38deg); }
+.leaf--c { width: 150px; bottom: 4%; left: -46px; transform: rotate(-12deg); color: var(--brown-1); opacity: 0.1; }
+@media (max-width: 640px) { .leaf--a, .leaf--b { display: none; } }
+
+/* ============================================================
+   Общие блоки секций
+   ============================================================ */
+.section { position: relative; z-index: 1; padding: var(--section-y) var(--pad); }
+.section--sage {
+  background: var(--panel);
+  color: var(--cream-1);
+}
+.section--sage .eyebrow { color: var(--cream-2); }
+.section--sage .section__title { color: var(--white); }
+
+.wrap { max-width: var(--wrap); margin-inline: auto; text-align: center; }
+
+.eyebrow {
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--brown-2);
+  margin: 0 0 0.9rem;
+}
+.section__title {
+  font-family: var(--f-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 1rem + 4.5vw, 3.4rem);
+  line-height: 1.05;
+  margin: 0 0 1.6rem;
+  text-wrap: balance;
+  color: var(--accent);
+}
+
+/* Разделитель с сердцем */
+.rule {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.9rem; color: var(--sage-2); margin: 1.6rem 0;
+}
+.rule span { display: block; height: 1px; width: min(30vw, 120px); background: currentColor; opacity: 0.55; }
+.rule--light { color: var(--cream-2); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 4rem var(--pad) 3rem;
+  text-align: center;
+  background:
+    radial-gradient(120% 80% at 50% 0%, #FBF8F1 0%, var(--cream-1) 55%, #ECE4D2 100%);
+}
+.hero__inner { max-width: 720px; }
+.hero__eyebrow {
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  font-size: 0.75rem;
+  color: var(--brown-2);
+  margin: 0 0 1.6rem;
+  padding-left: 0.5em;
+}
+.hero__date {
+  font-family: var(--f-sans);
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  font-size: clamp(0.95rem, 0.7rem + 1vw, 1.15rem);
+  color: var(--green-deep);
+  margin: 0 0 0.5rem;
+  padding-left: 0.28em;
+}
+.hero__names {
+  font-family: var(--f-script);
+  font-weight: 400;
+  color: var(--green-deep);
+  font-size: clamp(3.6rem, 1.5rem + 12vw, 8rem);
+  line-height: 0.98;
+  margin: 0.4rem 0 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.hero__names .amp {
+  color: var(--rose);
+  font-size: 0.62em;
+  margin: -0.18em 0;
+}
+.hero__sub {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 0.8rem + 1.2vw, 1.5rem);
+  color: var(--ink-soft);
+  margin: 0.4rem 0 0.8rem;
+  text-wrap: balance;
+}
+.hero__place {
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.8rem;
+  color: var(--brown-2);
+  margin: 0;
+}
+
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: clamp(2rem, 6vw, 3.5rem);
+  text-decoration: none;
+  color: var(--sage-2);
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.65rem;
+}
+.scroll-cue svg { animation: bob 2s ease-in-out infinite; }
+@keyframes bob { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(5px);} }
+
+/* ============================================================
+   ОБРАТНЫЙ ОТСЧЁТ
+   ============================================================ */
+.timer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  max-width: 560px;
+  margin: 2rem auto 0;
+}
+.timer__cell {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: var(--radius);
+  padding: clamp(0.9rem, 2.5vw, 1.5rem) 0.4rem;
+  backdrop-filter: blur(2px);
+}
+.timer__num {
+  display: block;
+  font-family: var(--f-serif);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 1rem + 5vw, 3.2rem);
+  line-height: 1;
+  color: var(--white);
+  font-variant-numeric: tabular-nums;
+}
+.timer__label {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.66rem;
+  color: var(--cream-2);
+}
+.timer__done {
+  font-family: var(--f-script);
+  font-size: clamp(2rem, 1rem + 5vw, 3.2rem);
+  color: var(--white);
+  margin: 1.5rem 0 0;
+}
+
+/* ============================================================
+   ДЕТАЛИ (карточки)
+   ============================================================ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: clamp(1rem, 3vw, 1.75rem);
+  margin-top: 2.4rem;
+}
+.card {
+  background: var(--cream-2);
+  border: 1px solid rgba(107,88,66,0.18);
+  border-radius: var(--radius);
+  padding: 2.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.card__icon { color: var(--sage-2); margin-bottom: 0.6rem; }
+.card__title {
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: var(--brown-2);
+  font-weight: 500;
+  margin: 0;
+}
+.card__lead {
+  font-family: var(--f-serif);
+  font-size: 1.35rem;
+  color: var(--accent);
+  margin: 0.2rem 0 0;
+  line-height: 1.25;
+}
+.card__note {
+  font-family: var(--f-sans);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0.15rem 0 0;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   КАРТА
+   ============================================================ */
+.map__lead { max-width: 44ch; margin: 0 auto 2rem; color: var(--cream-2); }
+.section--sage .map__lead { color: var(--cream-2); }
+.map__frame {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 4px solid rgba(255,255,255,0.4);
+  box-shadow: 0 20px 45px -25px rgba(0,0,0,0.4);
+  background: var(--cream-2);
+}
+.map__frame iframe { width: 100%; height: clamp(300px, 50vw, 440px); border: 0; }
+.map__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
+}
+
+/* ============================================================
+   Кнопки
+   ============================================================ */
+.btn {
+  display: inline-block;
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--outline {
+  border: 1.5px solid rgba(255,255,255,0.7);
+  color: var(--white);
+}
+.btn--outline:hover { background: rgba(255,255,255,0.16); }
+.btn--solid {
+  background: var(--white);
+  color: var(--green-deep);
+  padding: 1rem 2.4rem;
+  font-size: 0.82rem;
+  box-shadow: 0 12px 30px -14px rgba(0,0,0,0.5);
+}
+.btn--solid:hover { background: var(--cream-1); }
+
+/* ============================================================
+   ДРЕСС-КОД
+   ============================================================ */
+.dress__intro {
+  max-width: 48ch;
+  margin: 0 auto 2.4rem;
+  font-style: italic;
+  font-size: clamp(1.1rem, 0.9rem + 0.9vw, 1.4rem);
+  color: var(--brown-2);
+  text-wrap: balance;
+}
+.palette {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 2.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.9rem, 2.5vw, 1.6rem);
+  max-width: 620px;
+}
+.swatch { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 74px; }
+.swatch span {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 6px 14px -6px rgba(0,0,0,0.35);
+}
+.swatch--bordered span { border: 1px solid rgba(107,88,66,0.3); }
+.swatch small {
+  font-family: var(--f-sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+.dress__guide {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  text-align: left;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.guide {
+  background: var(--cream-2);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.6rem;
+  border: 1px solid rgba(107,88,66,0.16);
+}
+.guide h3 {
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  margin: 0 0 0.6rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.guide p { margin: 0; font-size: 1rem; color: var(--brown-2); line-height: 1.55; }
+.guide--yes { border-top: 3px solid var(--sage-2); }
+.guide--yes h3 { color: var(--green-deep); }
+.guide--no { border-top: 3px solid var(--brown-1); }
+.guide--no h3 { color: var(--brown-2); }
+
+/* ============================================================
+   RSVP
+   ============================================================ */
+.rsvp__lead { max-width: 46ch; margin: 0 auto 2rem; color: var(--cream-2); }
+.rsvp__lead strong { color: var(--white); font-weight: 600; }
+.rsvp__actions { margin-top: 0.5rem; }
+.rsvp__hint {
+  font-family: var(--f-sans);
+  font-size: 0.78rem;
+  color: var(--cream-2);
+  margin: 1rem 0 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  position: relative; z-index: 1;
+  background: var(--green-deep);
+  color: var(--cream-1);
+  text-align: center;
+  padding: clamp(3rem, 8vw, 5rem) var(--pad);
+}
+.footer__names {
+  font-family: var(--f-script);
+  font-size: clamp(2.4rem, 1rem + 7vw, 4rem);
+  margin: 0.4rem 0 0.3rem;
+  color: var(--cream-1);
+}
+.footer__names .amp { color: var(--rose); }
+.footer__date {
+  font-family: var(--f-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.75rem;
+  color: var(--sage-1);
+  margin: 0;
+}
+
+/* ============================================================
+   Reveal-анимации
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-cue svg { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
