@@ -3,178 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Никита и Лера · 13 сентября 2026</title>
-  <meta name="description" content="Приглашение на свадьбу Никиты и Леры — 13 сентября 2026, ресторан «Лебединое озеро», Уфа." />
-
-  <!-- Соцпревью -->
-  <meta property="og:title" content="Никита и Лера · Свадьба 13 сентября 2026" />
-  <meta property="og:description" content="Приглашаем разделить с нами этот день. Ресторан «Лебединое озеро», Уфа." />
+  <title>Никита и Лера — 13 сентября 2026</title>
+  <meta name="description" content="Никита и Лера — 13 сентября 2026, Уфа, ресторан «Лебединое озеро»." />
+  <meta property="og:title" content="Никита и Лера — 13 сентября 2026" />
+  <meta property="og:description" content="Ресторан «Лебединое озеро», Уфа. Будем счастливы видеть вас." />
   <meta property="og:type" content="website" />
 
-  <!-- Шрифты (кириллица). На реальном хостинге грузятся с Google Fonts; при недоступности — системные фолбэки в styles.css -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Marck+Script&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marck+Script&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
-  <!-- Если JS отключён — показываем секции без анимаций (не оставляем их скрытыми) -->
   <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
-  <!-- Плавающие ботанические акценты фона -->
-  <div class="leaf-field" aria-hidden="true">
-    <svg class="leaf leaf--a" viewBox="0 0 60 120" fill="none"><path d="M30 118C30 84 12 74 12 44 12 20 30 2 30 2s18 18 18 42c0 30-18 40-18 72Z" stroke="currentColor" stroke-width="1.2"/><path d="M30 110V16M30 96C22 90 16 82 15 72M30 96c8-6 14-14 15-24M30 74c-6-4-10-10-11-18M30 74c6-4 10-10 11-18" stroke="currentColor" stroke-width="1"/></svg>
-    <svg class="leaf leaf--b" viewBox="0 0 60 120" fill="none"><path d="M30 118C30 84 12 74 12 44 12 20 30 2 30 2s18 18 18 42c0 30-18 40-18 72Z" stroke="currentColor" stroke-width="1.2"/><path d="M30 110V16M30 96C22 90 16 82 15 72M30 96c8-6 14-14 15-24M30 74c-6-4-10-10-11-18M30 74c6-4 10-10 11-18" stroke="currentColor" stroke-width="1"/></svg>
-    <svg class="leaf leaf--c" viewBox="0 0 60 120" fill="none"><path d="M30 118C30 84 12 74 12 44 12 20 30 2 30 2s18 18 18 42c0 30-18 40-18 72Z" stroke="currentColor" stroke-width="1.2"/><path d="M30 110V16M30 96C22 90 16 82 15 72M30 96c8-6 14-14 15-24M30 74c-6-4-10-10-11-18M30 74c6-4 10-10 11-18" stroke="currentColor" stroke-width="1"/></svg>
-  </div>
+  <!-- Зерно/текстура бумаги поверх всей страницы -->
+  <div class="grain" aria-hidden="true"></div>
 
-  <!-- ░░░ HERO ░░░ -->
+  <!-- Ботанический спрайт (переиспользуется через <use>) -->
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="sprig-branch" viewBox="0 0 120 240">
+      <path d="M60 236C52 190 70 160 58 120 48 88 66 60 58 24 55 14 58 6 62 2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <g fill="currentColor">
+        <path d="M60 200c14-6 24-20 22-36-13 4-23 18-22 36z"/>
+        <path d="M58 176c-14-6-24-20-22-36 13 4 23 18 22 36z"/>
+        <path d="M62 150c14-6 24-20 22-36-13 4-23 18-22 36z"/>
+        <path d="M58 124c-14-6-24-20-22-36 13 4 23 18 22 36z"/>
+        <path d="M60 96c13-5 22-18 20-33-12 4-21 16-20 33z"/>
+        <path d="M58 70c-13-5-22-18-20-33 12 4 21 16 20 33z"/>
+        <path d="M60 46c11-4 18-15 16-28-10 3-17 14-16 28z"/>
+      </g>
+    </symbol>
+    <symbol id="sprig-grass" viewBox="0 0 160 240">
+      <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+        <path d="M80 238C78 170 60 110 41 42"/>
+        <path d="M80 238C80 168 78 108 76 30"/>
+        <path d="M80 238C82 168 98 108 116 46"/>
+        <path d="M80 238C84 175 112 120 138 68"/>
+        <path d="M80 238C76 175 48 120 24 68"/>
+      </g>
+      <g fill="currentColor">
+        <ellipse cx="41" cy="42" rx="3" ry="8" transform="rotate(-22 41 42)"/>
+        <ellipse cx="76" cy="30" rx="3" ry="8"/>
+        <ellipse cx="116" cy="46" rx="3" ry="8" transform="rotate(24 116 46)"/>
+        <ellipse cx="138" cy="68" rx="2.6" ry="7" transform="rotate(34 138 68)"/>
+        <ellipse cx="24" cy="68" rx="2.6" ry="7" transform="rotate(-34 24 68)"/>
+      </g>
+    </symbol>
+    <symbol id="sprig-euc" viewBox="0 0 200 120">
+      <path d="M6 60C60 54 120 60 194 44" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <g fill="currentColor">
+        <ellipse cx="34" cy="50" rx="12" ry="9" transform="rotate(-18 34 50)"/>
+        <ellipse cx="62" cy="66" rx="12" ry="9" transform="rotate(14 62 66)"/>
+        <ellipse cx="92" cy="50" rx="13" ry="10" transform="rotate(-16 92 50)"/>
+        <ellipse cx="122" cy="64" rx="12" ry="9" transform="rotate(16 122 64)"/>
+        <ellipse cx="152" cy="48" rx="11" ry="8" transform="rotate(-18 152 48)"/>
+        <ellipse cx="178" cy="42" rx="9" ry="7" transform="rotate(-22 178 42)"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <!-- ░░░ ОБЛОЖКА ░░░ -->
   <header class="hero" id="top">
+    <svg class="botanical botanical--tr" aria-hidden="true"><use href="#sprig-branch"/></svg>
+    <svg class="botanical botanical--bl" aria-hidden="true"><use href="#sprig-grass"/></svg>
+
     <div class="hero__inner reveal">
-      <p class="hero__eyebrow">Мы женимся</p>
-      <p class="hero__date">13 · 09 · 2026</p>
-
-      <h1 class="hero__names">
-        <span>Никита</span>
-        <span class="amp" aria-hidden="true">&amp;</span>
-        <span class="visually-hidden">и</span>
-        <span>Лера</span>
+      <p class="hero__over">тринадцатого сентября две тысячи двадцать шестого</p>
+      <h1 class="names">
+        <span class="names__a">Никита</span>
+        <span class="names__amp">&amp;</span>
+        <span class="names__b">Лера</span>
       </h1>
-
-      <div class="rule" aria-hidden="true">
-        <span></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 21s-8-4.9-8-11a4.4 4.4 0 0 1 8-2.6A4.4 4.4 0 0 1 20 10c0 6.1-8 11-8 11Z" stroke="currentColor" stroke-width="1.3"/></svg><span></span>
-      </div>
-
-      <p class="hero__sub">приглашаем вас разделить с нами день,<br />когда мы станем семьёй</p>
-      <p class="hero__place">ресторан «Лебединое озеро» · Уфа</p>
-
-      <a class="scroll-cue" href="#countdown" aria-label="Листайте вниз">
-        <span>листайте вниз</span>
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <p class="hero__line">будем счастливы разделить с вами<br />день нашей свадьбы</p>
+      <p class="hero__place"><span>Уфа</span><i>·</i><span>ресторан «Лебединое&nbsp;озеро»</span></p>
     </div>
+
+    <a class="hero__down" href="#countdown" aria-label="Дальше">
+      <span></span>
+    </a>
   </header>
 
   <main>
-    <!-- ░░░ ОБРАТНЫЙ ОТСЧЁТ ░░░ -->
-    <section class="section section--sage countdown" id="countdown" aria-labelledby="countdown-title">
-      <div class="wrap reveal">
-        <p class="eyebrow">До торжества осталось</p>
-        <h2 class="section__title" id="countdown-title">Считаем дни</h2>
-        <div class="timer" id="timer" role="timer" aria-live="polite">
-          <div class="timer__cell"><span class="timer__num" data-days>—</span><span class="timer__label" data-days-label>дней</span></div>
-          <div class="timer__cell"><span class="timer__num" data-hours>—</span><span class="timer__label" data-hours-label>часов</span></div>
-          <div class="timer__cell"><span class="timer__num" data-minutes>—</span><span class="timer__label" data-minutes-label>минут</span></div>
-          <div class="timer__cell"><span class="timer__num" data-seconds>—</span><span class="timer__label" data-seconds-label>секунд</span></div>
+    <!-- ░░░ ОТСЧЁТ ░░░ -->
+    <section class="count" id="countdown" aria-labelledby="count-h">
+      <svg class="botanical botanical--count" aria-hidden="true"><use href="#sprig-euc"/></svg>
+      <div class="shell reveal">
+        <h2 class="head head--light" id="count-h">остаётся совсем немного</h2>
+        <div class="count__row" id="timer" role="timer" aria-live="polite">
+          <span class="count__unit"><b data-days>—</b><i data-days-label>дней</i></span>
+          <span class="count__sep">/</span>
+          <span class="count__unit"><b data-hours>—</b><i data-hours-label>часов</i></span>
+          <span class="count__sep">/</span>
+          <span class="count__unit"><b data-minutes>—</b><i data-minutes-label>минут</i></span>
+          <span class="count__sep">/</span>
+          <span class="count__unit"><b data-seconds>—</b><i data-seconds-label>секунд</i></span>
         </div>
-        <p class="timer__done" id="timer-done" hidden>Мы женаты 🤍</p>
+        <p class="count__done" id="timer-done" hidden>этот день наступил</p>
       </div>
     </section>
 
-    <!-- ░░░ КОГДА И ГДЕ ░░░ -->
-    <section class="section details" id="details" aria-labelledby="details-title">
-      <div class="wrap reveal">
-        <p class="eyebrow">Когда и где</p>
-        <h2 class="section__title" id="details-title">Детали дня</h2>
-        <div class="cards">
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="30" height="30" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-            </div>
-            <h3 class="card__title">Дата</h3>
-            <p class="card__lead">13 сентября 2026</p>
-            <p class="card__note">воскресенье</p>
-          </article>
-
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="30" height="30" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.3"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <h3 class="card__title">Время</h3>
-            <p class="card__lead">Сбор гостей в 15:00</p>
-            <p class="card__note">просим не опаздывать</p>
-          </article>
-
-          <article class="card">
-            <div class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="30" height="30" fill="none"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.3"/></svg>
-            </div>
-            <h3 class="card__title">Место</h3>
-            <p class="card__lead">Ресторан «Лебединое озеро»</p>
-            <p class="card__note">ПКиО им. М. Гафури,<br />проспект Октября, 77/2</p>
-          </article>
+    <!-- ░░░ ДЕТАЛИ ░░░ -->
+    <section class="details" id="details" aria-labelledby="details-h">
+      <div class="shell details__grid reveal">
+        <div class="details__lead">
+          <h2 class="head" id="details-h">как всё<br />пройдёт</h2>
+          <svg class="sprig-inline" aria-hidden="true"><use href="#sprig-euc"/></svg>
         </div>
+        <ul class="details__list">
+          <li>
+            <span class="details__k">День</span>
+            <span class="details__v">13 сентября 2026, воскресенье</span>
+          </li>
+          <li>
+            <span class="details__k">Сбор гостей</span>
+            <span class="details__v">к пятнадцати часам, просим не опаздывать</span>
+          </li>
+          <li>
+            <span class="details__k">Место</span>
+            <span class="details__v">ресторан «Лебединое озеро»<br /><em>ПКиО им. М. Гафури, проспект Октября, 77/2</em></span>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- ░░░ КАРТА ░░░ -->
-    <section class="section section--sage map" id="map" aria-labelledby="map-title">
-      <div class="wrap reveal">
-        <p class="eyebrow">Как добраться</p>
-        <h2 class="section__title" id="map-title">Карта проезда</h2>
-        <p class="map__lead">Ресторан «Лебединое озеро» расположен на территории Парка культуры и отдыха им. М. Гафури.</p>
-
-        <div class="map__frame">
-          <!-- Метка по адресу. Чтобы поставить точную точку — см. README. -->
-          <iframe
-            title="Карта: ресторан «Лебединое озеро», Уфа, проспект Октября, 77/2"
-            src="https://yandex.ru/map-widget/v1/?text=%D0%A3%D1%84%D0%B0%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2C%2077%2F2&z=15"
-            loading="lazy"
-            allowfullscreen></iframe>
+    <section class="map" id="map" aria-labelledby="map-h">
+      <div class="shell map__grid reveal">
+        <div class="map__text">
+          <h2 class="head" id="map-h">как нас<br />найти</h2>
+          <p>Ресторан спрятан в тени парка Гафури, у самой воды. Приезжайте заранее — прогуляться вдоль озера.</p>
+          <div class="map__links">
+            <a target="_blank" rel="noopener" href="https://yandex.ru/maps/?text=%D0%A3%D1%84%D0%B0%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2C%2077%2F2">Яндекс.Карты</a>
+            <a target="_blank" rel="noopener" href="https://2gis.ru/ufa/search/%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2077%2F2">2ГИС</a>
+            <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D0%A3%D1%84%D0%B0%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2077%2F2">Google&nbsp;Maps</a>
+          </div>
         </div>
-
-        <div class="map__buttons">
-          <a class="btn btn--outline" target="_blank" rel="noopener" href="https://yandex.ru/maps/?text=%D0%A3%D1%84%D0%B0%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2C%2077%2F2">Яндекс.Карты</a>
-          <a class="btn btn--outline" target="_blank" rel="noopener" href="https://2gis.ru/ufa/search/%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2077%2F2">2ГИС</a>
-          <a class="btn btn--outline" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D0%A3%D1%84%D0%B0%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2077%2F2">Google Maps</a>
-        </div>
+        <figure class="map__card">
+          <div class="map__frame">
+            <iframe
+              title="Карта: ресторан «Лебединое озеро», Уфа, проспект Октября, 77/2"
+              src="https://yandex.ru/map-widget/v1/?text=%D0%A3%D1%84%D0%B0%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2C%2077%2F2&z=15"
+              loading="lazy" allowfullscreen></iframe>
+          </div>
+          <figcaption>проспект Октября, 77/2</figcaption>
+        </figure>
       </div>
     </section>
 
     <!-- ░░░ ДРЕСС-КОД ░░░ -->
-    <section class="section dress" id="dress" aria-labelledby="dress-title">
-      <div class="wrap reveal">
-        <p class="eyebrow">Дресс-код</p>
-        <h2 class="section__title" id="dress-title">Цвета нашего дня</h2>
+    <section class="dress" id="dress" aria-labelledby="dress-h">
+      <svg class="botanical botanical--dress" aria-hidden="true"><use href="#sprig-grass"/></svg>
+      <div class="shell reveal">
+        <h2 class="head" id="dress-h">о нарядах</h2>
+        <p class="dress__quote">Для нас самое главное — ваше присутствие. Но мы будем очень признательны, если вы поддержите цветовую гамму спокойных природных оттенков.</p>
 
-        <p class="dress__intro">Для нас самое главное — ваше присутствие! Но мы будем очень признательны, если вы поддержите цветовую гамму спокойных природных оттенков.</p>
+        <div class="palette" aria-label="Палитра дресс-кода">
+          <span class="dot" style="--c:#F1EADB;--s:1.15"></span>
+          <span class="dot" style="--c:#DCC7A8;--s:0.9"></span>
+          <span class="dot" style="--c:#B79B78;--s:1.05"></span>
+          <span class="dot" style="--c:#8B7355;--s:0.85"></span>
+          <span class="dot" style="--c:#5E4B36;--s:1.1"></span>
+          <span class="dot" style="--c:#AEBE9F;--s:0.95"></span>
+          <span class="dot" style="--c:#7C9070;--s:1.2"></span>
+          <span class="dot" style="--c:#4F6344;--s:0.9"></span>
+          <span class="dot dot--ring" style="--c:#FBF8F1;--s:1.0"></span>
+          <span class="dot" style="--c:#2A2822;--s:0.85"></span>
+        </div>
 
-        <ul class="palette" aria-label="Палитра дресс-кода">
-          <li class="swatch" style="--c:#F3EEE3"><span></span><small>кремовый</small></li>
-          <li class="swatch" style="--c:#DCC7A8"><span></span><small>бежевый</small></li>
-          <li class="swatch" style="--c:#8B7355"><span></span><small>тёплый беж</small></li>
-          <li class="swatch" style="--c:#6B5842"><span></span><small>коричневый</small></li>
-          <li class="swatch" style="--c:#4A3B2A"><span></span><small>шоколад</small></li>
-          <li class="swatch" style="--c:#AEBE9F"><span></span><small>шалфей</small></li>
-          <li class="swatch" style="--c:#7C9070"><span></span><small>олива</small></li>
-          <li class="swatch" style="--c:#4F6B3E"><span></span><small>тёмно-зелёный</small></li>
-          <li class="swatch swatch--bordered" style="--c:#FFFFFF"><span></span><small>белый</small></li>
-          <li class="swatch" style="--c:#2A2822"><span></span><small>чёрный</small></li>
-        </ul>
-
-        <div class="dress__guide">
-          <div class="guide guide--yes">
-            <h3><span aria-hidden="true">✓</span> Приветствуются</h3>
-            <p>Светлые и пастельные тона, зелёные, коричневые, чёрный. Всё природное, землистое, травянистое — спокойная естественная гамма.</p>
+        <div class="dress__cols">
+          <div class="dress__col">
+            <h3>к лицу</h3>
+            <p>Светлые и пастельные тона, зелёные, коричневые, глубокий чёрный. Всё землистое и травянистое — спокойная природная гамма.</p>
           </div>
-          <div class="guide guide--no">
-            <h3><span aria-hidden="true">✕</span> Лучше избегать</h3>
-            <p>Яркого жёлтого, яркого красного и яркого синего. Если цвет светлый — можно почти любой; если насыщенный — пусть будет глубоким и тёмным.</p>
+          <div class="dress__col">
+            <h3>лучше отложить</h3>
+            <p>Яркий жёлтый, кричащий красный, электрический синий. Если цвет светлый — подойдёт почти любой; если насыщенный — пусть будет тёмным и глубоким.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ░░░ RSVP ░░░ -->
-    <section class="section section--sage rsvp" id="rsvp" aria-labelledby="rsvp-title">
-      <div class="wrap reveal">
-        <p class="eyebrow">Подтверждение</p>
-        <h2 class="section__title" id="rsvp-title">Будете с нами?</h2>
-        <p class="rsvp__lead">Пожалуйста, дайте знать до <strong>1 августа 2026</strong>, сможете ли вы присутствовать. Нам важно всё продумать так, чтобы вам было уютно.</p>
-
-        <div class="rsvp__actions">
-          <a class="btn btn--solid" id="rsvp-link" href="#" target="_blank" rel="noopener">Подтвердить присутствие</a>
-        </div>
+    <section class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
+      <svg class="botanical botanical--rsvp" aria-hidden="true"><use href="#sprig-branch"/></svg>
+      <div class="shell reveal">
+        <h2 class="head head--light" id="rsvp-h">отзовитесь</h2>
+        <p class="rsvp__line">Дайте, пожалуйста, знать до <b>1 августа</b>, сможете ли быть рядом с нами в этот день.</p>
+        <a class="ink-btn" id="rsvp-link" href="#" target="_blank" rel="noopener">написать нам</a>
         <p class="rsvp__hint" id="rsvp-hint"></p>
       </div>
     </section>
@@ -182,11 +198,9 @@
 
   <!-- ░░░ FOOTER ░░░ -->
   <footer class="footer">
-    <div class="rule rule--light" aria-hidden="true">
-      <span></span><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 21s-8-4.9-8-11a4.4 4.4 0 0 1 8-2.6A4.4 4.4 0 0 1 20 10c0 6.1-8 11-8 11Z" stroke="currentColor" stroke-width="1.3"/></svg><span></span>
-    </div>
-    <p class="footer__names">Никита <span class="amp">&amp;</span> Лера</p>
-    <p class="footer__date">13 сентября 2026 · Уфа</p>
+    <svg class="sprig-inline sprig-inline--foot" aria-hidden="true"><use href="#sprig-euc"/></svg>
+    <p class="footer__names">Никита <span>&amp;</span> Лера</p>
+    <p class="footer__date">13 · 09 · 2026 — Уфа</p>
   </footer>
 
   <script src="script.js"></script>

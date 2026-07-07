@@ -14,7 +14,7 @@ var RSVP_CONFIG = {
   type: 'whatsapp',
   phone: '70000000000',      // TODO: заменить на реальный номер
   telegram: '',              // либо укажите ник и type: 'telegram'
-  message: 'Здравствуйте! Подтверждаю присутствие на свадьбе Никиты и Леры 13 сентября 2026 🤍'
+  message: 'Здравствуйте! Подтверждаю присутствие на свадьбе Никиты и Леры 13 сентября 2026.'
 };
 
 /* Дата и время торжества: 13 сентября 2026, 15:00 (Уфа, UTC+5) */
@@ -133,6 +133,8 @@ function plural(n, forms) {
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
+        // лёгкий органичный разброс появления
+        entry.target.style.transitionDelay = (Math.min(entry.intersectionRatio, 0.2) * 0.4).toFixed(2) + 's';
         entry.target.classList.add('is-visible');
         io.unobserve(entry.target);
       }
