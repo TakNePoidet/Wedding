@@ -112,8 +112,8 @@ function plural(n, forms) {
   link.setAttribute('href', href);
   if (hint) {
     hint.textContent = placeholder
-      ? 'Кнопка настраивается: укажите контакт в script.js (RSVP_CONFIG).'
-      : 'Откроется мессенджер с готовым сообщением.';
+      ? 'Кнопка настраивается: укажите контакт в\u00A0script.js (RSVP_CONFIG).'
+      : 'Откроется мессенджер с\u00A0готовым сообщением.';
   }
 })();
 
