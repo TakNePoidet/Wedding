@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marck+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
-  <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
+  <noscript><style>.reveal,.reveal>*{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -235,8 +235,35 @@
       <div class="shell reveal">
         <h2 class="head head--light" id="rsvp-h">отзовитесь</h2>
         <p class="rsvp__line">Дайте, пожалуйста, знать до&nbsp;<b>1&nbsp;августа</b>, сможете&nbsp;ли быть рядом с&nbsp;нами в&nbsp;этот день.</p>
-        <a class="ink-btn" id="rsvp-link" href="#" target="_blank" rel="noopener">написать нам</a>
-        <p class="rsvp__hint" id="rsvp-hint"></p>
+
+        <form class="rsvp-form" id="rsvp-form" novalidate>
+          <div class="rsvp-form__row">
+            <label class="field">
+              <span class="field__label">имя</span>
+              <input class="field__input" type="text" id="rsvp-first" name="firstName" autocomplete="given-name" autocapitalize="words" required />
+            </label>
+            <label class="field">
+              <span class="field__label">фамилия</span>
+              <input class="field__input" type="text" id="rsvp-last" name="lastName" autocomplete="family-name" autocapitalize="words" />
+            </label>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" id="rsvp-plus" />
+            <span class="check__box" aria-hidden="true"></span>
+            <span class="check__label">со&nbsp;мной будет ещё один гость</span>
+          </label>
+
+          <label class="field field--plus" id="rsvp-plus-field" hidden>
+            <span class="field__label">имя гостя</span>
+            <input class="field__input" type="text" id="rsvp-plus-name" autocomplete="off" autocapitalize="words" />
+          </label>
+
+          <div class="rsvp-form__actions">
+            <button class="ink-btn" type="submit">отправить ответ</button>
+          </div>
+          <p class="rsvp__hint" id="rsvp-hint" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
