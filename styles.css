@@ -381,17 +381,19 @@ section[id] { scroll-margin-top: 0.75rem; }
 .details { padding: var(--sy) 0; }
 .details__grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 0.58fr 1.42fr;
   gap: clamp(var(--sp-md), 5vw, var(--sp-xl));
   align-items: start;
 }
 .details__lead { position: relative; }
+/* заголовок этого блока чуть компактнее — освобождает ширину для значений */
+.details__lead .head { font-size: clamp(2.3rem, 1rem + 3.2vw, 3.6rem); }
 .sprig-inline { width: 160px; height: 96px; color: var(--sage-2); opacity: 0.7; margin-top: var(--sp-md); }
 .details__list { list-style: none; margin: 0; padding: 0; }
 .details__list li {
   display: grid;
-  grid-template-columns: minmax(9rem, 0.5fr) 1fr;
-  gap: var(--sp-2xs) var(--sp-md);
+  grid-template-columns: minmax(6rem, max-content) 1fr;
+  gap: var(--sp-2xs) var(--sp-lg);
   padding: var(--sp-md) 0;
   border-top: 1px solid rgba(107,88,66,0.28);
   align-items: baseline;
@@ -403,11 +405,12 @@ section[id] { scroll-margin-top: 0.75rem; }
   font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.35rem);
 }
 .details__v {
-  font-size: clamp(1.35rem, 0.95rem + 1.1vw, 1.95rem);
+  font-family: var(--f-text);
+  font-size: clamp(1.2rem, 0.95rem + 0.75vw, 1.55rem);
   color: var(--green-deep);
-  line-height: 1.25;
+  line-height: 1.45;
 }
-.details__v em { display: inline-block; font-family: var(--f-text); font-style: normal; font-size: 0.66em; color: var(--ink-soft); line-height: 1.5; margin-top: var(--sp-2xs); }
+.details__v em { display: inline-block; font-family: var(--f-text); font-style: normal; font-size: 0.82em; color: var(--ink-soft); line-height: 1.5; margin-top: var(--sp-xs); }
 .details__cta { display: block !important; padding-top: var(--sp-md) !important; }
 
 /* ============================================================
