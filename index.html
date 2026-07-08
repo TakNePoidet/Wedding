@@ -77,6 +77,13 @@
       <p class="hero__line">будем счастливы разделить с&nbsp;вами<br />день нашей свадьбы</p>
     </div>
 
+    <!-- Funko-персонажи. Положите PNG на прозрачном фоне в assets/couple.png.
+         Пока файла нет — блок сам убирается, вёрстка остаётся прежней. -->
+    <div class="hero__art" aria-hidden="true">
+      <img src="assets/couple.png" alt="" loading="eager"
+           onerror="this.closest('.hero__art').remove()" />
+    </div>
+
     <a class="hero__down" href="#invite" aria-label="Дальше"><span></span></a>
   </header>
 
