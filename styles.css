@@ -536,27 +536,30 @@ section[id] { scroll-margin-top: 0.75rem; }
 /* всплывающее имя цвета (интерактив: наведение / фокус / тап) */
 .dot::after {
   content: attr(data-name);
-  position: absolute; left: 50%; bottom: calc(100% + 10px);
+  position: absolute; left: 50%; bottom: calc(100% + 11px);
   transform: translate(-50%, 4px);
   font-family: var(--f-serif); font-style: italic; font-size: 0.95rem;
   color: var(--cream-0); background: var(--green-deep);
-  padding: 0.25em 0.7em; border-radius: 3px; white-space: nowrap;
+  padding: 0.25em 0.75em; border-radius: 4px; white-space: nowrap;
   opacity: 0; pointer-events: none;
   transition: opacity .2s ease, transform .2s ease;
   z-index: 3;
 }
+/* аккуратный тонкий треугольник-хвостик (border-техника, смотрит вниз) */
 .dot::before {
   content: ""; position: absolute; left: 50%; bottom: calc(100% + 4px);
-  width: 8px; height: 8px; background: var(--green-deep);
-  transform: translate(-50%, 4px) rotate(45deg);
+  transform: translate(-50%, 4px);
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid var(--green-deep);
   opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 3;
 }
 .dot:hover, .dot:focus-visible, .dot.show-name { box-shadow: 0 18px 30px -10px rgba(46,42,36,0.55); scale: 1.07; }
 .dot:hover::after, .dot:focus-visible::after, .dot.show-name::after,
 .dot:hover::before, .dot:focus-visible::before, .dot.show-name::before {
-  opacity: 1; transform: translate(-50%, 0) rotate(var(--r, 0deg));
+  opacity: 1; transform: translate(-50%, 0);
 }
-.dot:hover::before, .dot:focus-visible::before, .dot.show-name::before { --r: 45deg; }
 /* разброс — через translate, чтобы дыхание (transform) складывалось с ним */
 .dot:nth-child(2n)  { translate: 0 10px; }
 .dot:nth-child(3n)  { translate: 0 -8px; }
