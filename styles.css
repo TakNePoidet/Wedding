@@ -144,29 +144,35 @@ section[id] { scroll-margin-top: 0.75rem; }
   max-width: 760px;
   text-align: left;
 }
-/* Funko-персонажи справа (когда добавлен assets/couple.png) */
+/* Funko-персонажи (пара) — прижаты к правому низу обложки, не мешают именам */
 .hero__art {
-  position: relative;
+  position: absolute;
+  right: clamp(0.5rem, 3vw, 4rem);
+  bottom: clamp(1.5rem, 5vh, 3.5rem);
+  width: clamp(260px, 34vw, 540px);
   z-index: 1;
-  flex: 0 1 44%;
-  align-self: flex-end;
   display: flex;
-  justify-content: center;
-  min-width: 0;
+  justify-content: flex-end;
 }
 .hero__art img {
   width: 100%;
-  max-width: 520px;
   height: auto;
   filter: drop-shadow(0 30px 42px rgba(46,42,36,0.26));
 }
+@keyframes floatArt { from { transform: translateY(0); } to { transform: translateY(-12px); } }
 @media (prefers-reduced-motion: no-preference) {
   .hero__art img { animation: floatArt 7s ease-in-out infinite alternate; }
-  @keyframes floatArt { from { transform: translateY(0); } to { transform: translateY(-12px); } }
 }
 @media (max-width: 900px) {
   .hero { flex-direction: column; align-items: flex-start; justify-content: center; }
-  .hero__art { flex: none; width: 100%; max-width: 320px; align-self: center; margin-top: clamp(1.5rem, 5vw, 3rem); }
+  .hero__art {
+    position: static;
+    width: 100%;
+    max-width: 300px;
+    align-self: center;
+    justify-content: center;
+    margin-top: clamp(1.5rem, 5vw, 3rem);
+  }
 }
 .names {
   font-family: var(--f-script);
@@ -236,8 +242,34 @@ section[id] { scroll-margin-top: 0.75rem; }
    ПРИГЛАШЕНИЕ  (тихий вступительный блок)
    ============================================================ */
 .invite { padding: var(--sp-xl) 0 var(--sp-lg); }
-.invite__grid { max-width: 880px; text-align: center; }
-.invite__sprig { width: 160px; height: 92px; margin: 0 auto var(--sp-md); color: var(--sage-2); opacity: 0.75; }
+.invite__grid {
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  text-align: left;
+}
+.invite__body { max-width: 640px; }
+.invite__art { justify-self: center; }
+.invite__art .char-img { width: clamp(160px, 22vw, 250px); }
+.invite__sprig { width: 160px; height: 92px; margin: 0 0 var(--sp-md); color: var(--sage-2); opacity: 0.75; }
+@media (max-width: 760px) {
+  .invite__grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .invite__body { order: 2; }
+  .invite__art { order: 1; }
+  .invite__sprig { margin-inline: auto; }
+}
+
+/* Общий стиль персонажей-Funko */
+.char-img {
+  display: block;
+  height: auto;
+  filter: drop-shadow(0 24px 32px rgba(46,42,36,0.22));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .char-img { animation: floatArt 7.5s ease-in-out infinite alternate; }
+}
 .invite__text {
   font-size: clamp(1.7rem, 1rem + 2.5vw, 3rem);
   line-height: 1.42;
@@ -453,6 +485,19 @@ section[id] { scroll-margin-top: 0.75rem; }
    ДРЕСС-КОД
    ============================================================ */
 .dress { position: relative; padding: var(--sy) 0; overflow: hidden; }
+.dress__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+}
+.dress__art { justify-self: center; align-self: end; }
+.dress__art .char-img { width: clamp(190px, 20vw, 290px); }
+@media (max-width: 980px) {
+  .dress__grid { grid-template-columns: 1fr; }
+  .dress__art { justify-self: center; margin-top: var(--sp-md); }
+  .dress__art .char-img { width: 200px; }
+}
 .dress__quote {
   font-style: italic;
   font-size: clamp(1.7rem, 1rem + 2.6vw, 3rem);

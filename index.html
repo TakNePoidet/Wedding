@@ -91,9 +91,15 @@
     <!-- ░░░ ПРИГЛАШЕНИЕ ░░░ -->
     <section class="invite" id="invite">
       <div class="shell invite__grid reveal">
-        <svg class="sprig-inline invite__sprig" aria-hidden="true"><use href="#sprig-euc"/></svg>
-        <p class="invite__text">Дорогие наши! Мы&nbsp;собираем самых близких, чтобы разделить один особенный день&nbsp;— тёплый, светлый и&nbsp;по-настоящему наш. Будем счастливы видеть вас рядом.</p>
-        <p class="invite__sign">с&nbsp;любовью, Никита&nbsp;и&nbsp;Лера</p>
+        <div class="invite__body">
+          <svg class="sprig-inline invite__sprig" aria-hidden="true"><use href="#sprig-euc"/></svg>
+          <p class="invite__text">Дорогие наши! Мы&nbsp;собираем самых близких, чтобы разделить один особенный день&nbsp;— тёплый, светлый и&nbsp;по-настоящему наш. Будем счастливы видеть вас рядом.</p>
+          <p class="invite__sign">с&nbsp;любовью, Никита&nbsp;и&nbsp;Лера</p>
+        </div>
+        <div class="invite__art" aria-hidden="true">
+          <img class="char-img" src="assets/groom-wave.png" alt="" loading="lazy"
+               onerror="this.closest('.invite__art').remove()" />
+        </div>
       </div>
     </section>
 
@@ -211,7 +217,8 @@
     <!-- ░░░ ДРЕСС-КОД ░░░ -->
     <section class="dress" id="dress" aria-labelledby="dress-h">
       <svg class="botanical botanical--dress" aria-hidden="true"><use href="#sprig-grass"/></svg>
-      <div class="shell reveal">
+      <div class="shell dress__grid reveal">
+        <div class="dress__main">
         <h2 class="head" id="dress-h">о&nbsp;нарядах</h2>
         <p class="dress__quote">Для&nbsp;нас самое главное&nbsp;— ваше присутствие. Но&nbsp;мы&nbsp;будем очень признательны, если вы&nbsp;поддержите цветовую гамму спокойных природных оттенков.</p>
 
@@ -238,6 +245,11 @@
             <h3>лучше отложить</h3>
             <p>Яркий жёлтый, кричащий красный, электрический синий. Если цвет светлый&nbsp;— подойдёт почти любой; если насыщенный&nbsp;— пусть будет тёмным и&nbsp;глубоким.</p>
           </div>
+        </div>
+        </div><!-- /.dress__main -->
+        <div class="dress__art" aria-hidden="true">
+          <img class="char-img" src="assets/bride-bouquet.png" alt="" loading="lazy"
+               onerror="this.closest('.dress__art').remove()" />
         </div>
       </div>
     </section>
