@@ -582,6 +582,7 @@ section[id] { scroll-margin-top: 0.75rem; }
   grid-template-columns: 1fr 1fr;
   gap: 0;
   max-width: 920px;
+  margin-inline: 0;      /* по левому краю сетки, как «о нарядах» и палитра */
   margin-top: var(--sp-xl);
 }
 /* симметричный отступ от разделителя — обе колонки одинаковой ширины текста */
