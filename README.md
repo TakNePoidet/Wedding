@@ -55,10 +55,13 @@ python3 -m http.server 8000
 
 ## Публикация на GitHub Pages
 
-1. Запушьте файлы в репозиторий.
-2. **Settings → Pages** → *Build and deployment* → *Source: Deploy from a branch*.
-3. Выберите ветку и папку `/ (root)`, сохраните.
-4. Через минуту сайт будет доступен по адресу `https://<владелец>.github.io/<репозиторий>/`.
+Деплой автоматический: workflow `.github/workflows/deploy-pages.yml` собирает и
+публикует сайт при каждом пуше в `main` (или вручную: Actions → Deploy to GitHub
+Pages → Run workflow). Сайт доступен по адресу
+`https://taknepoidet.github.io/Wedding/`.
+
+Если Actions не смог включить Pages сам, включите один раз вручную:
+**Settings → Pages → Source: GitHub Actions** — и перезапустите workflow.
 
 ## Шрифты
 
