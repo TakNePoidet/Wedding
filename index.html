@@ -112,6 +112,21 @@
         <ellipse cx="178" cy="42" rx="9" ry="7" transform="rotate(-22 178 42)"/>
       </g>
     </symbol>
+    <!-- Зубчатый лист малины (без ягод), переиспользуется на ветке -->
+    <defs>
+      <path id="rasp-leaf" d="M0 0 7 -5 4 -9 11 -15 6 -21 12 -29 7 -35 11 -44 5 -50 7 -58 0 -64 -7 -58 -5 -50 -11 -44 -7 -35 -12 -29 -6 -21 -11 -15 -4 -9 -7 -5Z"/>
+    </defs>
+    <symbol id="sprig-rasp" viewBox="0 0 140 240">
+      <path d="M70 236C64 192 78 160 68 122 60 92 74 62 66 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <g fill="currentColor">
+        <use href="#rasp-leaf" transform="translate(68 198) rotate(52) scale(0.92)"/>
+        <use href="#rasp-leaf" transform="translate(66 168) rotate(-54) scale(0.86)"/>
+        <use href="#rasp-leaf" transform="translate(70 140) rotate(48) scale(0.98)"/>
+        <use href="#rasp-leaf" transform="translate(62 110) rotate(-50) scale(0.86)"/>
+        <use href="#rasp-leaf" transform="translate(66 78) rotate(46) scale(0.8)"/>
+        <use href="#rasp-leaf" transform="translate(66 40) rotate(-6) scale(0.9)"/>
+      </g>
+    </symbol>
   </svg>
 
   <!-- ░░░ ОБЛОЖКА ░░░ -->
@@ -145,7 +160,7 @@
       <div class="shell invite__grid reveal">
         <div class="invite__body">
           <svg class="sprig-inline invite__sprig" aria-hidden="true"><use href="#sprig-euc"/></svg>
-          <p class="invite__text">Дорогие наши! Мы&nbsp;собираем самых близких, чтобы разделить один особенный день&nbsp;— тёплый, светлый и&nbsp;по-настоящему наш. Будем счастливы видеть вас рядом.</p>
+          <p class="invite__text">Спешим сообщить радостную новость&nbsp;— мы&nbsp;женимся! Мы&nbsp;очень хотим сделать этот день особенным, поэтому приглашаем вас разделить с&nbsp;нами торжество, посвящённое дню нашей свадьбы.</p>
           <p class="invite__sign">с&nbsp;любовью, Никита&nbsp;и&nbsp;Лера</p>
         </div>
         <div class="invite__art" aria-hidden="true">
@@ -272,7 +287,7 @@
       <div class="shell dress__grid reveal">
         <div class="dress__intro">
           <h2 class="head" id="dress-h">о&nbsp;нарядах</h2>
-          <p class="dress__quote">Для&nbsp;нас самое главное&nbsp;— ваше присутствие. Но&nbsp;мы&nbsp;будем очень признательны, если вы&nbsp;поддержите цветовую гамму спокойных природных оттенков.</p>
+          <p class="dress__quote">Мы&nbsp;очень старались сделать праздник красивым и&nbsp;будем рады, если в&nbsp;своих нарядах вы&nbsp;поддержите цветовую гамму нашей свадьбы.</p>
 
           <ul class="palette" aria-label="Палитра дресс-кода">
             <li class="dot" style="--c:#F1EADB;--s:1.15" tabindex="0" data-name="кремовый"></li>
@@ -308,13 +323,20 @@
       </div>
     </section>
 
-    <!-- ░░░ ЦВЕТЫ ░░░ -->
+    <!-- ░░░ ВМЕСТО ЦВЕТОВ ░░░ -->
     <section class="flowers" id="flowers" aria-labelledby="flowers-h">
+      <svg class="botanical botanical--flowers" aria-hidden="true"><use href="#sprig-rasp"/></svg>
       <div class="shell flowers__grid reveal">
         <div class="flowers__text">
-          <h2 class="head" id="flowers-h">живые<br />цветы</h2>
-          <p class="flowers__lead">Приносите с&nbsp;собой цветы, которые ассоциируются у&nbsp;вас с&nbsp;нами. Мы&nbsp;расставим их&nbsp;по вазам&nbsp;— и&nbsp;они станут частью убранства вечера.</p>
-          <p class="flowers__note">Достаточно пары-тройки стеблей. А&nbsp;если идёте семьёй или парой&nbsp;— хватит одного небольшого букета на&nbsp;всех.</p>
+          <h2 class="head" id="flowers-h">вместо<br />цветов</h2>
+          <p class="flowers__lead">Чтобы праздничное настроение длилось дольше, предлагаем не&nbsp;дарить цветы в&nbsp;день торжества, а&nbsp;вложить эти средства в&nbsp;нашу цветочную подписку&nbsp;— и&nbsp;они будут радовать нас ещё долго после свадьбы.</p>
+          <p class="flowers__note">А&nbsp;сразу после свадьбы мы&nbsp;улетаем в&nbsp;свадебное путешествие и&nbsp;не&nbsp;успеем насладиться букетами&nbsp;— поэтому вместо цветов будем рады и&nbsp;бутылочке хорошего вина.</p>
+          <p class="flowers__cta">
+            <a class="link-btn" href="https://verafox.ru/tsvetochnaya-podpiska-dlya-nikity-i-lery-13-09-2026.html" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M12 21s-7-4.7-9.3-9C1 8.6 2.5 5 6 5c2.2 0 3.4 1.4 4 2.5C10.6 6.4 11.8 5 14 5c3.5 0 5 3.6 3.3 7-2.3 4.3-5.3 9-5.3 9Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+              <span>оформить цветочную подписку</span>
+            </a>
+          </p>
         </div>
         <div class="flowers__art" aria-hidden="true">
           <svg class="vase" viewBox="0 0 220 300" fill="none">
@@ -343,13 +365,15 @@
 
     <!-- ░░░ ПОДАРКИ ░░░ -->
     <section class="gifts" id="gifts" aria-labelledby="gifts-h">
+      <svg class="botanical botanical--gifts" aria-hidden="true"><use href="#sprig-rasp"/></svg>
       <div class="shell gifts__grid reveal">
         <div class="gifts__lead">
           <h2 class="head" id="gifts-h">о&nbsp;подарках</h2>
           <svg class="sprig-inline" aria-hidden="true"><use href="#sprig-euc"/></svg>
         </div>
         <div class="gifts__body">
-          <p class="gifts__text">Не&nbsp;ломайте голову над&nbsp;подарками&nbsp;— самый желанный для&nbsp;нас вклад в&nbsp;молодую семью. А&nbsp;тёплые слова и&nbsp;пожелания приносите в&nbsp;сердцах: их&nbsp;мы&nbsp;будем хранить дольше всего.</p>
+          <p class="gifts__text">Мы&nbsp;очень ценим вашу заботу и&nbsp;внимание и&nbsp;будем рады любому подарку! И&nbsp;неважно, в&nbsp;какой конверт вы&nbsp;его упакуете&nbsp;:)</p>
+          <p class="gifts__aside">Хотя вино тоже можно.</p>
         </div>
       </div>
     </section>
@@ -364,8 +388,8 @@
         </div>
         <ul class="rules__list">
           <li>
-            <span class="rules__k">18+</span>
-            <span class="rules__v">Вечер во&nbsp;взрослом формате&nbsp;— самых маленьких оставьте дома, под&nbsp;надёжным присмотром.</span>
+            <span class="rules__k">О&nbsp;детях</span>
+            <span class="rules__v">Будем рады вам и&nbsp;вашим детям, но&nbsp;уверены: малышам будет комфортнее дома, чем на&nbsp;шумном празднике. К&nbsp;сожалению, площадка не&nbsp;позволяет пригласить аниматора и&nbsp;организовать для&nbsp;них безопасное пространство.</span>
           </li>
           <li>
             <span class="rules__k">Без «Горько!»</span>
@@ -394,7 +418,7 @@
       <svg class="botanical botanical--rsvp" aria-hidden="true"><use href="#sprig-branch"/></svg>
       <div class="shell reveal">
         <h2 class="head head--light" id="rsvp-h">отзовитесь</h2>
-        <p class="rsvp__line">Дайте, пожалуйста, знать до&nbsp;<b>10&nbsp;августа</b>, сможете&nbsp;ли быть рядом с&nbsp;нами в&nbsp;этот день.</p>
+        <p class="rsvp__line">Мы&nbsp;очень старались сделать праздник незабываемым, поэтому будем рады, если вы&nbsp;подтвердите своё присутствие до&nbsp;<b>10&nbsp;августа</b>.</p>
 
         <form class="rsvp-form" id="rsvp-form" novalidate>
           <div class="rsvp-form__row">

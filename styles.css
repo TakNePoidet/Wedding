@@ -92,6 +92,8 @@ section[id] { scroll-margin-top: 0.75rem; }
 .botanical--count { top: -10px; left: -30px; width: 300px; height: 180px; color: var(--sage-1); opacity: 0.28; --t: rotate(6deg); transform-origin: 0 50%; }
 .botanical--dress { top: 30px; right: -70px; width: 220px; height: 330px; --t: rotate(18deg); transform-origin: 50% 100%; opacity: 0.4; color: var(--sage-2); }
 .botanical--rsvp  { bottom: -50px; right: -40px; width: 170px; height: 340px; color: var(--sage-1); opacity: 0.3; --t: rotate(-16deg); transform-origin: 50% 100%; }
+.botanical--gifts   { bottom: -40px; left: -46px; width: 150px; height: 300px; color: var(--sage-2); opacity: 0.3; --t: rotate(-16deg); transform-origin: 50% 100%; }
+.botanical--flowers { top: -24px; right: -40px; width: 150px; height: 300px; color: var(--sage-2); opacity: 0.32; --t: rotate(14deg); transform-origin: 50% 0; }
 
 /* Дыхание: медленное покачивание, у каждой ветки свой ритм */
 @media (prefers-reduced-motion: no-preference) {
@@ -101,6 +103,8 @@ section[id] { scroll-margin-top: 0.75rem; }
   .botanical--count { animation-duration: 13s; animation-delay: -7s; }
   .botanical--dress { animation-duration: 10.5s; animation-delay: -2s; }
   .botanical--rsvp  { animation-duration: 12.5s; animation-delay: -5s; }
+  .botanical--gifts { animation-duration: 13s; animation-delay: -6s; }
+  .botanical--flowers { animation-duration: 11.5s; animation-delay: -3s; }
   @keyframes sway {
     from { transform: var(--t) rotate(-1.1deg); }
     to   { transform: var(--t) rotate(1.5deg); }
@@ -108,7 +112,8 @@ section[id] { scroll-margin-top: 0.75rem; }
 }
 @media (max-width: 720px) {
   .botanical--tr { width: 120px; height: 240px; }
-  .botanical--bl, .botanical--dress, .botanical--rsvp { opacity: 0.26; }
+  .botanical--bl, .botanical--dress, .botanical--rsvp,
+  .botanical--gifts, .botanical--flowers { opacity: 0.22; }
 }
 
 .shell { max-width: var(--shell); margin-inline: auto; padding-inline: var(--pad); position: relative; z-index: 1; }
@@ -326,6 +331,19 @@ section[id] { scroll-margin-top: 0.75rem; }
   align-self: center;
 }
 .count__done { font-family: var(--f-script); font-size: clamp(2.4rem,1rem+6vw,4rem); color: #fff; margin: 0; }
+
+/* На телефоне — фиксированная сетка 2×2: цифры не «скачут» при обновлении,
+   т.к. ширина колонок задана и не зависит от длины подписи (минута/минуты/минут). */
+@media (max-width: 600px) {
+  .count__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-md) var(--sp-sm);
+    justify-items: center;
+  }
+  .count__sep { display: none; }
+  .count__unit { align-items: center; text-align: center; }
+}
 
 /* Мягкий «тик» при смене значения */
 @media (prefers-reduced-motion: no-preference) {
@@ -607,6 +625,7 @@ section[id] { scroll-margin-top: 0.75rem; }
 .flowers {
   position: relative;
   padding: var(--sy) 0;
+  overflow: hidden;
   background:
     radial-gradient(55% 80% at 88% 18%, rgba(124,144,112,0.16), transparent 60%),
     linear-gradient(180deg, rgba(174,190,159,0.14), rgba(236,227,208,0.34));
@@ -635,6 +654,7 @@ section[id] { scroll-margin-top: 0.75rem; }
   margin: 0;
   max-width: 44ch;
 }
+.flowers__cta { margin: var(--sp-lg) 0 0; }
 .flowers__art { justify-self: center; }
 .vase { width: clamp(170px, 20vw, 240px); height: auto; color: var(--sage-2); }
 .vase__pot { color: var(--brown-2); }   /* тёплый контур вазы (currentColor группы) */
@@ -836,7 +856,7 @@ section[id] { scroll-margin-top: 0.75rem; }
 /* ============================================================
    ПОДАРКИ  (деликатный кремовый блок)
    ============================================================ */
-.gifts { padding: var(--sy) 0; }
+.gifts { position: relative; padding: var(--sy) 0; overflow: hidden; }
 .gifts__grid {
   display: grid;
   grid-template-columns: 0.58fr 1.42fr;
@@ -853,6 +873,12 @@ section[id] { scroll-margin-top: 0.75rem; }
   max-width: 40ch;
   margin: 0;
   text-wrap: pretty;
+}
+.gifts__aside {
+  font-family: var(--f-script);
+  font-size: clamp(1.5rem, 1rem + 1.4vw, 2.3rem);
+  color: var(--brown-2);
+  margin: var(--sp-md) 0 0;
 }
 
 /* ============================================================
