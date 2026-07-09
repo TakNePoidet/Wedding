@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://taknepoidet.github.io/Wedding/sitemap.xml
+Sitemap: https://leranikita.ru/sitemap.xml
