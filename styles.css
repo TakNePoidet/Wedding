@@ -18,9 +18,8 @@
   --sage-label: #D3DEC6;   /* светлый шалфей для мелких подписей на тёмно-зелёном (WCAG AA) */
   --moss:    #41543A;   /* глубокий зелёный фон */
   --green-deep: #34432C;
-  --rose:    #C6A199;
-  --blush:   #E4C4C6;   /* пудрово-розовый (из оформления зала) */
-  --blush-deep: #93585E; /* глубокий розовый для акцентного текста (WCAG AA на креме) */
+  --milk:    #ECE3D0;   /* молочный (заменил пудрово-розовый в декоре) */
+  --accent:  #6B5842;   /* тёплый коричневый/тауп — акцент на креме (амперсанд, подпись) */
   --ink:     #2A2822;
   --ink-soft:#5C5344;
 
@@ -184,7 +183,7 @@ section[id] { scroll-margin-top: 0.75rem; }
   font-size: clamp(3.8rem, 1rem + 15vw, 13rem);
 }
 .names span { display: block; }
-.names__amp { color: var(--blush-deep); font-size: 0.42em; margin: 0.04em 0 0.04em 1.1em; }
+.names__amp { color: var(--accent); font-size: 0.42em; margin: 0.04em 0 0.04em 1.1em; }
 .names__b { margin-left: 1.9em; }
 @media (max-width: 560px) {
   .names__amp { margin-left: 0.5em; }
@@ -281,7 +280,7 @@ section[id] { scroll-margin-top: 0.75rem; }
 .invite__sign {
   font-family: var(--f-script);
   font-size: clamp(2rem, 1rem + 3vw, 3.4rem);
-  color: var(--blush-deep);
+  color: var(--accent);
   margin: 0;
 }
 
@@ -434,7 +433,7 @@ section[id] { scroll-margin-top: 0.75rem; }
   margin: 0 0 var(--sp-md);
   text-wrap: pretty;
 }
-.mood__text--soft { font-style: italic; color: var(--blush); font-size: clamp(1.45rem, 1rem + 1.5vw, 2.3rem); margin: 0; }
+.mood__text--soft { font-style: italic; color: var(--milk); font-size: clamp(1.45rem, 1rem + 1.5vw, 2.3rem); margin: 0; }
 
 /* ============================================================
    КАРТА  (фотокарточка с наклоном + текстовые ссылки)
@@ -603,6 +602,52 @@ section[id] { scroll-margin-top: 0.75rem; }
 .dress__col p { margin: 0; font-family: var(--f-text); color: var(--ink-soft); font-size: clamp(1.05rem, 1rem + 0.35vw, 1.2rem); line-height: 1.65; }
 
 /* ============================================================
+   ЦВЕТЫ  (живые цветы от гостей — часть декора)
+   ============================================================ */
+.flowers {
+  position: relative;
+  padding: var(--sy) 0;
+  background:
+    radial-gradient(55% 80% at 88% 18%, rgba(124,144,112,0.16), transparent 60%),
+    linear-gradient(180deg, rgba(174,190,159,0.14), rgba(236,227,208,0.34));
+}
+.flowers__grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+}
+.flowers__text { max-width: 46ch; }
+.flowers__lead {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 1rem + 1.7vw, 2.15rem);
+  line-height: 1.4;
+  color: var(--green-deep);
+  margin: 0 0 var(--sp-md);
+  text-wrap: pretty;
+}
+.flowers__note {
+  font-family: var(--f-text);
+  color: var(--ink-soft);
+  font-size: clamp(1.05rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 44ch;
+}
+.flowers__art { justify-self: center; }
+.vase { width: clamp(170px, 20vw, 240px); height: auto; color: var(--sage-2); }
+.vase__pot { color: var(--brown-2); }   /* тёплый контур вазы (currentColor группы) */
+@media (prefers-reduced-motion: no-preference) {
+  .vase { animation: floatArt 8s ease-in-out infinite alternate; }
+}
+@media (max-width: 820px) {
+  .flowers__grid { grid-template-columns: 1fr; }
+  .flowers__art { order: -1; }
+  .vase { width: 190px; }
+}
+
+/* ============================================================
    RSVP  (тёмный wash, тактильная кнопка)
    ============================================================ */
 .rsvp {
@@ -692,7 +737,7 @@ section[id] { scroll-margin-top: 0.75rem; }
   transition: border-color .25s ease;
 }
 .field__input:focus { outline: none; border-bottom-color: var(--cream-0); }
-.field--invalid .field__input { border-bottom-color: var(--blush); }
+.field--invalid .field__input { border-bottom-color: var(--milk); }
 .field--plus:not([hidden]) { animation: plusIn 0.45s ease; }
 @keyframes plusIn { from { opacity: 0; transform: translateY(8px); } }
 
@@ -761,7 +806,7 @@ section[id] { scroll-margin-top: 0.75rem; }
   color: var(--cream-0);
   margin: 0 0 0.4rem;
 }
-.footer__names span { color: var(--rose); }
+.footer__names span { color: var(--accent); }
 .footer__date {
   font-style: italic;
   letter-spacing: 0.04em;
