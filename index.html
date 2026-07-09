@@ -41,7 +41,7 @@
     "@type": "Event",
     "name": "Свадьба Никиты и Леры",
     "description": "Приглашение на свадьбу Никиты и Леры.",
-    "startDate": "2026-09-13T15:00:00+05:00",
+    "startDate": "2026-09-13T15:30:00+05:00",
     "endDate": "2026-09-13T23:00:00+05:00",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -182,20 +182,20 @@
         </div>
         <ol class="timeline">
           <li class="tl">
-            <span class="tl__time">15<i>:00</i></span>
-            <span class="tl__body"><b>Сбор гостей</b><em>Встречаемся, обнимаемся, делаем первые кадры</em></span>
-          </li>
-          <li class="tl">
             <span class="tl__time">15<i>:30</i></span>
-            <span class="tl__body"><b>Церемония</b><em>Момент, ради которого мы&nbsp;все собрались</em></span>
+            <span class="tl__body"><b>Сбор гостей</b><em>Встречаемся, обнимаемся, лёгкий фуршет</em></span>
           </li>
           <li class="tl">
-            <span class="tl__time">16<i>:30</i></span>
-            <span class="tl__body"><b>Праздничный ужин</b><em>Тосты, музыка и&nbsp;любимые блюда</em></span>
+            <span class="tl__time">16<i>:00</i></span>
+            <span class="tl__body"><b>Церемония</b><em>Регистрация, поздравления и&nbsp;подарки, общее фото</em></span>
           </li>
           <li class="tl">
-            <span class="tl__time">19<i>:00</i></span>
-            <span class="tl__body"><b>Вечер и&nbsp;танцы</b><em>Продолжаем праздновать до&nbsp;последнего аккорда</em></span>
+            <span class="tl__time">17<i>:00</i></span>
+            <span class="tl__body"><b>Ужин и&nbsp;программа</b><em>Тосты, музыка и&nbsp;любимые блюда</em></span>
+          </li>
+          <li class="tl">
+            <span class="tl__time">22<i>:00</i></span>
+            <span class="tl__body"><b>Afterparty</b><em>Танцы и&nbsp;дискотека до&nbsp;последнего аккорда</em></span>
           </li>
         </ol>
       </div>
@@ -215,7 +215,7 @@
           </li>
           <li>
             <span class="details__k">Сбор гостей</span>
-            <span class="details__v">к&nbsp;пятнадцати часам, просим не&nbsp;опаздывать</span>
+            <span class="details__v">к&nbsp;15:30, просим не&nbsp;опаздывать</span>
           </li>
           <li>
             <span class="details__k">Место</span>
@@ -341,12 +341,60 @@
       </div>
     </section>
 
+    <!-- ░░░ ПОДАРКИ ░░░ -->
+    <section class="gifts" id="gifts" aria-labelledby="gifts-h">
+      <div class="shell gifts__grid reveal">
+        <div class="gifts__lead">
+          <h2 class="head" id="gifts-h">о&nbsp;подарках</h2>
+          <svg class="sprig-inline" aria-hidden="true"><use href="#sprig-euc"/></svg>
+        </div>
+        <div class="gifts__body">
+          <p class="gifts__text">Не&nbsp;ломайте голову над&nbsp;подарками&nbsp;— самый желанный для&nbsp;нас вклад в&nbsp;молодую семью. А&nbsp;тёплые слова и&nbsp;пожелания приносите в&nbsp;сердцах: их&nbsp;мы&nbsp;будем хранить дольше всего.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░ ПРАВИЛА ВЕЧЕРА ░░░ -->
+    <section class="rules" id="rules" aria-labelledby="rules-h">
+      <svg class="botanical botanical--rules" aria-hidden="true"><use href="#sprig-grass"/></svg>
+      <div class="shell rules__grid reveal">
+        <div class="rules__lead">
+          <h2 class="head" id="rules-h">хорошо<br />знать</h2>
+          <p class="rules__note">Несколько мягких просьб, чтобы вечер получился таким, как мы&nbsp;его задумали.</p>
+        </div>
+        <ul class="rules__list">
+          <li>
+            <span class="rules__k">18+</span>
+            <span class="rules__v">Вечер во&nbsp;взрослом формате&nbsp;— самых маленьких оставьте дома, под&nbsp;надёжным присмотром.</span>
+          </li>
+          <li>
+            <span class="rules__k">Без «Горько!»</span>
+            <span class="rules__v">Мы&nbsp;за&nbsp;искренние моменты&nbsp;— целоваться будем тогда, когда захочется самим.</span>
+          </li>
+          <li>
+            <span class="rules__k">Фото</span>
+            <span class="rules__v">Делитесь кадрами с&nbsp;хэштегом <b>#____</b>&nbsp;— так мы&nbsp;соберём вечер вашими глазами.</span>
+          </li>
+          <li>
+            <span class="rules__k">За&nbsp;столом</span>
+            <span class="rules__v">Говорим обо&nbsp;всём на&nbsp;свете&nbsp;— кроме политики. Пусть будет только доброе.</span>
+          </li>
+        </ul>
+        <div class="rules__cta">
+          <a class="link-btn" id="tg-chat" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M21 4.5 3.6 11.3c-.9.35-.88 1.65.03 1.97l4.3 1.5 1.66 5.02c.27.8 1.32.96 1.82.28l2.35-3.2 4.4 3.24c.62.46 1.5.12 1.66-.63L22.9 5.6c.2-.9-.7-1.64-1.9-1.1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            <span>вступить в&nbsp;чат праздника</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- ░░░ RSVP ░░░ -->
     <section class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
       <svg class="botanical botanical--rsvp" aria-hidden="true"><use href="#sprig-branch"/></svg>
       <div class="shell reveal">
         <h2 class="head head--light" id="rsvp-h">отзовитесь</h2>
-        <p class="rsvp__line">Дайте, пожалуйста, знать до&nbsp;<b>1&nbsp;августа</b>, сможете&nbsp;ли быть рядом с&nbsp;нами в&nbsp;этот день.</p>
+        <p class="rsvp__line">Дайте, пожалуйста, знать до&nbsp;<b>10&nbsp;августа</b>, сможете&nbsp;ли быть рядом с&nbsp;нами в&nbsp;этот день.</p>
 
         <form class="rsvp-form" id="rsvp-form" novalidate>
           <div class="rsvp-form__row">
@@ -360,22 +408,60 @@
             </label>
           </div>
 
-          <label class="check">
-            <input type="checkbox" id="rsvp-plus" />
-            <span class="check__box" aria-hidden="true"></span>
-            <span class="check__label">со&nbsp;мной будет ещё один гость</span>
-          </label>
+          <fieldset class="rsvp-attend" id="rsvp-attend">
+            <legend class="field__label">планируете быть?</legend>
+            <div class="segmented" role="radiogroup" aria-label="Планируете быть?">
+              <label class="seg">
+                <input type="radio" name="attend" value="yes" id="rsvp-yes" checked />
+                <span class="seg__face">буду</span>
+              </label>
+              <label class="seg">
+                <input type="radio" name="attend" value="no" id="rsvp-no" />
+                <span class="seg__face">не&nbsp;смогу</span>
+              </label>
+            </div>
+          </fieldset>
 
-          <label class="field field--plus" id="rsvp-plus-field" hidden>
-            <span class="field__label">имя гостя</span>
-            <input class="field__input" type="text" id="rsvp-plus-name" autocomplete="off" autocapitalize="words" />
-          </label>
+          <div class="rsvp-when-yes" id="rsvp-when-yes">
+            <label class="check">
+              <input type="checkbox" id="rsvp-plus" />
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__label">со&nbsp;мной будет ещё один гость</span>
+            </label>
+
+            <label class="field field--plus" id="rsvp-plus-field" hidden>
+              <span class="field__label">имя гостя</span>
+              <input class="field__input" type="text" id="rsvp-plus-name" autocomplete="off" autocapitalize="words" />
+            </label>
+
+            <fieldset class="rsvp-drinks">
+              <legend class="field__label">напитки на&nbsp;вечер</legend>
+              <p class="rsvp-drinks__note">Отметьте, что вам по&nbsp;душе&nbsp;— так мы&nbsp;точнее накроем стол.</p>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="drink" value="Белое вино" /><span>Белое вино</span></label>
+                <label class="chip"><input type="checkbox" name="drink" value="Красное вино" /><span>Красное вино</span></label>
+                <label class="chip"><input type="checkbox" name="drink" value="Шампанское" /><span>Шампанское</span></label>
+                <label class="chip"><input type="checkbox" name="drink" value="Виски" /><span>Виски</span></label>
+                <label class="chip"><input type="checkbox" name="drink" value="Водка" /><span>Водка</span></label>
+                <label class="chip"><input type="checkbox" name="drink" value="Коньяк" /><span>Коньяк</span></label>
+                <label class="chip"><input type="checkbox" name="drink" value="Безалкогольные" /><span>Безалкогольные</span></label>
+              </div>
+            </fieldset>
+          </div>
 
           <div class="rsvp-form__actions">
             <button class="ink-btn" type="submit">отправить ответ</button>
           </div>
           <p class="rsvp__hint" id="rsvp-hint" aria-live="polite"></p>
         </form>
+      </div>
+    </section>
+    <!-- ░░░ ОРГАНИЗАТОР ░░░ -->
+    <section class="organizer" id="organizer" aria-labelledby="organizer-h">
+      <div class="shell organizer__inner reveal">
+        <h2 class="head organizer__h" id="organizer-h">остались вопросы?</h2>
+        <p class="organizer__text">На&nbsp;всё ответит наш организатор&nbsp;— <b>Гульназ</b>, агентство&nbsp;«ОГОНЬ».</p>
+        <a class="organizer__tel" href="tel:+79377804333">+7&nbsp;937&nbsp;780-43-33</a>
       </div>
     </section>
   </main>

@@ -783,11 +783,154 @@ section[id] { scroll-margin-top: 0.75rem; }
 .check input:focus-visible + .check__box { outline: 2px solid var(--cream-0); outline-offset: 3px; }
 .check__label { font-style: italic; font-size: 1.1rem; color: var(--cream-1); }
 
+/* fieldset-обёртки анкеты — без рамок браузера */
+.rsvp-attend, .rsvp-drinks { border: 0; margin: 0; padding: 0; min-width: 0; }
+.rsvp-attend legend, .rsvp-drinks legend { padding: 0; margin-bottom: 0.7rem; }
+
+/* «Буду / Не смогу» — сегментированный переключатель */
+.segmented { display: inline-flex; gap: 0.5rem; }
+.seg { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.seg input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+.seg__face {
+  display: block;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--cream-1);
+  padding: 0.4em 1.4em;
+  border: 1px solid rgba(241,234,219,0.45);
+  border-radius: 2px;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.seg input:checked + .seg__face { background: var(--cream-0); color: var(--green-deep); border-color: var(--cream-0); }
+.seg input:focus-visible + .seg__face { outline: 2px solid var(--cream-0); outline-offset: 3px; }
+
+/* Поля, зависящие от ответа «Буду», появляются мягко */
+.rsvp-when-yes { display: flex; flex-direction: column; gap: 1.7rem; }
+.rsvp-when-yes:not([hidden]) { animation: plusIn 0.4s ease; }
+
+/* Напитки — «фишки» с чекбоксами, мультивыбор */
+.rsvp-drinks__note { font-family: var(--f-text); font-style: italic; font-size: 1rem; color: var(--sage-label); margin: -0.3rem 0 0.9rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.chip { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.chip input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+.chip span {
+  display: block;
+  font-family: var(--f-text);
+  font-size: 1.02rem;
+  color: var(--cream-1);
+  padding: 0.4em 1em;
+  border: 1px solid rgba(241,234,219,0.4);
+  border-radius: 999px;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.chip input:checked + span { background: var(--cream-0); color: var(--green-deep); border-color: var(--cream-0); }
+.chip input:focus-visible + span { outline: 2px solid var(--cream-0); outline-offset: 3px; }
+
 .rsvp-form__actions { margin-top: 0.3rem; }
 
 @media (max-width: 560px) {
   .rsvp-form__row { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   ПОДАРКИ  (деликатный кремовый блок)
+   ============================================================ */
+.gifts { padding: var(--sy) 0; }
+.gifts__grid {
+  display: grid;
+  grid-template-columns: 0.58fr 1.42fr;
+  gap: clamp(var(--sp-md), 5vw, var(--sp-xl));
+  align-items: start;
+}
+.gifts__lead .head { font-size: clamp(2.3rem, 1rem + 3.2vw, 3.6rem); }
+.gifts__text {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2.15rem);
+  line-height: 1.42;
+  color: var(--green-deep);
+  max-width: 40ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ============================================================
+   ПРАВИЛА ВЕЧЕРА  (светлая washed-полоса)
+   ============================================================ */
+.rules {
+  position: relative;
+  padding: var(--sy) 0;
+  overflow: hidden;
+  background:
+    radial-gradient(55% 80% at 12% 16%, rgba(124,144,112,0.16), transparent 60%),
+    linear-gradient(180deg, rgba(236,227,208,0.34), rgba(174,190,159,0.14));
+}
+.botanical--rules { top: 0; right: -60px; width: 220px; height: 330px; --t: rotate(20deg) scaleX(-1); transform-origin: 50% 0; opacity: 0.34; color: var(--sage-2); }
+@media (prefers-reduced-motion: no-preference) { .botanical--rules { animation: sway 12s ease-in-out infinite alternate; animation-duration: 13.5s; animation-delay: -3s; } }
+.rules__grid {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: clamp(var(--sp-md), 5vw, var(--sp-xl));
+  align-items: start;
+}
+.rules__lead .head { font-size: clamp(2.3rem, 1rem + 3.4vw, 3.8rem); }
+.rules__note { font-family: var(--f-text); font-style: italic; color: var(--ink-soft); font-size: 1.05rem; line-height: 1.5; margin: var(--sp-sm) 0 0; max-width: 26ch; }
+.rules__list { list-style: none; margin: 0; padding: 0; }
+.rules__list li {
+  display: grid;
+  grid-template-columns: minmax(7rem, max-content) 1fr;
+  gap: var(--sp-2xs) var(--sp-lg);
+  padding: var(--sp-md) 0;
+  border-top: 1px solid rgba(107,88,66,0.28);
+  align-items: baseline;
+}
+.rules__list li:last-child { border-bottom: 1px solid rgba(107,88,66,0.28); }
+.rules__k {
+  font-style: italic;
+  color: var(--brown-2);
+  font-size: clamp(1.15rem, 0.95rem + 0.5vw, 1.5rem);
+}
+.rules__v {
+  font-family: var(--f-text);
+  font-size: clamp(1.1rem, 0.95rem + 0.55vw, 1.4rem);
+  color: var(--green-deep);
+  line-height: 1.5;
+}
+.rules__v b { color: var(--brown-3); font-weight: 600; }
+.rules__cta { grid-column: 1 / -1; margin-top: var(--sp-md); }
+@media (max-width: 780px) {
+  .rules__grid { grid-template-columns: 1fr; }
+  .rules__list li { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+
+/* ============================================================
+   ОРГАНИЗАТОР  (узкая светлая строка)
+   ============================================================ */
+.organizer { padding: var(--sp-2xl) 0; text-align: center; }
+.organizer__inner { max-width: 40ch; margin-inline: auto; }
+.organizer__h { font-size: clamp(1.9rem, 1rem + 2.6vw, 3rem); margin-bottom: var(--sp-sm); }
+.organizer__text {
+  font-family: var(--f-text);
+  color: var(--ink-soft);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  line-height: 1.55;
+  margin: 0 0 var(--sp-md);
+}
+.organizer__text b { color: var(--green-deep); font-weight: 600; }
+.organizer__tel {
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 1rem + 2vw, 2.6rem);
+  letter-spacing: 0.06em;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sage-2);
+  padding-bottom: 2px;
+  font-variant-numeric: tabular-nums;
+  transition: color .2s ease, border-color .2s ease;
+  white-space: nowrap;
+}
+.organizer__tel:hover { color: var(--brown-2); border-color: var(--brown-2); }
 
 /* ============================================================
    FOOTER
