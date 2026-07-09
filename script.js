@@ -17,8 +17,8 @@ var RSVP_CONFIG = {
 };
 /* Текст ответа собирается автоматически из полей формы (имя, фамилия, +1) */
 
-/* Дата и время торжества: 13 сентября 2026, 15:00 (Уфа, UTC+5) */
-var WEDDING_DATE = new Date('2026-09-13T15:00:00+05:00');
+/* Дата и время торжества: 13 сентября 2026, 15:30 (Уфа, UTC+5) */
+var WEDDING_DATE = new Date('2026-09-13T15:30:00+05:00');
 
 /* ------------------------------------------------------------
    Русское склонение существительных
@@ -111,10 +111,24 @@ function plural(n, forms) {
   var plusEl = document.getElementById('rsvp-plus');
   var plusField = document.getElementById('rsvp-plus-field');
   var plusNameEl = document.getElementById('rsvp-plus-name');
+  var whenYes = document.getElementById('rsvp-when-yes');
+  var attendEls = form.querySelectorAll('input[name="attend"]');
 
   var phoneDigits = (cfg.phone || '').replace(/\D/g, '');
 
   function setHint(text) { if (hint) hint.textContent = text || ''; }
+
+  function isComing() {
+    var no = document.getElementById('rsvp-no');
+    return !(no && no.checked);
+  }
+
+  // Поля напитков/«+1» видны только при ответе «Буду»
+  function syncAttend() {
+    if (whenYes) whenYes.hidden = !isComing();
+  }
+  attendEls.forEach(function (el) { el.addEventListener('change', syncAttend); });
+  syncAttend();
 
   // Поле имени спутника появляется только при отмеченном «+1»
   plusEl.addEventListener('change', function () {
@@ -140,10 +154,23 @@ function plural(n, forms) {
     }
 
     var who = first + (last ? ' ' + last : '');
-    var msg = 'Здравствуйте! Это ' + who + '. Подтверждаю присутствие на свадьбе Никиты и Леры 13 сентября 2026.';
-    if (plusEl.checked) {
-      var plusName = plusNameEl.value.trim();
-      msg += ' Со мной будет ещё один гость' + (plusName ? ' — ' + plusName : '') + '.';
+    var msg;
+
+    if (!isComing()) {
+      msg = 'Здравствуйте! Это ' + who + '. К сожалению, не смогу быть на свадьбе Никиты и Леры 13 сентября 2026. Обнимаю и поздравляю!';
+    } else {
+      msg = 'Здравствуйте! Это ' + who + '. Подтверждаю присутствие на свадьбе Никиты и Леры 13 сентября 2026.';
+      if (plusEl.checked) {
+        var plusName = plusNameEl.value.trim();
+        msg += ' Со мной будет ещё один гость' + (plusName ? ' — ' + plusName : '') + '.';
+      }
+      var drinks = [];
+      form.querySelectorAll('input[name="drink"]:checked').forEach(function (d) {
+        drinks.push(d.value);
+      });
+      if (drinks.length) {
+        msg += ' Из напитков предпочту: ' + drinks.join(', ') + '.';
+      }
     }
 
     var href = '';
@@ -199,7 +226,7 @@ function plural(n, forms) {
   if (!btn) return;
 
   btn.addEventListener('click', function () {
-    // 13.09.2026 15:00 Уфа (UTC+5) → в UTC это 10:00; конец через 8 часов
+    // 13.09.2026 15:30 Уфа (UTC+5) → в UTC это 10:30; afterparty до ~23:30
     var ics = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
@@ -208,10 +235,10 @@ function plural(n, forms) {
       'BEGIN:VEVENT',
       'UID:wedding-nikita-lera-2026-09-13@github.io',
       'DTSTAMP:20260708T000000Z',
-      'DTSTART:20260913T100000Z',
-      'DTEND:20260913T180000Z',
+      'DTSTART:20260913T103000Z',
+      'DTEND:20260913T183000Z',
       'SUMMARY:Свадьба Никиты и Леры',
-      'DESCRIPTION:Сбор гостей к 15:00. Будем счастливы видеть вас рядом!',
+      'DESCRIPTION:Сбор гостей к 15:30. Будем счастливы видеть вас рядом!',
       'LOCATION:Ресторан «Лебединое озеро»\\, ПКиО им. М. Гафури\\, проспект Октября 77/2\\, Уфа',
       'END:VEVENT',
       'END:VCALENDAR'
