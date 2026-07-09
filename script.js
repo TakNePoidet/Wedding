@@ -113,19 +113,8 @@ function plural(n, forms) {
   var plusNameEl = document.getElementById('rsvp-plus-name');
 
   var phoneDigits = (cfg.phone || '').replace(/\D/g, '');
-  var isPlaceholder =
-    (cfg.type === 'telegram' && !cfg.telegram) ||
-    (cfg.type !== 'telegram' && (!phoneDigits || /^0+$/.test(phoneDigits)));
 
-  function setHint(text) { if (hint) hint.textContent = text; }
-
-  if (isPlaceholder) {
-    setHint('Форма настраивается: укажите контакт в\u00A0script.js (RSVP_CONFIG).');
-  } else if (cfg.type === 'telegram') {
-    setHint('Откроется наш Telegram\u00A0— текст ответа скопируется сам.');
-  } else {
-    setHint('Ответ откроется в\u00A0WhatsApp готовым сообщением.');
-  }
+  function setHint(text) { if (hint) hint.textContent = text || ''; }
 
   // Поле имени спутника появляется только при отмеченном «+1»
   plusEl.addEventListener('change', function () {
@@ -200,4 +189,125 @@ function plural(n, forms) {
   }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
 
   items.forEach(function (el) { io.observe(el); });
+})();
+
+/* ------------------------------------------------------------
+   «Сохранить дату в календарь» — генерируем .ics
+   ------------------------------------------------------------ */
+(function initCalendar() {
+  var btn = document.getElementById('ics-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', function () {
+    // 13.09.2026 15:00 Уфа (UTC+5) → в UTC это 10:00; конец через 8 часов
+    var ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//nikita-lera//wedding//RU',
+      'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      'UID:wedding-nikita-lera-2026-09-13@github.io',
+      'DTSTAMP:20260708T000000Z',
+      'DTSTART:20260913T100000Z',
+      'DTEND:20260913T180000Z',
+      'SUMMARY:Свадьба Никиты и Леры',
+      'DESCRIPTION:Сбор гостей к 15:00. Будем счастливы видеть вас рядом!',
+      'LOCATION:Ресторан «Лебединое озеро»\\, ПКиО им. М. Гафури\\, проспект Октября 77/2\\, Уфа',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'nikita-lera-13-09-2026.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+
+    var label = btn.querySelector('span');
+    var prev = label.textContent;
+    btn.classList.add('done');
+    label.textContent = 'дата сохранена';
+    setTimeout(function () { btn.classList.remove('done'); label.textContent = prev; }, 2600);
+  });
+})();
+
+/* ------------------------------------------------------------
+   «Скопировать адрес»
+   ------------------------------------------------------------ */
+(function initCopyAddress() {
+  var btn = document.getElementById('addr-copy');
+  if (!btn) return;
+
+  btn.addEventListener('click', function () {
+    var addr = btn.getAttribute('data-addr') || '';
+    var done = function () {
+      var prev = btn.textContent;
+      btn.classList.add('copied');
+      btn.textContent = 'адрес скопирован';
+      setTimeout(function () { btn.classList.remove('copied'); btn.textContent = prev; }, 2200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(addr).then(done).catch(done);
+    } else {
+      done();
+    }
+  });
+})();
+
+/* ------------------------------------------------------------
+   Палитра: имя цвета по тапу (наведение/фокус — уже в CSS)
+   ------------------------------------------------------------ */
+(function initPalette() {
+  var dots = document.querySelectorAll('.dot');
+  if (!dots.length) return;
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      var wasOn = dot.classList.contains('show-name');
+      dots.forEach(function (d) { d.classList.remove('show-name'); });
+      if (!wasOn) dot.classList.add('show-name');
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.dot')) {
+      dots.forEach(function (d) { d.classList.remove('show-name'); });
+    }
+  });
+})();
+
+/* ------------------------------------------------------------
+   Лёгкий параллакс ботаники за курсором (десктоп, если разрешено движение)
+   ------------------------------------------------------------ */
+(function initParallax() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  var leaves = document.querySelectorAll('.botanical');
+  if (!leaves.length) return;
+
+  var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+
+  window.addEventListener('mousemove', function (e) {
+    tx = (e.clientX / window.innerWidth - 0.5) * 2;   // -1..1
+    ty = (e.clientY / window.innerHeight - 0.5) * 2;
+    if (!raf) raf = requestAnimationFrame(loop);
+  });
+
+  function loop() {
+    cx += (tx - cx) * 0.06;
+    cy += (ty - cy) * 0.06;
+    leaves.forEach(function (leaf, i) {
+      var depth = 6 + (i % 3) * 5;                     // разная «глубина»
+      // CSS-свойство translate независимо от transform (sway) и складывается с ним
+      leaf.style.translate = (cx * depth).toFixed(1) + 'px ' + (cy * depth).toFixed(1) + 'px';
+    });
+    if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) {
+      raf = requestAnimationFrame(loop);
+    } else {
+      raf = null;
+    }
+  }
 })();

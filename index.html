@@ -3,15 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Никита и Лера — 13 сентября 2026</title>
-  <meta name="description" content="Никита и Лера — 13 сентября 2026, Уфа, ресторан «Лебединое озеро»." />
-  <meta property="og:title" content="Никита и Лера — 13 сентября 2026" />
-  <meta property="og:description" content="Ресторан «Лебединое озеро», Уфа. Будем счастливы видеть вас." />
+  <title>Никита и Лера — свадьба 13 сентября 2026, Уфа</title>
+  <meta name="description" content="Приглашение на свадьбу Никиты и Леры — 13 сентября 2026, Уфа, ресторан «Лебединое озеро». Программа дня, дресс-код, карта проезда и подтверждение присутствия." />
+  <link rel="canonical" href="https://leranikita.ru/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#41543A" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Open Graph (превью при отправке ссылки) -->
+  <meta property="og:site_name" content="Никита и Лера" />
+  <meta property="og:title" content="Никита и Лера — свадьба 13 сентября 2026" />
+  <meta property="og:description" content="Приглашаем разделить с нами этот день. Уфа, ресторан «Лебединое озеро». Дата, программа, дресс-код и подтверждение присутствия — на сайте." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://leranikita.ru/" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:image" content="https://leranikita.ru/assets/og-image.png" />
+  <meta property="og:image:secure_url" content="https://leranikita.ru/assets/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Никита и Лера — 13 сентября 2026, Уфа" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Никита и Лера — свадьба 13 сентября 2026" />
+  <meta name="twitter:description" content="Уфа, ресторан «Лебединое озеро». Дата, программа, дресс-код и подтверждение присутствия — на сайте." />
+  <meta name="twitter:image" content="https://leranikita.ru/assets/og-image.png" />
+
+  <!-- Иконки -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <!-- Структурированные данные (schema.org Event) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Свадьба Никиты и Леры",
+    "description": "Приглашение на свадьбу Никиты и Леры.",
+    "startDate": "2026-09-13T15:00:00+05:00",
+    "endDate": "2026-09-13T23:00:00+05:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "image": "https://leranikita.ru/assets/og-image.png",
+    "url": "https://leranikita.ru/",
+    "location": {
+      "@type": "Place",
+      "name": "Ресторан «Лебединое озеро»",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "проспект Октября, 77/2, ПКиО им. М. Гафури",
+        "addressLocality": "Уфа",
+        "addressCountry": "RU"
+      }
+    },
+    "organizer": { "@type": "Person", "name": "Никита и Лера" }
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marck+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Marck+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
   <noscript><style>.reveal,.reveal>*{opacity:1 !important;transform:none !important;}</style></noscript>
@@ -68,7 +120,6 @@
     <svg class="botanical botanical--bl" aria-hidden="true"><use href="#sprig-grass"/></svg>
 
     <div class="hero__inner reveal">
-      <p class="hero__place">Уфа · ресторан «Лебединое&nbsp;озеро»</p>
       <h1 class="names">
         <span class="names__a">Никита</span>
         <span class="names__amp">&amp;</span>
@@ -78,6 +129,13 @@
       <p class="hero__line">будем счастливы разделить с&nbsp;вами<br />день нашей свадьбы</p>
     </div>
 
+    <!-- Funko-персонажи. Положите PNG на прозрачном фоне в assets/couple.png.
+         Пока файла нет — блок сам убирается, вёрстка остаётся прежней. -->
+    <div class="hero__art" aria-hidden="true">
+      <img src="assets/couple.png" alt="" loading="eager"
+           onerror="this.closest('.hero__art').remove()" />
+    </div>
+
     <a class="hero__down" href="#invite" aria-label="Дальше"><span></span></a>
   </header>
 
@@ -85,9 +143,15 @@
     <!-- ░░░ ПРИГЛАШЕНИЕ ░░░ -->
     <section class="invite" id="invite">
       <div class="shell invite__grid reveal">
-        <svg class="sprig-inline invite__sprig" aria-hidden="true"><use href="#sprig-euc"/></svg>
-        <p class="invite__text">Дорогие наши! Мы&nbsp;собираем самых близких, чтобы разделить один особенный день&nbsp;— тёплый, светлый и&nbsp;по-настоящему наш. Будем счастливы видеть вас рядом.</p>
-        <p class="invite__sign">с&nbsp;любовью, Никита&nbsp;и&nbsp;Лера</p>
+        <div class="invite__body">
+          <svg class="sprig-inline invite__sprig" aria-hidden="true"><use href="#sprig-euc"/></svg>
+          <p class="invite__text">Дорогие наши! Мы&nbsp;собираем самых близких, чтобы разделить один особенный день&nbsp;— тёплый, светлый и&nbsp;по-настоящему наш. Будем счастливы видеть вас рядом.</p>
+          <p class="invite__sign">с&nbsp;любовью, Никита&nbsp;и&nbsp;Лера</p>
+        </div>
+        <div class="invite__art" aria-hidden="true">
+          <img class="char-img" src="assets/groom-wave.png" alt="" loading="lazy"
+               onerror="this.closest('.invite__art').remove()" />
+        </div>
       </div>
     </section>
 
@@ -157,6 +221,12 @@
             <span class="details__k">Место</span>
             <span class="details__v">ресторан «Лебединое озеро»<br /><em>ПКиО им.&nbsp;М.&nbsp;Гафури, проспект Октября, 77/2</em></span>
           </li>
+          <li class="details__cta">
+            <button class="link-btn" id="ics-btn" type="button">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <span>сохранить дату в&nbsp;календарь</span>
+            </button>
+          </li>
         </ul>
       </div>
     </section>
@@ -181,6 +251,7 @@
             <a target="_blank" rel="noopener" href="https://yandex.ru/maps/?text=%D0%A3%D1%84%D0%B0%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2C%2077%2F2">Яндекс.Карты</a>
             <a target="_blank" rel="noopener" href="https://2gis.ru/ufa/search/%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2077%2F2">2ГИС</a>
             <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D0%A3%D1%84%D0%B0%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BA%D1%82%D1%8F%D0%B1%D1%80%D1%8F%2077%2F2">Google&nbsp;Maps</a>
+            <button class="map-copy" id="addr-copy" type="button" data-addr="Уфа, проспект Октября, 77/2, ресторан «Лебединое озеро»">скопировать адрес</button>
           </div>
         </div>
         <figure class="map__card">
@@ -198,31 +269,39 @@
     <!-- ░░░ ДРЕСС-КОД ░░░ -->
     <section class="dress" id="dress" aria-labelledby="dress-h">
       <svg class="botanical botanical--dress" aria-hidden="true"><use href="#sprig-grass"/></svg>
-      <div class="shell reveal">
-        <h2 class="head" id="dress-h">о&nbsp;нарядах</h2>
-        <p class="dress__quote">Для&nbsp;нас самое главное&nbsp;— ваше присутствие. Но&nbsp;мы&nbsp;будем очень признательны, если вы&nbsp;поддержите цветовую гамму спокойных природных оттенков.</p>
+      <div class="shell dress__grid reveal">
+        <div class="dress__intro">
+          <h2 class="head" id="dress-h">о&nbsp;нарядах</h2>
+          <p class="dress__quote">Для&nbsp;нас самое главное&nbsp;— ваше присутствие. Но&nbsp;мы&nbsp;будем очень признательны, если вы&nbsp;поддержите цветовую гамму спокойных природных оттенков.</p>
 
-        <div class="palette" aria-label="Палитра дресс-кода">
-          <span class="dot" style="--c:#F1EADB;--s:1.15"></span>
-          <span class="dot" style="--c:#DCC7A8;--s:0.9"></span>
-          <span class="dot" style="--c:#B79B78;--s:1.05"></span>
-          <span class="dot" style="--c:#8B7355;--s:0.85"></span>
-          <span class="dot" style="--c:#5E4B36;--s:1.1"></span>
-          <span class="dot" style="--c:#AEBE9F;--s:0.95"></span>
-          <span class="dot" style="--c:#7C9070;--s:1.2"></span>
-          <span class="dot" style="--c:#4F6344;--s:0.9"></span>
-          <span class="dot" style="--c:#E4C4C6;--s:1.0"></span>
-          <span class="dot dot--ring" style="--c:#FBF8F1;--s:1.0"></span>
-          <span class="dot" style="--c:#2A2822;--s:0.85"></span>
+          <ul class="palette" aria-label="Палитра дресс-кода">
+            <li class="dot" style="--c:#F1EADB;--s:1.15" tabindex="0" data-name="кремовый"></li>
+            <li class="dot" style="--c:#DCC7A8;--s:0.9" tabindex="0" data-name="бежевый"></li>
+            <li class="dot" style="--c:#B79B78;--s:1.05" tabindex="0" data-name="тёплый беж"></li>
+            <li class="dot" style="--c:#8B7355;--s:0.85" tabindex="0" data-name="кофейный"></li>
+            <li class="dot" style="--c:#5E4B36;--s:1.1" tabindex="0" data-name="шоколад"></li>
+            <li class="dot" style="--c:#AEBE9F;--s:0.95" tabindex="0" data-name="шалфей"></li>
+            <li class="dot" style="--c:#7C9070;--s:1.2" tabindex="0" data-name="олива"></li>
+            <li class="dot" style="--c:#4F6344;--s:0.9" tabindex="0" data-name="хвоя"></li>
+            <li class="dot" style="--c:#E4C4C6;--s:1.0" tabindex="0" data-name="пудра"></li>
+            <li class="dot dot--ring" style="--c:#FBF8F1;--s:1.0" tabindex="0" data-name="белый"></li>
+            <li class="dot" style="--c:#2A2822;--s:0.85" tabindex="0" data-name="графит"></li>
+          </ul>
         </div>
+        <div class="dress__art" aria-hidden="true">
+          <img class="char-img" src="assets/bride-bouquet.png" alt="" loading="lazy"
+               onerror="this.closest('.dress__art').remove()" />
+        </div>
+      </div>
 
+      <div class="shell reveal">
         <div class="dress__cols">
           <div class="dress__col">
             <h3>к&nbsp;лицу</h3>
             <p>Светлые и&nbsp;пастельные тона, зелёные, коричневые, пудрово-розовый, глубокий чёрный. Всё землистое и&nbsp;травянистое&nbsp;— спокойная природная гамма.</p>
           </div>
           <div class="dress__col">
-            <h3>лучше отложить</h3>
+            <h3>лучше&nbsp;отложить</h3>
             <p>Яркий жёлтый, кричащий красный, электрический синий. Если цвет светлый&nbsp;— подойдёт почти любой; если насыщенный&nbsp;— пусть будет тёмным и&nbsp;глубоким.</p>
           </div>
         </div>
