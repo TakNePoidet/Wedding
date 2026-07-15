@@ -147,7 +147,11 @@ function plural(n, forms) {
     var first = firstEl.value.trim();
     var last = lastEl.value.trim();
     if (!first) {
-      firstEl.closest('.field').classList.add('field--invalid');
+      var fieldEl = firstEl.closest('.field');
+      // перезапуск «тряски», если гость жмёт отправить повторно
+      fieldEl.classList.remove('field--invalid');
+      void fieldEl.offsetWidth;
+      fieldEl.classList.add('field--invalid');
       firstEl.focus();
       setHint('Напишите, пожалуйста, ваше имя.');
       return;
@@ -161,15 +165,17 @@ function plural(n, forms) {
     } else {
       msg = 'Здравствуйте! Это ' + who + '. Подтверждаю присутствие на свадьбе Никиты и Леры 13 сентября 2026.';
       if (plusEl.checked) {
-        var plusName = plusNameEl.value.trim();
-        msg += ' Со мной будет ещё один гость' + (plusName ? ' — ' + plusName : '') + '.';
+        var plusNames = plusNameEl.value.trim();
+        msg += plusNames
+          ? ' Со мной будут: ' + plusNames + '.'
+          : ' Буду с парой/семьёй, имена уточню позже.';
       }
       var drinks = [];
       form.querySelectorAll('input[name="drink"]:checked').forEach(function (d) {
         drinks.push(d.value);
       });
       if (drinks.length) {
-        msg += ' Из напитков предпочту: ' + drinks.join(', ') + '.';
+        msg += ' Из напитков предпочтём: ' + drinks.join(', ') + '.';
       }
     }
 
@@ -185,9 +191,72 @@ function plural(n, forms) {
       href = 'tel:+' + phoneDigits;
     } else if (phoneDigits) {
       href = 'https://wa.me/' + phoneDigits + '?text=' + encodeURIComponent(msg);
+      setHint('Открыли мессенджер с готовым ответом — останется нажать «отправить». Спасибо!');
     }
 
     if (href) window.open(href, '_blank', 'noopener');
+  });
+})();
+
+/* ------------------------------------------------------------
+   Линия прогресса прокрутки (сверху страницы)
+   ------------------------------------------------------------ */
+(function initProgress() {
+  var bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+
+  var ticking = false;
+  function update() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, (window.scrollY || doc.scrollTop) / max)) : 0;
+    bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* ------------------------------------------------------------
+   Кнопка «наверх» — появляется после первого экрана
+   ------------------------------------------------------------ */
+(function initToTop() {
+  var btn = document.getElementById('to-top');
+  if (!btn) return;
+
+  var shown = false, ticking = false;
+  function update() {
+    var want = (window.scrollY || document.documentElement.scrollTop) > window.innerHeight * 0.9;
+    if (want !== shown) { shown = want; btn.classList.toggle('show', want); }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  btn.addEventListener('click', function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+  update();
+})();
+
+/* ------------------------------------------------------------
+   Кнопка Telegram-чата: пока ссылки нет — мягкая подсказка
+   ------------------------------------------------------------ */
+(function initTgChat() {
+  var a = document.getElementById('tg-chat');
+  if (!a) return;
+  var href = a.getAttribute('href');
+  if (href && href !== '#') return;   // ссылка задана — работаем как обычно
+
+  a.removeAttribute('target');
+  a.addEventListener('click', function (e) {
+    e.preventDefault();
+    var hint = document.getElementById('tg-hint');
+    if (hint) hint.hidden = false;
   });
 })();
 
