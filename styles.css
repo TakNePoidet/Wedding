@@ -722,6 +722,7 @@ section[id] { scroll-margin-top: 0.75rem; }
 .flowers__art { justify-self: center; }
 .vase { width: clamp(170px, 20vw, 240px); height: auto; color: var(--sage-2); }
 .vase__pot { color: var(--brown-2); }   /* тёплый контур вазы (currentColor группы) */
+.vase__bud { color: var(--brown-1); }   /* бутоны-точки — тёплый акцент среди зелени */
 @media (prefers-reduced-motion: no-preference) {
   .vase { animation: floatArt 8s ease-in-out infinite alternate; }
 }
