@@ -1,6 +1,7 @@
 ---
-import { FLOWER_SUBSCRIPTION_URL } from '../data/wedding';
-/** ВМЕСТО ЦВЕТОВ — живые цветы от гостей как часть декора */
+import { FLOWER_SUBSCRIPTION_URL, FLOWERS_TRIO } from '../data/wedding';
+/** ТРИ ЦВЕТКА — гости приносят не букет, а три цветка,
+    из которых на месте собирается убранство столов. */
 ---
 
 <section
@@ -13,19 +14,34 @@ import { FLOWER_SUBSCRIPTION_URL } from '../data/wedding';
     class="shell reveal grid items-center gap-[clamp(1.5rem,5vw,4rem)] [grid-template-columns:1.35fr_0.65fr] max-md:grid-cols-1"
   >
     <div class="max-w-[46ch]">
-      <h2 class="head" id="flowers-h">вместо<br />цветов</h2>
+      <h2 class="head" id="flowers-h">три цветка</h2>
+      <p class="font-serif text-lg leading-normal text-green-deep mb-md italic text-pretty">
+        Если хочется прийти с&nbsp;цветами&nbsp;— принесите не&nbsp;букет, а&nbsp;три цветка.
+      </p>
+
+      <ul class="stagger m-0 list-none p-0">
+        {
+          FLOWERS_TRIO.map((item) => (
+            <li class="border-t border-brown-2/28 py-sm grid items-baseline gap-x-md grid-cols-[minmax(4.5rem,max-content)_1fr] max-sm:grid-cols-1 max-sm:gap-x-0 max-sm:gap-y-3xs">
+              <span class="font-script text-xl text-accent">{item.n}</span>
+              <span class="font-text text-sm leading-normal text-green-deep" set:html={item.v} />
+            </li>
+          ))
+        }
+      </ul>
+
       <p
-        class="font-serif text-lg leading-normal text-green-deep mb-md italic text-pretty"
+        class="font-text text-sm leading-relaxed text-ink-soft mt-md mb-0 max-w-[42ch] text-pretty"
       >
-        Чтобы праздничное настроение длилось дольше, предлагаем не&nbsp;дарить цветы в&nbsp;день
-        торжества, а&nbsp;вложить эти средства в&nbsp;нашу цветочную подписку&nbsp;— и&nbsp;они будут
-        радовать нас ещё долго после свадьбы.
+        Мы&nbsp;соберём их&nbsp;вместе&nbsp;— и&nbsp;они станут убранством столов. Получится, что зал
+        украсите вы&nbsp;сами, и&nbsp;за&nbsp;каждым букетом будет чья-то мысль о&nbsp;нас.
       </p>
-      <p class="font-text text-sm leading-relaxed text-ink-soft m-0 max-w-[44ch]">
-        А&nbsp;сразу после свадьбы мы&nbsp;улетаем в&nbsp;свадебное путешествие
-        и&nbsp;не&nbsp;успеем насладиться букетами&nbsp;— поэтому вместо цветов будем рады
-        и&nbsp;бутылочке хорошего вина.
+
+      <p class="font-text text-sm leading-relaxed text-ink-soft mt-md mb-0 max-w-[42ch] text-pretty">
+        Букету мы&nbsp;тоже будем рады. А&nbsp;если хочется, чтобы цветы радовали нас и&nbsp;после
+        свадьбы&nbsp;— есть цветочная подписка.
       </p>
+
       <p class="mt-lg mx-0 mb-0">
         <a class="link-btn" href={FLOWER_SUBSCRIPTION_URL} target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"
@@ -72,11 +88,11 @@ import { FLOWER_SUBSCRIPTION_URL } from '../data/wedding';
         <g class="text-brown-2">
           <path
             d="M96 183 C 96 190, 93 196, 89 201 C 74 214, 74 246, 92 258 C 103 265, 117 265, 128 258 C 146 246, 146 214, 131 201 C 127 196, 124 190, 124 183 Z"
-            fill="var(--milk)"
+            fill="var(--color-milk)"
             stroke="currentColor"
             stroke-width="2"
             stroke-linejoin="round"></path>
-          <ellipse cx="110" cy="183" rx="14" ry="4" fill="var(--milk)" stroke="currentColor" stroke-width="2"
+          <ellipse cx="110" cy="183" rx="14" ry="4" fill="var(--color-milk)" stroke="currentColor" stroke-width="2"
           ></ellipse>
           <path d="M84 270 C 94 273, 126 273, 136 270" stroke="currentColor" stroke-width="1.6" opacity="0.55"
           ></path>
