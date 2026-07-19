@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+
+# редакторы / ОС
+.idea/
+.vscode/
+.DS_Store
+
+# логи
+*.log
+
+# инструменты агента
+.claude/
