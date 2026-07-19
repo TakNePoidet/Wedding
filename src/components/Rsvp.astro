@@ -106,6 +106,17 @@ import { DRINKS, RSVP_DEADLINE } from '../data/wedding';
         </fieldset>
       </div>
 
+      {/* Вне блока «буду»: тем, кто не сможет прийти, тоже есть что написать */}
+      <label class="field flex flex-col">
+        <textarea
+          class="field__input min-h-[4.5em] resize-y leading-normal"
+          id="rsvp-note"
+          rows="2"
+          autocapitalize="sentences"
+          aria-label="Пожелания или вопрос"
+          placeholder="Если хочется что-то добавить"></textarea>
+      </label>
+
       <div class="mt-[0.3rem]">
         <button
           class="inline-block cursor-pointer appearance-none rounded-[2px] border-0 bg-cream-0 px-[2.2em] py-[0.75em] font-serif text-sm tracking-wide text-green-deep italic no-underline shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] transition-[translate,background-color] duration-200 ease-[ease] hover:-translate-y-[2px] hover:bg-white"

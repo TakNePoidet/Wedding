@@ -26,6 +26,7 @@ interface Rsvp {
   plus?: unknown;
   plusNames?: unknown;
   drinks?: unknown;
+  note?: unknown;
 }
 
 /** Обрезаем и чистим: в Телеграм не должно уехать полотно на мегабайт */
@@ -88,6 +89,7 @@ export default {
     const last = clean(data.last, 80);
     const attending = data.attending !== false;
     const plusNames = clean(data.plusNames, 300);
+    const note = clean(data.note, 600);
     const drinks = Array.isArray(data.drinks)
       ? data.drinks.map((d) => clean(d, 40)).filter(Boolean).slice(0, 20)
       : [];
@@ -105,6 +107,8 @@ export default {
       }
       if (drinks.length) lines.push(`Напитки: ${drinks.join(', ')}`);
     }
+    // Комментарий шлём при любом ответе: тем, кто не придёт, тоже есть что сказать
+    if (note) lines.push('', `Пожелание: ${note}`);
 
     const res = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage`, {
       method: 'POST',

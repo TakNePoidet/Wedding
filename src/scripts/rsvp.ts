@@ -14,6 +14,7 @@ function initRsvp() {
   const plusField = byId<HTMLElement>('rsvp-plus-field');
   const plusNameEl = byId<HTMLInputElement>('rsvp-plus-name');
   const whenYes = byId<HTMLElement>('rsvp-when-yes');
+  const noteEl = byId<HTMLTextAreaElement>('rsvp-note');
   const attendEls = form.querySelectorAll<HTMLInputElement>('input[name="attend"]');
   const submitEl = form.querySelector<HTMLButtonElement>('button[type="submit"]');
 
@@ -80,6 +81,7 @@ function initRsvp() {
       plus: attending && plusEl.checked,
       plusNames: attending && plusEl.checked ? plusNameEl.value.trim() : '',
       drinks: attending ? drinks : [],
+      note: noteEl ? noteEl.value.trim() : '',
     };
 
     if (submitEl) submitEl.disabled = true;
