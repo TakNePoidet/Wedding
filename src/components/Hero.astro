@@ -14,9 +14,19 @@ import { DATE_ISO, DATE_SHORT } from '../data/wedding';
   <svg class="botanical botanical--bl" aria-hidden="true"><use href="#sprig-grass" /></svg>
 
   <div class="reveal max-w-[760px] flex-auto text-left">
+    {/*
+      Амперсанд стоит под серединой «Никиты» и левее «Леры».
+      Центр «Никиты» — 1.772em заголовка от края, минус половина ширины
+      самого амперсанда (0.106em) даёт 1.666em. Значение задаётся в em
+      амперсанда, а он мельче заголовка в 0.42 раза, отсюда 3.97em.
+      Отдельное значение для узких экранов не нужно: «Никита» начинается
+      от нуля, а ширины букв масштабируются вместе с кеглем.
+      Отрицательные поля и короткая межстрочная поджимают имена друг
+      к другу — иначе строка с амперсандом раздвигает их слишком широко.
+    */}
     <h1 class="font-script m-0 text-7xl leading-tight font-normal text-moss">
       <span class="block">Никита</span>
-      <span class="mt-[0.04em] mb-[0.04em] ml-[1.1em] block text-[0.42em] text-accent max-sm:ml-[0.5em]"
+      <span class="mt-[-0.12em] mb-[-0.12em] ml-[3.97em] block text-[0.42em] leading-[0.72] text-accent"
         >&amp;</span
       >
       <span class="ml-[1.9em] block max-sm:ml-[0.9em]">Лера</span>
@@ -28,7 +38,7 @@ import { DATE_ISO, DATE_SHORT } from '../data/wedding';
       >
     </p>
     <p class="m-0 text-lg leading-snug text-ink-soft">
-      будем счастливы разделить с&nbsp;вами<br />день нашей свадьбы
+      Будем счастливы разделить с&nbsp;вами<br />день нашей свадьбы
     </p>
   </div>
 
@@ -45,7 +55,20 @@ import { DATE_ISO, DATE_SHORT } from '../data/wedding';
     />
   </div>
 
-  <a class="hero__down" href="#invite" aria-label="Дальше"><span></span></a>
+  <a
+    class="hero__down absolute bottom-[1.6rem] left-1/2 z-[2] flex -translate-x-1/2 flex-col items-center gap-[0.45rem] text-sage-2 no-underline transition-colors duration-200 hover:text-moss"
+    href="#invite"
+  >
+    <span class="font-text text-2xs tracking-widest whitespace-nowrap uppercase">листайте</span>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+      <path
+        d="M6 9.5 12 15.5 18 9.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
 </header>
 
 <script>

@@ -12,31 +12,23 @@
   background: linear-gradient(90deg, var(--color-sage-2), transparent);
 }
 
-/* Указатель «вниз»: капля стекает по тонкой линии */
-.hero__down {
-  position: absolute;
-  left: 50%;
-  bottom: 2.2rem;
-  transform: translateX(-50%);
-  width: 1px;
-  height: clamp(40px, 8vh, 68px);
-  background: linear-gradient(var(--color-sage-2), transparent);
-  overflow: hidden;
-}
-.hero__down span {
-  position: absolute;
-  inset: 0;
-  display: block;
-  background: var(--color-moss);
-  animation: drop 2.4s ease-in-out infinite;
-}
-@keyframes drop {
-  0% {
-    transform: translateY(-100%);
+/* Указатель «вниз». Раньше здесь была тонкая линия со стекающей каплей —
+   красиво, но гости не понимали, что это приглашение листать. Теперь
+   подпись со стрелкой, а стрелка мягко покачивается, чтобы притянуть взгляд.
+   Покачивание задаётся здесь: утилиты Tailwind пишут в отдельное свойство
+   translate, а не в transform, и с кейфреймом бы передрались. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__down svg {
+    animation: nudge 2.2s ease-in-out infinite;
   }
-  60%,
+}
+@keyframes nudge {
+  0%,
   100% {
-    transform: translateY(100%);
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
   }
 }
 
