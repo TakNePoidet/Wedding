@@ -16,10 +16,17 @@ import { DETAILS } from '../data/wedding';
         DETAILS.map((row) => (
           <li class="grid items-baseline gap-x-lg gap-y-2xs border-t border-brown-2/28 py-md grid-cols-[minmax(6rem,max-content)_1fr] max-md:grid-cols-1 max-md:gap-x-[0.15rem] max-md:gap-y-[0.15rem]">
             <span class="text-sm italic text-brown-2" set:html={row.k} />
-            <span
-              class="details__v font-text text-base leading-normal text-green-deep"
-              set:html={row.v}
-            />
+            <span class="details__v font-text text-base leading-normal text-green-deep">
+              <Fragment set:html={row.v} />
+              {'anchor' in row && row.anchor && (
+                <a
+                  class="font-serif text-sm text-moss mt-xs block w-fit border-b border-sage-2 pb-[2px] italic no-underline transition-colors duration-200 hover:border-brown-2 hover:text-brown-2"
+                  href={row.anchor.href}
+                >
+                  {row.anchor.label}
+                </a>
+              )}
+            </span>
           </li>
         ))
       }
