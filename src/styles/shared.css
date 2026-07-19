@@ -1,0 +1,51 @@
+/* ============================================================
+   Общее для нескольких секций: то, что утилитами не выражается
+   (кейфреймы) либо повторяется в разной разметке.
+   ============================================================ */
+
+/* Персонажи-Funko: общая тень и медленное парение.
+   Ширину задаёт место применения — она везде своя. */
+.char-img {
+  display: block;
+  height: auto;
+  filter: drop-shadow(0 24px 32px rgba(46, 42, 36, 0.22));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .char-img {
+    animation: floatArt 7.5s ease-in-out infinite alternate;
+  }
+}
+@keyframes floatArt {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-12px);
+  }
+}
+
+/* Кнопка-ссылка с веточкой: «сохранить дату» (Details), цветочная
+   подписка (Flowers), подсказка в правилах (Rules). Жила в rsvp.css,
+   хотя в самом RSVP не используется. Класс .done вешает calendar.ts. */
+.link-btn {
+  display: inline-flex; align-items: center; gap: 0.55em;
+  appearance: none; border: 0; background: transparent; cursor: pointer;
+  font-family: var(--font-serif); font-style: italic;
+  font-size: var(--text-base);
+  color: var(--color-moss); padding: 0;
+  transition: color .2s ease;
+}
+.link-btn svg { color: var(--color-sage-2); transition: transform .3s ease, color .2s ease; }
+.link-btn span { border-bottom: 1px solid var(--color-sage-2); padding-bottom: 2px; transition: border-color .2s ease; }
+.link-btn:hover { color: var(--color-brown-2); }
+.link-btn:hover svg { transform: translateY(-2px) rotate(-6deg); color: var(--color-brown-2); }
+.link-btn:hover span { border-color: var(--color-brown-2); }
+.link-btn.done span { border-color: transparent; }
+
+/* Появление блока после снятия [hidden]: «+1» в RSVP и подсказка в Rules.
+   Определение жило в rsvp.css, а rules.css на него ссылался — работало
+   лишь потому, что rsvp импортировался раньше. */
+@keyframes plusIn { from { opacity: 0; transform: translateY(8px); } }
+
+/* Ботаническая веточка в тексте: Invite, Details, Gifts, Footer. */
+.sprig-inline { width: 160px; height: 96px; color: var(--color-sage-2); opacity: 0.7; margin-top: var(--spacing-md); }

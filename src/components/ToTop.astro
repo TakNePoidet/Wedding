@@ -2,8 +2,19 @@
 /** Кнопка «наверх» — появляется после первого экрана */
 ---
 
-<button class="to-top" id="to-top" type="button" aria-label="Наверх, к именам">
-  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"
+<button
+  class="to-top group fixed right-[clamp(0.9rem,2.5vw,1.8rem)] bottom-[clamp(0.9rem,2.5vw,1.8rem)] z-[15] flex h-[48px] w-[48px] cursor-pointer items-center justify-center rounded-full border-0 bg-moss text-cream-0 shadow-[0_14px_26px_-12px_rgba(34,42,26,0.6)] opacity-0 invisible [transform:translateY(14px)] transition-[opacity,transform,visibility,background-color] duration-[350ms,350ms,350ms,200ms] hover:bg-green-deep"
+  id="to-top"
+  type="button"
+  aria-label="Наверх, к именам"
+>
+  <svg
+    class="transition-transform duration-[250ms] group-hover:[transform:translateY(-2px)]"
+    viewBox="0 0 24 24"
+    width="20"
+    height="20"
+    fill="none"
+    aria-hidden="true"
     ><path
       d="M12 19V6M6.5 11.5 12 6l5.5 5.5"
       stroke="currentColor"

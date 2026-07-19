@@ -1,27 +1,10 @@
 /* ============================================================
    ОРГАНИЗАТОР  (узкая светлая строка)
+   Секция переведена на утилиты Tailwind — см. Organizer.astro.
+   Здесь остаётся только правка общего .head: он объявлен
+   в base.css вне слоёв и поэтому сильнее любой утилиты.
    ============================================================ */
-.organizer { padding: var(--sp-2xl) 0; text-align: center; }
-.organizer__inner { max-width: 40ch; margin-inline: auto; }
-.organizer__h { font-size: clamp(1.9rem, 1rem + 2.6vw, 3rem); margin-bottom: var(--sp-sm); }
-.organizer__text {
-  font-family: var(--f-text);
-  color: var(--ink-soft);
-  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
-  line-height: 1.55;
-  margin: 0 0 var(--sp-md);
+.organizer__h {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--spacing-sm);
 }
-.organizer__text b { color: var(--green-deep); font-weight: 600; }
-.organizer__tel {
-  font-family: var(--f-display);
-  font-size: clamp(1.6rem, 1rem + 2vw, 2.6rem);
-  letter-spacing: 0.06em;
-  color: var(--moss);
-  text-decoration: none;
-  border-bottom: 1px solid var(--sage-2);
-  padding-bottom: 2px;
-  font-variant-numeric: tabular-nums;
-  transition: color .2s ease, border-color .2s ease;
-  white-space: nowrap;
-}
-.organizer__tel:hover { color: var(--brown-2); border-color: var(--brown-2); }

@@ -1,38 +1,9 @@
 /* ============================================================
-   ДРЕСС-КОД
+   ДРЕСС-КОД — осталась только палитра-«камешки»: многослойные
+   градиенты, псевдоэлементы-подсказка, разброс по nth-child
+   и «дыхание». Утилитами это не выражается.
+   Класс .dot — ещё и хук для src/scripts/palette.ts.
    ============================================================ */
-.dress { position: relative; padding: var(--sy) 0; overflow: hidden; }
-.dress__grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: end;
-}
-.dress__intro { min-width: 0; }
-.dress__art { justify-self: center; align-self: end; }
-.dress__art .char-img { width: clamp(190px, 20vw, 290px); }
-@media (max-width: 980px) {
-  .dress__grid { grid-template-columns: 1fr; }
-  .dress__art { justify-self: center; margin-top: var(--sp-md); }
-  .dress__art .char-img { width: 200px; }
-}
-.dress__quote {
-  font-style: italic;
-  font-size: clamp(1.4rem, 1rem + 1.6vw, 2.25rem);
-  line-height: 1.4;
-  color: var(--brown-2);
-  max-width: 34ch;
-  margin: 0 0 var(--sp-xl);
-  text-wrap: pretty;
-}
-/* палитра — «камешки/мазки» разного размера, лёгкий разброс */
-.palette {
-  list-style: none; padding: 0;
-  display: flex; flex-wrap: wrap; align-items: center;
-  gap: clamp(1rem, 2.4vw, 1.618rem);
-  margin: 0 0 var(--sp-xl);
-  max-width: 720px;
-}
 .dot {
   --s: 1;
   position: relative;
@@ -56,8 +27,8 @@
   content: attr(data-name);
   position: absolute; left: 50%; bottom: calc(100% + 11px);
   transform: translate(-50%, 4px);
-  font-family: var(--f-serif); font-style: italic; font-size: 0.95rem;
-  color: var(--cream-0); background: var(--green-deep);
+  font-family: var(--font-serif); font-style: italic; font-size: 0.95rem;
+  color: var(--color-cream-0); background: var(--color-green-deep);
   padding: 0.25em 0.75em; border-radius: 4px; white-space: nowrap;
   opacity: 0; pointer-events: none;
   transition: opacity .2s ease, transform .2s ease;
@@ -70,7 +41,7 @@
   width: 0; height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 7px solid var(--green-deep);
+  border-top: 7px solid var(--color-green-deep);
   opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 3;
 }
 .dot:hover, .dot:focus-visible, .dot.show-name { box-shadow: 0 18px 30px -10px rgba(46,42,36,0.55); scale: 1.07; }
@@ -93,24 +64,3 @@
     50%      { transform: translateY(-6px); }
   }
 }
-
-.dress__cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  max-width: 920px;
-  margin-inline: 0;      /* по левому краю сетки, как «о нарядах» и палитра */
-  margin-top: var(--sp-xl);
-}
-/* симметричный отступ от разделителя — обе колонки одинаковой ширины текста */
-.dress__col { padding: 0 clamp(1.6rem, 4vw, 3rem); }
-.dress__col:first-child { padding-left: 0; }
-.dress__col:last-child { padding-right: 0; }
-.dress__col + .dress__col { border-left: 1px solid rgba(107,88,66,0.28); }
-.dress__col h3 {
-  font-style: italic; font-weight: 500;
-  font-size: clamp(1.5rem, 1rem + 1.2vw, 2rem);
-  color: var(--green-deep);
-  margin: 0 0 var(--sp-xs);
-}
-.dress__col p { margin: 0; font-family: var(--f-text); color: var(--ink-soft); font-size: clamp(1.05rem, 1rem + 0.35vw, 1.2rem); line-height: 1.65; }

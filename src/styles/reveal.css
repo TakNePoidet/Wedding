@@ -28,14 +28,6 @@
   .reveal.is-visible .stagger > *:nth-child(12) { transition-delay: 0.98s; }
 }
 
-@media (max-width: 780px) {
-  .details__grid, .map__grid, .program__grid { grid-template-columns: 1fr; }
-  .map__card { transform: none; margin-top: 1rem; }
-  .dress__cols { grid-template-columns: 1fr; margin-top: var(--sp-lg); }
-  .dress__col { padding: 0; }
-  .dress__col + .dress__col { border-left: 0; border-top: 1px solid rgba(107,88,66,0.28); padding-top: var(--sp-md); margin-top: var(--sp-md); }
-  .details__list li { grid-template-columns: 1fr; gap: 0.15rem; }
-}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

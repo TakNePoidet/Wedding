@@ -1,24 +1,35 @@
 ---
 import { TIMELINE } from '../data/wedding';
-/** ПРОГРАММА ДНЯ — асимметричный тайминг */
+/** ПРОГРАММА ДНЯ — асимметричный тайминг.
+ *
+ *  Колонки задаёт список (<ol>), а строки подхватывают их через grid-cols-subgrid.
+ *  Иначе каждая <li> становится своим гридом, ширина колонки времени пляшет
+ *  по содержимому («15:35» шире «22:00») и заголовки разъезжаются по горизонтали.
+ */
 ---
 
-<section class="program" id="program" aria-labelledby="program-h">
-  <div class="shell program__grid reveal">
-    <div class="program__lead">
+<section class="py-[var(--sy)]" id="program" aria-labelledby="program-h">
+  <div
+    class="shell reveal grid items-start gap-[clamp(var(--spacing-md),5vw,var(--spacing-xl))] grid-cols-[0.8fr_1.2fr] max-md:grid-cols-1"
+  >
+    <div>
       <h2 class="head" id="program-h">программа<br />дня</h2>
     </div>
-    <ol class="timeline stagger">
+    <ol
+      class="stagger m-0 grid list-none p-0 gap-x-[clamp(var(--spacing-sm),3vw,var(--spacing-lg))] grid-cols-[minmax(5.5rem,auto)_1fr]"
+    >
       {
         TIMELINE.map((item) => (
-          <li class="tl">
-            <span class="tl__time">
+          <li class="col-span-full grid grid-cols-subgrid items-baseline border-t border-brown-2/26 py-md last:border-b">
+            <span class="font-display text-4xl leading-tight font-medium text-moss tabular-nums">
               {item.h}
-              <i>{item.m}</i>
+              <i class="align-[0.15em] text-[0.5em] not-italic text-sage-2">{item.m}</i>
             </span>
-            <span class="tl__body">
-              <b set:html={item.title} />
-              {'note' in item && item.note && <em set:html={item.note} />}
+            <span class="flex flex-col gap-3xs">
+              <b class="text-lg font-medium text-green-deep" set:html={item.title} />
+              {'note' in item && item.note && (
+                <em class="font-text text-xs leading-normal italic text-ink-soft" set:html={item.note} />
+              )}
             </span>
           </li>
         ))

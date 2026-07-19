@@ -2,20 +2,52 @@
 /** ОТСЧЁТ — глубокий зелёный wash. Цифры и склонения ставит скрипт. */
 ---
 
-<section class="count" id="countdown" aria-labelledby="count-h">
+<section
+  class="count relative overflow-hidden py-[var(--sy)] text-cream-0"
+  id="countdown"
+  aria-labelledby="count-h"
+>
   <svg class="botanical botanical--count" aria-hidden="true"><use href="#sprig-euc" /></svg>
   <div class="shell reveal">
-    <h2 class="head head--light" id="count-h">остаётся совсем немного</h2>
-    <div class="count__row" id="timer" role="timer" aria-live="polite">
-      <span class="count__unit"><b data-days>—</b><i data-days-label>дней</i></span>
-      <span class="count__sep">/</span>
-      <span class="count__unit"><b data-hours>—</b><i data-hours-label>часов</i></span>
-      <span class="count__sep">/</span>
-      <span class="count__unit"><b data-minutes>—</b><i data-minutes-label>минут</i></span>
-      <span class="count__sep">/</span>
-      <span class="count__unit"><b data-seconds>—</b><i data-seconds-label>секунд</i></span>
+    <h2 class="head text-cream-0" id="count-h">остаётся совсем немного</h2>
+    <div
+      class="flex flex-wrap items-baseline gap-[clamp(0.6rem,2.5vw,1.618rem)] max-sm:grid max-sm:grid-cols-2 max-sm:justify-items-center max-sm:gap-x-sm max-sm:gap-y-md"
+      id="timer"
+      role="timer"
+      aria-live="polite"
+    >
+      <span class="flex flex-col items-start max-sm:items-center max-sm:text-center"
+        ><b
+          class="font-display text-6xl leading-tight font-medium tracking-tight text-white [font-variant-numeric:tabular-nums]"
+          data-days>—</b
+        ><i class="mt-2xs text-sm tracking-wide text-sage-label italic" data-days-label>дней</i></span
+      >
+      <span class="self-center text-5xl font-light text-sage-1/50 max-sm:hidden">/</span>
+      <span class="flex flex-col items-start max-sm:items-center max-sm:text-center"
+        ><b
+          class="font-display text-6xl leading-tight font-medium tracking-tight text-white [font-variant-numeric:tabular-nums]"
+          data-hours>—</b
+        ><i class="mt-2xs text-sm tracking-wide text-sage-label italic" data-hours-label>часов</i
+        ></span
+      >
+      <span class="self-center text-5xl font-light text-sage-1/50 max-sm:hidden">/</span>
+      <span class="flex flex-col items-start max-sm:items-center max-sm:text-center"
+        ><b
+          class="font-display text-6xl leading-tight font-medium tracking-tight text-white [font-variant-numeric:tabular-nums]"
+          data-minutes>—</b
+        ><i class="mt-2xs text-sm tracking-wide text-sage-label italic" data-minutes-label>минут</i
+        ></span
+      >
+      <span class="self-center text-5xl font-light text-sage-1/50 max-sm:hidden">/</span>
+      <span class="flex flex-col items-start max-sm:items-center max-sm:text-center"
+        ><b
+          class="font-display text-6xl leading-tight font-medium tracking-tight text-white [font-variant-numeric:tabular-nums]"
+          data-seconds>—</b
+        ><i class="mt-2xs text-sm tracking-wide text-sage-label italic" data-seconds-label>секунд</i
+        ></span
+      >
     </div>
-    <p class="count__done" id="timer-done" hidden>этот день наступил</p>
+    <p class="font-script m-0 text-4xl text-white" id="timer-done" hidden>этот день наступил</p>
   </div>
 </section>
 

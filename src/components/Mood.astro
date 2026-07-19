@@ -2,29 +2,44 @@
 /** АТМОСФЕРА — тёмный wash. Лебедь: молочный силуэт + линии воды, которые дорисовываются. */
 ---
 
-<section class="mood" id="mood" aria-labelledby="mood-h">
+<section
+  class="mood relative overflow-hidden py-[var(--sy)] text-cream-0"
+  id="mood"
+  aria-labelledby="mood-h"
+>
   <svg class="botanical botanical--mood" aria-hidden="true"><use href="#sprig-grass" /></svg>
   <div class="shell reveal">
-    <h2 class="head head--light" id="mood-h">атмосфера&nbsp;вечера</h2>
-    <p class="mood__text">
+    <h2 class="head text-cream-0" id="mood-h">атмосфера&nbsp;вечера</h2>
+    <p class="m-0 mb-md max-w-[34ch] text-xl leading-normal text-cream-1 [text-wrap:pretty]">
       Нас ждёт зал под&nbsp;белым шёлковым небом: изумрудный бархат, молочные акценты, хрустальный
       блеск и&nbsp;зелень, что стелется к&nbsp;самой воде.
     </p>
-    <p class="mood__text mood__text--soft">
+    <p class="m-0 max-w-[34ch] text-xl leading-normal text-milk italic [text-wrap:pretty]">
       Всё так, как мы&nbsp;любим&nbsp;— природно, светло и&nbsp;по-настоящему тепло.
     </p>
-    <svg class="swan" viewBox="0 0 260 200" fill="none" aria-hidden="true">
+    <svg
+      class="swan absolute right-0 bottom-[-14%] h-auto w-[clamp(200px,26vw,330px)] max-lg:static max-lg:mx-auto max-lg:mt-lg max-lg:mb-0 max-lg:w-[min(240px,64vw)]"
+      viewBox="0 0 260 200"
+      fill="none"
+      aria-hidden="true"
+    >
       <path
-        class="swan__body"
+        class="swan__body fill-milk opacity-[0.92]"
         d="M70 46 C 79 39, 87 35, 93 35 C 101 35, 105 42, 102 50 C 98 57, 95 65, 96 75 C 97 85, 100 95, 106 104 C 112 108, 124 110, 142 111 C 162 112, 184 113, 200 109 L 212 103 C 211 120, 202 135, 186 143 C 160 154, 124 153, 106 141 C 96 133, 92 122, 94 112 C 95 104, 93.5 96, 91 88 C 89 78, 87.5 66, 86 56 C 84.5 51, 82 48, 78 46.5 C 75 45.5, 72 45.5, 70 46 Z"
       ></path>
-      <circle class="swan__eye" cx="93" cy="42" r="1.5"></circle>
-      <path class="swan__wing" pathLength="1" d="M120 136 C 134 118, 160 110, 186 116"></path>
+      <circle class="swan__eye fill-green-deep" cx="93" cy="42" r="1.5"></circle>
       <path
-        class="swan__wave"
+        class="swan__wing stroke-green-deep [stroke-width:1.6] opacity-50 [stroke-linecap:round]"
+        pathLength="1"
+        d="M120 136 C 134 118, 160 110, 186 116"></path>
+      <path
+        class="swan__wave stroke-milk [stroke-width:1.7] opacity-70 [stroke-linecap:round]"
         pathLength="1"
         d="M16 162 C 60 156, 110 168, 158 162 C 194 158, 226 160, 244 162"></path>
-      <path class="swan__wave" pathLength="1" d="M42 176 C 92 170, 150 182, 214 174"></path>
+      <path
+        class="swan__wave stroke-milk [stroke-width:1.7] opacity-70 [stroke-linecap:round]"
+        pathLength="1"
+        d="M42 176 C 92 170, 150 182, 214 174"></path>
     </svg>
   </div>
 </section>

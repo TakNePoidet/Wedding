@@ -3,17 +3,22 @@ import { PALETTE } from '../data/wedding';
 /** ДРЕСС-КОД. Точки палитры: --c — цвет, --s — множитель размера (живой неровный ряд). */
 ---
 
-<section class="dress" id="dress" aria-labelledby="dress-h">
+<section class="relative overflow-hidden py-[var(--sy)]" id="dress" aria-labelledby="dress-h">
   <svg class="botanical botanical--dress" aria-hidden="true"><use href="#sprig-grass" /></svg>
-  <div class="shell dress__grid reveal">
-    <div class="dress__intro">
+  <div
+    class="shell reveal grid items-end gap-[clamp(2rem,5vw,4.5rem)] [grid-template-columns:1fr_auto] max-lg:grid-cols-1"
+  >
+    <div class="min-w-0">
       <h2 class="head" id="dress-h">о&nbsp;нарядах</h2>
-      <p class="dress__quote">
+      <p class="text-lg leading-normal text-brown-2 mb-xl max-w-[34ch] italic [text-wrap:pretty]">
         Мы&nbsp;очень старались сделать праздник красивым и&nbsp;будем рады, если в&nbsp;своих
         нарядах вы&nbsp;поддержите цветовую гамму нашей свадьбы.
       </p>
 
-      <ul class="palette stagger" aria-label="Палитра дресс-кода">
+      <ul
+        class="palette stagger mb-xl flex max-w-[720px] list-none flex-wrap items-center gap-[clamp(1rem,2.4vw,1.618rem)] p-0"
+        aria-label="Палитра дресс-кода"
+      >
         {
           PALETTE.map((dot) => (
             <li
@@ -26,9 +31,9 @@ import { PALETTE } from '../data/wedding';
         }
       </ul>
     </div>
-    <div class="dress__art" aria-hidden="true">
+    <div class="dress__art justify-self-center self-end max-lg:mt-md" aria-hidden="true">
       <img
-        class="char-img"
+        class="char-img w-[clamp(190px,20vw,290px)] max-lg:w-[200px]"
         src="/assets/bride-bouquet.png"
         alt=""
         loading="lazy"
@@ -38,17 +43,19 @@ import { PALETTE } from '../data/wedding';
   </div>
 
   <div class="shell reveal">
-    <div class="dress__cols">
-      <div class="dress__col">
-        <h3>к&nbsp;лицу</h3>
-        <p>
+    <div class="mt-xl mx-0 grid max-w-[920px] grid-cols-2 gap-0 max-md:grid-cols-1">
+      <div class="pr-[clamp(1.6rem,4vw,3rem)] pl-0 max-md:p-0">
+        <h3 class="text-lg text-green-deep mb-xs font-medium italic">к&nbsp;лицу</h3>
+        <p class="font-text text-sm leading-relaxed text-ink-soft m-0">
           Светлые и&nbsp;пастельные тона, зелёные, коричневые, молочный, глубокий чёрный. Всё
           землистое и&nbsp;травянистое&nbsp;— спокойная природная гамма.
         </p>
       </div>
-      <div class="dress__col">
-        <h3>лучше&nbsp;отложить</h3>
-        <p>
+      <div
+        class="border-brown-2/28 border-l pr-0 pl-[clamp(1.6rem,4vw,3rem)] max-md:mt-md max-md:border-t max-md:border-l-0 max-md:px-0 max-md:pt-md max-md:pb-0"
+      >
+        <h3 class="text-lg text-green-deep mb-xs font-medium italic">лучше&nbsp;отложить</h3>
+        <p class="font-text text-sm leading-relaxed text-ink-soft m-0">
           Яркий жёлтый, кричащий красный, электрический синий. Если цвет светлый&nbsp;— подойдёт
           почти любой; если насыщенный&nbsp;— пусть будет тёмным и&nbsp;глубоким.
         </p>

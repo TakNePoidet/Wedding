@@ -3,14 +3,17 @@ import { ORGANIZER } from '../data/wedding';
 /** ОРГАНИЗАТОР — узкая светлая строка */
 ---
 
-<section class="organizer" id="organizer" aria-labelledby="organizer-h">
-  <div class="shell organizer__inner reveal">
+<section class="py-2xl text-center" id="organizer" aria-labelledby="organizer-h">
+  <div class="shell reveal mx-auto max-w-[40ch]">
     <h2 class="head organizer__h" id="organizer-h">остались вопросы?</h2>
-    <p class="organizer__text">
-      На&nbsp;всё ответит наш организатор&nbsp;— <b>{ORGANIZER.name}</b>, агентство&nbsp;«{
-        ORGANIZER.agency
-      }».
+    <p class="font-text text-sm leading-normal text-ink-soft mt-0 mb-md">
+      На&nbsp;всё ответит наш организатор&nbsp;— <b class="font-semibold text-green-deep"
+        >{ORGANIZER.name}</b
+      >, агентство&nbsp;«{ORGANIZER.agency}».
     </p>
-    <a class="organizer__tel" href={`tel:${ORGANIZER.tel}`}>{ORGANIZER.telPretty}</a>
+    <a
+      class="font-display text-2xl tracking-wider text-moss no-underline border-b border-sage-2 pb-[2px] tabular-nums whitespace-nowrap transition-colors duration-200 hover:text-brown-2 hover:border-brown-2"
+      href={`tel:${ORGANIZER.tel}`}>{ORGANIZER.telPretty}</a
+    >
   </div>
 </section>

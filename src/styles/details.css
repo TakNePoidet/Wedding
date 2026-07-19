@@ -1,37 +1,18 @@
 /* ============================================================
    ДЕТАЛИ  (асимметричный разворот, без карточек)
+
+   Секция переведена на утилиты Tailwind. Здесь осталось только то,
+   что утилитами не выражается или проигрывает по каскаду: base.css
+   подключён без слоя, а утилиты живут в @layer utilities — значит
+   селекторы из base.css сильнее любой утилиты в разметке.
    ============================================================ */
-.details { padding: var(--sy) 0; }
-.details__grid {
-  display: grid;
-  grid-template-columns: 0.58fr 1.42fr;
-  gap: clamp(var(--sp-md), 5vw, var(--sp-xl));
-  align-items: start;
-}
-.details__lead { position: relative; }
-/* заголовок этого блока чуть компактнее — освобождает ширину для значений */
+
+/* Веточка. Используется ещё в Footer.astro и Gifts.astro — не переносить. */
+
+/* Заголовок этого блока чуть компактнее — освобождает ширину для значений.
+   Утилитой не задать: .head из base.css идёт вне слоёв и перебьёт её. */
 .details__lead .head { font-size: clamp(2.3rem, 1rem + 3.2vw, 3.6rem); }
-.sprig-inline { width: 160px; height: 96px; color: var(--sage-2); opacity: 0.7; margin-top: var(--sp-md); }
-.details__list { list-style: none; margin: 0; padding: 0; }
-.details__list li {
-  display: grid;
-  grid-template-columns: minmax(6rem, max-content) 1fr;
-  gap: var(--sp-2xs) var(--sp-lg);
-  padding: var(--sp-md) 0;
-  border-top: 1px solid rgba(107,88,66,0.28);
-  align-items: baseline;
-}
-.details__list li:last-child { border-bottom: 1px solid rgba(107,88,66,0.28); }
-.details__k {
-  font-style: italic;
-  color: var(--brown-2);
-  font-size: clamp(1.05rem, 0.9rem + 0.4vw, 1.35rem);
-}
-.details__v {
-  font-family: var(--f-text);
-  font-size: clamp(1.2rem, 0.95rem + 0.75vw, 1.55rem);
-  color: var(--green-deep);
-  line-height: 1.45;
-}
-.details__v em { display: inline-block; font-family: var(--f-text); font-style: normal; font-size: 0.82em; color: var(--ink-soft); line-height: 1.5; margin-top: var(--sp-xs); }
-.details__cta { display: block !important; padding-top: var(--sp-md) !important; }
+
+/* Значения приходят через set:html — навесить классы на вложенный <em> негде.
+   Плюс font-style: normal должен победить `em { font-style: italic }` из base.css. */
+.details__v em { display: inline-block; font-family: var(--font-text); font-style: normal; font-size: 0.82em; color: var(--color-ink-soft); line-height: 1.5; margin-top: var(--spacing-xs); }
