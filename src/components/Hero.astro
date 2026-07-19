@@ -1,7 +1,7 @@
 ---
 import { DATE_ISO, DATE_SHORT } from '../data/wedding';
 /**
- * ОБЛОЖКА. Funko-персонажи опциональны: если assets/couple.png нет,
+ * ОБЛОЖКА. Funko-персонажи опциональны: если assets/couple.webp нет,
  * onerror убирает блок — вёрстка остаётся прежней.
  */
 ---
@@ -48,7 +48,7 @@ import { DATE_ISO, DATE_SHORT } from '../data/wedding';
   >
     <img
       class="char-img w-full"
-      src="/assets/couple.png"
+      src="/assets/couple.webp"
       alt=""
       loading="eager"
       onerror="this.closest('.hero__art').remove()"
