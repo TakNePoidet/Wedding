@@ -18,6 +18,7 @@
    ============================================================ */
 @import './theme.css';
 
+@import './fonts.css' layer(project);
 @import './base.css' layer(project);
 @import './shared.css' layer(project);
 @import './hero.css' layer(project);

@@ -91,11 +91,31 @@ const eventSchema = {
     <!-- Структурированные данные (schema.org Event) -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Шрифты лежат на своём домене (см. src/styles/fonts.css).
+         Предзагружаем только то, что видно на первом экране: имена
+         на обложке, дату и основной текст. Остальные подтянутся по мере
+         прокрутки — предзагружать всё значит отобрать канал у картинки,
+         которая и есть LCP-элемент. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Marck+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/marck-script-400-cyrillic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/playfair-display-500-cyrillic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-400-cyrillic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
 
     <!-- Без JS reveal-анимации не запускаются — показываем всё сразу.
