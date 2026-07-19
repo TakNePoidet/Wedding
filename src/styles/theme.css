@@ -1,0 +1,104 @@
+/* Tailwind подключён по частям, без preflight: у сайта свой сброс
+   в base.css, а preflight поверх него менял вёрстку — обнулял
+   маркеры списков, поля заголовков и оформление полей формы. */
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* Astro-компоненты, откуда Tailwind собирает классы */
+@source '../**/*.astro';
+
+/* ============================================================
+   ТЕМА · единственный источник дизайн-токенов.
+   Всё, что здесь объявлено, Tailwind превращает в утилиты:
+   --color-moss → bg-moss/text-moss, --text-lg → text-lg,
+   --leading-normal → leading-normal, --spacing-md → p-md/gap-md.
+   Меняете шрифт или межстрочку — правите тут, меняется везде.
+   ============================================================ */
+@theme {
+  /* --- Палитра ------------------------------------------------ */
+  --color-cream-0: #fbf8f1;
+  --color-cream-1: #f1eadb;
+  --color-cream-2: #e7dcc7;
+  --color-beige: #dcc7a8;
+  --color-brown-1: #8b7355;
+  --color-brown-2: #6b5842;
+  --color-brown-3: #4a3b2a;
+  --color-sage-1: #aebe9f;
+  --color-sage-2: #7c9070;
+  /* светлый шалфей для мелких подписей на тёмно-зелёном (WCAG AA) */
+  --color-sage-label: #d3dec6;
+  --color-moss: #41543a;
+  --color-green-deep: #34432c;
+  --color-milk: #ece3d0;
+  --color-accent: #6b5842;
+  --color-ink: #2a2822;
+  --color-ink-soft: #5c5344;
+
+  /* --- Шрифты ------------------------------------------------- */
+  --font-script: 'Marck Script', 'Segoe Script', 'Brush Script MT', cursive;
+  /* дисплейный: заголовки и крупные цитаты */
+  --font-serif: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  /* текстовый: читаемый мелкий кегль */
+  --font-text: 'Lora', 'PT Serif', Georgia, 'Times New Roman', serif;
+  /* высокий контраст — цифры и даты */
+  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+
+  /* --- Кегли ---------------------------------------------------
+     Шкала выросла из 50 разрозненных значений, которые были
+     раскиданы по секциям и почти все встречались по одному разу.
+     Все размеры текучие: min ← вьюпорт → max.
+     ------------------------------------------------------------ */
+  --text-2xs: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  --text-xs: clamp(1.05rem, 1rem + 0.35vw, 1.25rem);
+  --text-sm: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  --text-base: clamp(1.2rem, 0.95rem + 0.75vw, 1.55rem); /* базовый текст */
+  --text-lg: clamp(1.4rem, 1rem + 1.5vw, 2.1rem);
+  --text-xl: clamp(1.5rem, 1rem + 1.9vw, 2.4rem);
+  --text-2xl: clamp(1.9rem, 1rem + 2.6vw, 3rem);
+  --text-3xl: clamp(2.3rem, 1rem + 3.2vw, 3.6rem);
+  --text-4xl: clamp(2.4rem, 1rem + 6vw, 4.4rem);
+  --text-5xl: clamp(3rem, 1rem + 8vw, 6rem); /* .head — заголовки секций */
+  --text-6xl: clamp(3.6rem, 1rem + 12vw, 9rem);
+  --text-7xl: clamp(3.8rem, 1rem + 15vw, 13rem); /* имена на обложке */
+
+  /* --- Межстрочные ---------------------------------------------
+     Было восемь почти неразличимых значений (1.35…1.65 и 0.84…0.92)
+     — стало четыре осмысленных ступени.
+     ------------------------------------------------------------ */
+  --leading-tight: 0.9; /* крупный дисплейный текст */
+  --leading-snug: 1.35;
+  --leading-normal: 1.5; /* основной текст */
+  --leading-relaxed: 1.65;
+
+  /* --- Трекинг -------------------------------------------------- */
+  --tracking-tighter: -0.015em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.04em;
+  --tracking-widest: 0.14em;
+
+  /* --- Ритм · шкала по золотому сечению φ≈1.618 (φⁿ от 1rem) ---- */
+  --spacing-3xs: 0.236rem; /* φ⁻³ */
+  --spacing-2xs: 0.382rem; /* φ⁻² */
+  --spacing-xs: 0.618rem; /* φ⁻¹ */
+  --spacing-sm: 1rem; /* база  */
+  --spacing-md: 1.618rem; /* φ¹   */
+  --spacing-lg: 2.618rem; /* φ²   */
+  --spacing-xl: 4.236rem; /* φ³   */
+  --spacing-2xl: 6.854rem; /* φ⁴   */
+  --spacing-3xl: 11.089rem; /* φ⁵   */
+
+  /* --- Раскладка ------------------------------------------------ */
+  --container-shell: 1140px;
+}
+
+/* ------------------------------------------------------------
+   Производные величины. В @theme им не место: это не токены,
+   а вычисления поверх них, и утилиты из них не нужны.
+   ------------------------------------------------------------ */
+:root {
+  --pad: clamp(var(--spacing-md), 6vw, var(--spacing-2xl));
+  /* вертикальный ритм секций */
+  --sy: clamp(var(--spacing-2xl), 13vw, var(--spacing-3xl));
+}

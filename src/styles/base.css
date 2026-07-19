@@ -4,46 +4,7 @@
    Осознанно однотемный (тёплое приглашение).
    ============================================================ */
 
-:root {
-  /* Палитра */
-  --cream-0: #FBF8F1;
-  --cream-1: #F1EADB;
-  --cream-2: #E7DCC7;
-  --beige:   #DCC7A8;
-  --brown-1: #8B7355;
-  --brown-2: #6B5842;
-  --brown-3: #4A3B2A;
-  --sage-1:  #AEBE9F;
-  --sage-2:  #7C9070;
-  --sage-label: #D3DEC6;   /* светлый шалфей для мелких подписей на тёмно-зелёном (WCAG AA) */
-  --moss:    #41543A;   /* глубокий зелёный фон */
-  --green-deep: #34432C;
-  --milk:    #ECE3D0;   /* молочный (заменил пудрово-розовый в декоре) */
-  --accent:  #6B5842;   /* тёплый коричневый/тауп — акцент на креме (амперсанд, подпись) */
-  --ink:     #2A2822;
-  --ink-soft:#5C5344;
-
-  /* Шрифты */
-  --f-script:  "Marck Script", "Segoe Script", "Brush Script MT", cursive;
-  --f-serif:   "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;  /* дисплейный: заголовки и крупные цитаты */
-  --f-text:    "Lora", "PT Serif", Georgia, "Times New Roman", serif;                 /* текстовый: читаемый мелкий кегль */
-  --f-display: "Playfair Display", "Cormorant Garamond", Georgia, serif;   /* высокий контраст — цифры и даты */
-
-  /* Ритм — шкала по золотому сечению φ≈1.618 (шаги φⁿ от 1rem) */
-  --sp-3xs: 0.236rem;   /* φ⁻³ */
-  --sp-2xs: 0.382rem;   /* φ⁻² */
-  --sp-xs:  0.618rem;   /* φ⁻¹ */
-  --sp-sm:  1rem;       /* база */
-  --sp-md:  1.618rem;   /* φ¹  */
-  --sp-lg:  2.618rem;   /* φ²  */
-  --sp-xl:  4.236rem;   /* φ³  */
-  --sp-2xl: 6.854rem;   /* φ⁴  */
-  --sp-3xl: 11.089rem;  /* φ⁵  */
-
-  --shell: 1140px;
-  --pad: clamp(var(--sp-md), 6vw, var(--sp-2xl));
-  --sy: clamp(var(--sp-2xl), 13vw, var(--sp-3xl));  /* вертикальный ритм секций */
-}
+/* Токены переехали в theme.css, старые имена — в legacy-tokens.css. */
 
 * , *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: var(--cream-1); }

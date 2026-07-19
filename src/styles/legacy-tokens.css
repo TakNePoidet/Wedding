@@ -1,0 +1,44 @@
+/* ============================================================
+   ВРЕМЕННЫЙ МОСТ на время перевода секций на Tailwind.
+   Старые имена токенов (--moss, --f-serif, --sp-md) указывают
+   на новые из theme.css, поэтому ещё не переведённые секции
+   продолжают работать без правок.
+
+   Удалить целиком, когда в src/styles/ не останется ни одной
+   секционной таблицы стилей.
+   ============================================================ */
+:root {
+  --cream-0: var(--color-cream-0);
+  --cream-1: var(--color-cream-1);
+  --cream-2: var(--color-cream-2);
+  --beige: var(--color-beige);
+  --brown-1: var(--color-brown-1);
+  --brown-2: var(--color-brown-2);
+  --brown-3: var(--color-brown-3);
+  --sage-1: var(--color-sage-1);
+  --sage-2: var(--color-sage-2);
+  --sage-label: var(--color-sage-label);
+  --moss: var(--color-moss);
+  --green-deep: var(--color-green-deep);
+  --milk: var(--color-milk);
+  --accent: var(--color-accent);
+  --ink: var(--color-ink);
+  --ink-soft: var(--color-ink-soft);
+
+  --f-script: var(--font-script);
+  --f-serif: var(--font-serif);
+  --f-text: var(--font-text);
+  --f-display: var(--font-display);
+
+  --sp-3xs: var(--spacing-3xs);
+  --sp-2xs: var(--spacing-2xs);
+  --sp-xs: var(--spacing-xs);
+  --sp-sm: var(--spacing-sm);
+  --sp-md: var(--spacing-md);
+  --sp-lg: var(--spacing-lg);
+  --sp-xl: var(--spacing-xl);
+  --sp-2xl: var(--spacing-2xl);
+  --sp-3xl: var(--spacing-3xl);
+
+  --shell: var(--container-shell);
+}
