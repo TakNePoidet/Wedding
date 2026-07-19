@@ -1,0 +1,48 @@
+/* ============================================================
+   КАРТА  (фотокарточка с наклоном + текстовые ссылки)
+   ============================================================ */
+.map {
+  padding: var(--sy) 0;
+  background:
+    radial-gradient(60% 80% at 90% 10%, rgba(124,144,112,0.28), transparent 60%),
+    linear-gradient(180deg, rgba(174,190,159,0.20), rgba(220,199,168,0.14));
+}
+.map__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+.map__text p { font-family: var(--f-text); color: var(--ink-soft); max-width: 40ch; margin: 0 0 var(--sp-md); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem); line-height: 1.6; }
+.map__links { display: flex; flex-wrap: wrap; gap: var(--sp-md); align-items: baseline; }
+.map__links a, .map-copy {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--moss);
+  text-decoration: none;
+  border: 0;
+  border-bottom: 1px solid var(--sage-2);
+  background: transparent;
+  padding: 0 0 2px;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease;
+}
+.map__links a:hover, .map-copy:hover { color: var(--brown-2); border-color: var(--brown-2); }
+.map-copy.copied { color: var(--sage-2); border-color: transparent; }
+
+.map__card { margin: 0; transform: rotate(1.6deg); }
+.map__frame {
+  background: var(--cream-0);
+  padding: 12px 12px 0;
+  border-radius: 3px;
+  box-shadow: 0 26px 50px -28px rgba(46,42,36,0.55);
+}
+.map__frame iframe { width: 100%; height: clamp(280px, 42vw, 420px); border: 0; border-radius: 2px; }
+.map__card figcaption {
+  font-family: var(--f-script);
+  font-size: 1.5rem;
+  color: var(--brown-2);
+  text-align: center;
+  padding: 0.7rem 0 0.9rem;
+}

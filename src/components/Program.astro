@@ -1,0 +1,28 @@
+---
+import { TIMELINE } from '../data/wedding';
+/** ПРОГРАММА ДНЯ — асимметричный тайминг */
+---
+
+<section class="program" id="program" aria-labelledby="program-h">
+  <div class="shell program__grid reveal">
+    <div class="program__lead">
+      <h2 class="head" id="program-h">программа<br />дня</h2>
+    </div>
+    <ol class="timeline stagger">
+      {
+        TIMELINE.map((item) => (
+          <li class="tl">
+            <span class="tl__time">
+              {item.h}
+              <i>{item.m}</i>
+            </span>
+            <span class="tl__body">
+              <b set:html={item.title} />
+              {'note' in item && item.note && <em set:html={item.note} />}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,62 @@
+---
+import { PALETTE } from '../data/wedding';
+/** ДРЕСС-КОД. Точки палитры: --c — цвет, --s — множитель размера (живой неровный ряд). */
+---
+
+<section class="dress" id="dress" aria-labelledby="dress-h">
+  <svg class="botanical botanical--dress" aria-hidden="true"><use href="#sprig-grass" /></svg>
+  <div class="shell dress__grid reveal">
+    <div class="dress__intro">
+      <h2 class="head" id="dress-h">о&nbsp;нарядах</h2>
+      <p class="dress__quote">
+        Мы&nbsp;очень старались сделать праздник красивым и&nbsp;будем рады, если в&nbsp;своих
+        нарядах вы&nbsp;поддержите цветовую гамму нашей свадьбы.
+      </p>
+
+      <ul class="palette stagger" aria-label="Палитра дресс-кода">
+        {
+          PALETTE.map((dot) => (
+            <li
+              class:list={['dot', { 'dot--ring': 'ring' in dot && dot.ring }]}
+              style={`--c:${dot.c};--s:${dot.s}`}
+              tabindex="0"
+              data-name={dot.name}
+            />
+          ))
+        }
+      </ul>
+    </div>
+    <div class="dress__art" aria-hidden="true">
+      <img
+        class="char-img"
+        src="/assets/bride-bouquet.png"
+        alt=""
+        loading="lazy"
+        onerror="this.closest('.dress__art').remove()"
+      />
+    </div>
+  </div>
+
+  <div class="shell reveal">
+    <div class="dress__cols">
+      <div class="dress__col">
+        <h3>к&nbsp;лицу</h3>
+        <p>
+          Светлые и&nbsp;пастельные тона, зелёные, коричневые, молочный, глубокий чёрный. Всё
+          землистое и&nbsp;травянистое&nbsp;— спокойная природная гамма.
+        </p>
+      </div>
+      <div class="dress__col">
+        <h3>лучше&nbsp;отложить</h3>
+        <p>
+          Яркий жёлтый, кричащий красный, электрический синий. Если цвет светлый&nbsp;— подойдёт
+          почти любой; если насыщенный&nbsp;— пусть будет тёмным и&nbsp;глубоким.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../scripts/palette';
+</script>

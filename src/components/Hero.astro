@@ -1,0 +1,37 @@
+---
+import { DATE_ISO, DATE_SHORT } from '../data/wedding';
+/**
+ * ОБЛОЖКА. Funko-персонажи опциональны: если assets/couple.png нет,
+ * onerror убирает блок — вёрстка остаётся прежней.
+ */
+---
+
+<header class="hero" id="top">
+  <svg class="botanical botanical--tr" aria-hidden="true"><use href="#sprig-branch" /></svg>
+  <svg class="botanical botanical--bl" aria-hidden="true"><use href="#sprig-grass" /></svg>
+
+  <div class="hero__inner reveal">
+    <h1 class="names">
+      <span class="names__a">Никита</span>
+      <span class="names__amp">&amp;</span>
+      <span class="names__b">Лера</span>
+    </h1>
+    <p class="hero__date"><time datetime={DATE_ISO}>{DATE_SHORT}</time></p>
+    <p class="hero__line">будем счастливы разделить с&nbsp;вами<br />день нашей свадьбы</p>
+  </div>
+
+  <div class="hero__art" aria-hidden="true">
+    <img
+      src="/assets/couple.png"
+      alt=""
+      loading="eager"
+      onerror="this.closest('.hero__art').remove()"
+    />
+  </div>
+
+  <a class="hero__down" href="#invite" aria-label="Дальше"><span></span></a>
+</header>
+
+<script>
+  import '../scripts/parallax';
+</script>

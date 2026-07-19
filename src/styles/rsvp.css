@@ -1,0 +1,198 @@
+/* ============================================================
+   RSVP  (тёмный wash, тактильная кнопка)
+   ============================================================ */
+.rsvp {
+  position: relative;
+  padding: var(--sy) 0;
+  color: var(--cream-0);
+  overflow: hidden;
+  background:
+    radial-gradient(70% 100% at 85% 0%, #4d6142, transparent 55%),
+    linear-gradient(200deg, var(--green-deep), var(--moss));
+}
+.rsvp__line {
+  font-size: clamp(1.4rem, 1rem + 1.4vw, 2.05rem);
+  max-width: 40ch;
+  color: var(--cream-1);
+  margin: 0 0 var(--sp-lg);
+  line-height: 1.4;
+}
+.rsvp__line b { color: #fff; font-weight: 600; }
+.ink-btn {
+  display: inline-block;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  letter-spacing: 0.02em;
+  color: var(--green-deep);
+  background: var(--cream-0);
+  padding: 0.75em 2.2em;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 14px 30px -14px rgba(0,0,0,0.6);
+  transition: transform .2s ease, background .2s ease;
+}
+.ink-btn:hover { transform: translateY(-2px); background: #fff; }
+.rsvp__hint { font-family: var(--f-text); font-style: italic; font-size: 1rem; color: var(--sage-label); margin: var(--sp-sm) 0 0; min-height: 1.4em; }
+
+/* Кнопка «сохранить дату в календарь» */
+.link-btn {
+  display: inline-flex; align-items: center; gap: 0.55em;
+  appearance: none; border: 0; background: transparent; cursor: pointer;
+  font-family: var(--f-serif); font-style: italic;
+  font-size: clamp(1.2rem, 1rem + 0.6vw, 1.55rem);
+  color: var(--moss); padding: 0;
+  transition: color .2s ease;
+}
+.link-btn svg { color: var(--sage-2); transition: transform .3s ease, color .2s ease; }
+.link-btn span { border-bottom: 1px solid var(--sage-2); padding-bottom: 2px; transition: border-color .2s ease; }
+.link-btn:hover { color: var(--brown-2); }
+.link-btn:hover svg { transform: translateY(-2px) rotate(-6deg); color: var(--brown-2); }
+.link-btn:hover span { border-color: var(--brown-2); }
+.link-btn.done span { border-color: transparent; }
+
+/* --- Форма RSVP --- */
+.rsvp-form {
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.7rem;
+  margin-top: 0.4rem;
+}
+.rsvp-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 4vw, 2.2rem);
+}
+.field { display: flex; flex-direction: column; gap: 0.35rem; }
+.field__label {
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--sage-label);
+  letter-spacing: 0.03em;
+}
+.field__input {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(241,234,219,0.45);
+  border-radius: 0;
+  padding: 0.4em 0 0.45em;
+  font-family: var(--f-serif);
+  font-size: 1.25rem;
+  color: #fff;
+  caret-color: var(--cream-0);
+  transition: border-color .25s ease;
+}
+.field__input:focus { outline: none; border-bottom-color: var(--cream-0); }
+.field__input::placeholder { color: rgba(241,234,219,0.42); font-style: italic; font-size: 0.92em; }
+.field--invalid .field__input { border-bottom-color: var(--milk); }
+.field--plus:not([hidden]) { animation: plusIn 0.45s ease; }
+@keyframes plusIn { from { opacity: 0; transform: translateY(8px); } }
+
+/* Мягкая «тряска» поля при ошибке (перезапускается из JS) */
+@media (prefers-reduced-motion: no-preference) {
+  .field--invalid { animation: fieldShake 0.4s ease; }
+  @keyframes fieldShake {
+    0%, 100% { transform: none; }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(2px); }
+  }
+}
+
+.check {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  align-self: flex-start;
+}
+/* невидимый input лежит поверх нарисованного квадратика — клики попадают в него */
+.check input {
+  position: absolute;
+  left: 0; top: 50%;
+  translate: 0 -50%;
+  width: 19px; height: 19px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+.check__box {
+  flex: none;
+  width: 19px; height: 19px;
+  border: 1px solid rgba(241,234,219,0.55);
+  border-radius: 2px;
+  position: relative;
+  transition: background .2s ease, border-color .2s ease;
+}
+.check__box::after {
+  content: "";
+  position: absolute;
+  inset: 3px 3px 5px 3px;
+  border-left: 2px solid var(--green-deep);
+  border-bottom: 2px solid var(--green-deep);
+  transform: rotate(-45deg) scale(0);
+  transition: transform .2s ease;
+}
+.check input:checked + .check__box { background: var(--cream-0); border-color: var(--cream-0); }
+.check input:checked + .check__box::after { transform: rotate(-45deg) scale(1); }
+.check input:focus-visible + .check__box { outline: 2px solid var(--cream-0); outline-offset: 3px; }
+.check__label { font-style: italic; font-size: 1.1rem; color: var(--cream-1); }
+
+/* fieldset-обёртки анкеты — без рамок браузера */
+.rsvp-attend, .rsvp-drinks { border: 0; margin: 0; padding: 0; min-width: 0; }
+.rsvp-attend legend, .rsvp-drinks legend { padding: 0; margin-bottom: 0.7rem; }
+
+/* «Буду / Не смогу» — сегментированный переключатель */
+.segmented { display: inline-flex; gap: 0.5rem; }
+.seg { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.seg input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+.seg__face {
+  display: block;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--cream-1);
+  padding: 0.4em 1.4em;
+  border: 1px solid rgba(241,234,219,0.45);
+  border-radius: 2px;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.seg input:checked + .seg__face { background: var(--cream-0); color: var(--green-deep); border-color: var(--cream-0); }
+.seg input:focus-visible + .seg__face { outline: 2px solid var(--cream-0); outline-offset: 3px; }
+
+/* Поля, зависящие от ответа «Буду», появляются мягко */
+.rsvp-when-yes { display: flex; flex-direction: column; gap: 1.7rem; }
+.rsvp-when-yes:not([hidden]) { animation: plusIn 0.4s ease; }
+
+/* Напитки — «фишки» с чекбоксами, мультивыбор */
+.rsvp-drinks__note { font-family: var(--f-text); font-style: italic; font-size: 1rem; color: var(--sage-label); margin: -0.3rem 0 0.9rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.chip { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.chip input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+.chip span {
+  display: block;
+  font-family: var(--f-text);
+  font-size: 1.02rem;
+  color: var(--cream-1);
+  padding: 0.4em 1em;
+  border: 1px solid rgba(241,234,219,0.4);
+  border-radius: 999px;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.chip input:checked + span { background: var(--cream-0); color: var(--green-deep); border-color: var(--cream-0); }
+.chip input:focus-visible + span { outline: 2px solid var(--cream-0); outline-offset: 3px; }
+
+.rsvp-form__actions { margin-top: 0.3rem; }
+
+@media (max-width: 560px) {
+  .rsvp-form__row { grid-template-columns: 1fr; }
+}

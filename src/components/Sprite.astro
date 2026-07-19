@@ -1,0 +1,78 @@
+---
+/**
+ * Ботанический спрайт: символы подключаются через <use href="#sprig-*">.
+ * Лежит один раз в начале <body>, до всех секций.
+ */
+---
+
+<!-- Ботанический спрайт (переиспользуется через <use>) -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="sprig-branch" viewBox="0 0 120 240">
+    <path d="M60 236C52 190 70 160 58 120 48 88 66 60 58 24 55 14 58 6 62 2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    <g fill="currentColor">
+      <path d="M60 200c14-6 24-20 22-36-13 4-23 18-22 36z"/>
+      <path d="M58 176c-14-6-24-20-22-36 13 4 23 18 22 36z"/>
+      <path d="M62 150c14-6 24-20 22-36-13 4-23 18-22 36z"/>
+      <path d="M58 124c-14-6-24-20-22-36 13 4 23 18 22 36z"/>
+      <path d="M60 96c13-5 22-18 20-33-12 4-21 16-20 33z"/>
+      <path d="M58 70c-13-5-22-18-20-33 12 4 21 16 20 33z"/>
+      <path d="M60 46c11-4 18-15 16-28-10 3-17 14-16 28z"/>
+    </g>
+  </symbol>
+  <symbol id="sprig-grass" viewBox="0 0 160 240">
+    <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <path d="M80 238C78 170 60 110 41 42"/>
+      <path d="M80 238C80 168 78 108 76 30"/>
+      <path d="M80 238C82 168 98 108 116 46"/>
+      <path d="M80 238C84 175 112 120 138 68"/>
+      <path d="M80 238C76 175 48 120 24 68"/>
+    </g>
+    <g fill="currentColor">
+      <ellipse cx="41" cy="42" rx="3" ry="8" transform="rotate(-22 41 42)"/>
+      <ellipse cx="76" cy="30" rx="3" ry="8"/>
+      <ellipse cx="116" cy="46" rx="3" ry="8" transform="rotate(24 116 46)"/>
+      <ellipse cx="138" cy="68" rx="2.6" ry="7" transform="rotate(34 138 68)"/>
+      <ellipse cx="24" cy="68" rx="2.6" ry="7" transform="rotate(-34 24 68)"/>
+    </g>
+  </symbol>
+  <!-- Эвкалипт: изогнутый стебель, монетки-листья на черешках, мельчают к кончику -->
+  <symbol id="sprig-euc" viewBox="0 0 200 120">
+    <g fill="none" stroke="currentColor" stroke-linecap="round">
+      <path d="M8 78 C 50 66, 110 58, 192 34" stroke-width="1.5"/>
+      <path d="M24 74 L 21 84" stroke-width="1.2"/>
+      <path d="M48 68 L 46 58" stroke-width="1.2"/>
+      <path d="M74 63 L 72 73" stroke-width="1.2"/>
+      <path d="M104 56 L 102 47" stroke-width="1.2"/>
+      <path d="M135 49 L 133 58" stroke-width="1.2"/>
+      <path d="M163 42 L 162 34" stroke-width="1.2"/>
+    </g>
+    <g fill="currentColor">
+      <ellipse cx="20" cy="94" rx="11.5" ry="10.5" transform="rotate(-14 20 94)"/>
+      <ellipse cx="45" cy="48" rx="11" ry="10" transform="rotate(10 45 48)"/>
+      <ellipse cx="71" cy="83" rx="10.5" ry="9.5" transform="rotate(-12 71 83)"/>
+      <ellipse cx="101" cy="38" rx="9.5" ry="8.5" transform="rotate(12 101 38)"/>
+      <ellipse cx="132" cy="66" rx="8.5" ry="7.5" transform="rotate(-10 132 66)"/>
+      <ellipse cx="161" cy="27" rx="7" ry="6.5" transform="rotate(10 161 27)"/>
+      <ellipse cx="190" cy="30" rx="5.5" ry="5" transform="rotate(20 190 30)"/>
+    </g>
+  </symbol>
+  <!-- Малина: лист с мелкой пильчатой кромкой (сгенерирован), тройчатые узлы -->
+  <defs>
+    <path id="rasp-leaf" d="M0 0 L6.2 -1.3 L7.1 -2.7 L8.0 -4.0 L8.8 -5.3 L9.6 -6.7 L9.0 -8.0 L9.7 -9.3 L10.4 -10.7 L11.1 -12.0 L11.7 -13.3 L12.3 -14.7 L11.5 -16.0 L12.1 -17.3 L12.6 -18.7 L13.0 -20.0 L13.5 -21.3 L13.8 -22.7 L12.9 -24.0 L13.2 -25.3 L13.4 -26.7 L13.6 -28.0 L13.8 -29.3 L13.9 -30.7 L12.8 -32.0 L12.9 -33.3 L12.9 -34.7 L12.8 -36.0 L12.8 -37.3 L12.7 -38.7 L11.4 -40.0 L11.2 -41.3 L11.0 -42.7 L10.7 -44.0 L10.4 -45.3 L10.1 -46.7 L8.7 -48.0 L8.3 -49.3 L7.9 -50.7 L7.4 -52.0 L7.0 -53.3 L6.5 -54.7 L4.9 -56.0 L4.4 -57.3 L3.8 -58.7 L3.2 -60.0 L2.5 -61.3 L1.8 -62.7 L0.0 -64.0 L-1.8 -62.7 L-2.5 -61.3 L-3.2 -60.0 L-3.8 -58.7 L-4.4 -57.3 L-4.9 -56.0 L-6.5 -54.7 L-7.0 -53.3 L-7.4 -52.0 L-7.9 -50.7 L-8.3 -49.3 L-8.7 -48.0 L-10.1 -46.7 L-10.4 -45.3 L-10.7 -44.0 L-11.0 -42.7 L-11.2 -41.3 L-11.4 -40.0 L-12.7 -38.7 L-12.8 -37.3 L-12.8 -36.0 L-12.9 -34.7 L-12.9 -33.3 L-12.8 -32.0 L-13.9 -30.7 L-13.8 -29.3 L-13.6 -28.0 L-13.4 -26.7 L-13.2 -25.3 L-12.9 -24.0 L-13.8 -22.7 L-13.5 -21.3 L-13.0 -20.0 L-12.6 -18.7 L-12.1 -17.3 L-11.5 -16.0 L-12.3 -14.7 L-11.7 -13.3 L-11.1 -12.0 L-10.4 -10.7 L-9.7 -9.3 L-9.0 -8.0 L-9.6 -6.7 L-8.8 -5.3 L-8.0 -4.0 L-7.1 -2.7 L-6.2 -1.3 Z"/>
+    <g id="rasp-node">
+      <use href="#rasp-leaf" transform="rotate(-46) scale(0.72)"/>
+      <use href="#rasp-leaf" transform="rotate(44) scale(0.72)"/>
+      <use href="#rasp-leaf" transform="scale(0.95)"/>
+    </g>
+  </defs>
+  <symbol id="sprig-rasp" viewBox="0 0 140 240">
+    <path d="M70 236C64 192 78 160 68 122 60 92 74 62 66 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    <g fill="currentColor">
+      <use href="#rasp-node" transform="translate(69 193) rotate(55) scale(0.8)"/>
+      <use href="#rasp-node" transform="translate(72 155) rotate(-55) scale(0.75)"/>
+      <use href="#rasp-node" transform="translate(66 95) rotate(50) scale(0.85)"/>
+      <use href="#rasp-node" transform="translate(68 62) rotate(-50) scale(0.7)"/>
+      <use href="#rasp-node" transform="translate(67 40) rotate(3) scale(0.6)"/>
+    </g>
+  </symbol>
+</svg>

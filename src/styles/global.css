@@ -1,0 +1,22 @@
+/* ============================================================
+   Никита и Лера · 13.09.2026
+   Порядок импортов = порядок каскада в исходном styles.css.
+   Менять порядок нельзя: секции опираются на токены и общие
+   классы из base.css и переопределяют друг друга по месту.
+   ============================================================ */
+@import "./base.css";
+@import "./hero.css";
+@import "./invite.css";
+@import "./countdown.css";
+@import "./program.css";
+@import "./details.css";
+@import "./mood.css";
+@import "./map.css";
+@import "./dress.css";
+@import "./flowers.css";
+@import "./rsvp.css";
+@import "./gifts.css";
+@import "./rules.css";
+@import "./organizer.css";
+@import "./footer.css";
+@import "./reveal.css";

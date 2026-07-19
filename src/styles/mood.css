@@ -1,0 +1,54 @@
+/* ============================================================
+   АТМОСФЕРА  (тёмный wash с пудровым свечением — отсылка к залу)
+   ============================================================ */
+.mood {
+  position: relative;
+  padding: var(--sy) 0;
+  color: var(--cream-0);
+  overflow: hidden;
+  background:
+    radial-gradient(55% 80% at 82% 12%, rgba(228,196,198,0.32), transparent 60%),
+    radial-gradient(70% 90% at 10% 100%, #2c3a24, transparent 55%),
+    linear-gradient(155deg, var(--moss), var(--green-deep));
+}
+.mood__text {
+  font-size: clamp(1.5rem, 1rem + 1.9vw, 2.4rem);
+  line-height: 1.42;
+  color: var(--cream-1);
+  max-width: 34ch;
+  margin: 0 0 var(--sp-md);
+  text-wrap: pretty;
+}
+.mood__text--soft { font-style: italic; color: var(--milk); font-size: clamp(1.45rem, 1rem + 1.5vw, 2.3rem); margin: 0; }
+
+/* Лебедь «Лебединого озера» — молочный силуэт на тёмном, линии воды дорисовываются */
+.swan {
+  position: absolute;
+  right: 0;
+  bottom: -14%;
+  width: clamp(200px, 26vw, 330px);
+  height: auto;
+}
+.swan__body { fill: var(--milk); opacity: 0.92; }
+.swan__eye  { fill: var(--green-deep); }
+.swan__wing { stroke: var(--green-deep); stroke-width: 1.6; stroke-linecap: round; opacity: 0.5; }
+.swan__wave { stroke: var(--milk); stroke-width: 1.7; stroke-linecap: round; opacity: 0.7; }
+@media (prefers-reduced-motion: no-preference) {
+  .swan { animation: floatArt 9s ease-in-out infinite alternate; }
+  .swan__wing, .swan__wave {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.25,1);
+  }
+  .reveal.is-visible .swan__wing { stroke-dashoffset: 0; transition-delay: 0.9s; }
+  .reveal.is-visible .swan__wave { stroke-dashoffset: 0; transition-delay: 0.5s; }
+  .reveal.is-visible .swan__wave:last-child { transition-delay: 0.75s; }
+}
+@media (max-width: 900px) {
+  .swan {
+    position: static;
+    display: block;
+    margin: var(--sp-lg) auto 0;
+    width: min(240px, 64vw);
+  }
+}

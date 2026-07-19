@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://leranikita.ru/sitemap-index.xml

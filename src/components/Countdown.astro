@@ -1,0 +1,24 @@
+---
+/** ОТСЧЁТ — глубокий зелёный wash. Цифры и склонения ставит скрипт. */
+---
+
+<section class="count" id="countdown" aria-labelledby="count-h">
+  <svg class="botanical botanical--count" aria-hidden="true"><use href="#sprig-euc" /></svg>
+  <div class="shell reveal">
+    <h2 class="head head--light" id="count-h">остаётся совсем немного</h2>
+    <div class="count__row" id="timer" role="timer" aria-live="polite">
+      <span class="count__unit"><b data-days>—</b><i data-days-label>дней</i></span>
+      <span class="count__sep">/</span>
+      <span class="count__unit"><b data-hours>—</b><i data-hours-label>часов</i></span>
+      <span class="count__sep">/</span>
+      <span class="count__unit"><b data-minutes>—</b><i data-minutes-label>минут</i></span>
+      <span class="count__sep">/</span>
+      <span class="count__unit"><b data-seconds>—</b><i data-seconds-label>секунд</i></span>
+    </div>
+    <p class="count__done" id="timer-done" hidden>этот день наступил</p>
+  </div>
+</section>
+
+<script>
+  import '../scripts/countdown';
+</script>

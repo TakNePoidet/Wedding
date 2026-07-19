@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import Countdown from '../components/Countdown.astro';
+import Details from '../components/Details.astro';
+import Dress from '../components/Dress.astro';
+import Flowers from '../components/Flowers.astro';
+import Footer from '../components/Footer.astro';
+import Gifts from '../components/Gifts.astro';
+import Hero from '../components/Hero.astro';
+import Invite from '../components/Invite.astro';
+import MapSection from '../components/MapSection.astro';
+import Mood from '../components/Mood.astro';
+import Organizer from '../components/Organizer.astro';
+import Program from '../components/Program.astro';
+import Progress from '../components/Progress.astro';
+import Rsvp from '../components/Rsvp.astro';
+import Rules from '../components/Rules.astro';
+import Sprite from '../components/Sprite.astro';
+import ToTop from '../components/ToTop.astro';
+import { COUPLE, COUPLE_GENITIVE, DATE_LONG, VENUE, VENUE_INLINE } from '../data/wedding';
+---
+
+<Base
+  title={`${COUPLE} — свадьба ${DATE_LONG}, ${VENUE.city}`}
+  description={`Приглашение на свадьбу ${COUPLE_GENITIVE} — ${DATE_LONG}, ${VENUE.city}, ${VENUE_INLINE}. Программа дня, дресс-код, карта проезда и подтверждение присутствия.`}
+>
+  <div class="grain" aria-hidden="true"></div>
+  <Sprite />
+  <Progress />
+
+  <Hero />
+
+  <main>
+    <Invite />
+    <Countdown />
+    <Program />
+    <Details />
+    <Mood />
+    <MapSection />
+    <Dress />
+    <Flowers />
+    <Gifts />
+    <Rules />
+    <Rsvp />
+    <Organizer />
+  </main>
+
+  <Footer />
+  <ToTop />
+</Base>
+
+<script>
+  import '../scripts/reveal';
+</script>

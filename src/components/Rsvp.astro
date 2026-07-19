@@ -1,0 +1,104 @@
+---
+import { DRINKS, RSVP_DEADLINE } from '../data/wedding';
+/** RSVP — тёмный wash, тактильная кнопка. Сборку сообщения делает скрипт. */
+---
+
+<section class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
+  <svg class="botanical botanical--rsvp" aria-hidden="true"><use href="#sprig-branch" /></svg>
+  <div class="shell reveal">
+    <h2 class="head head--light" id="rsvp-h">отзовитесь</h2>
+    <p class="rsvp__line">
+      Мы&nbsp;очень старались сделать праздник незабываемым, поэтому будем рады, если
+      вы&nbsp;подтвердите своё присутствие до&nbsp;<b set:html={RSVP_DEADLINE.replace(' ', '&nbsp;')}
+      />.
+    </p>
+
+    <form class="rsvp-form" id="rsvp-form" novalidate>
+      <div class="rsvp-form__row">
+        <label class="field">
+          <span class="field__label">имя</span>
+          <input
+            class="field__input"
+            type="text"
+            id="rsvp-first"
+            name="firstName"
+            autocomplete="given-name"
+            autocapitalize="words"
+            required
+          />
+        </label>
+        <label class="field">
+          <span class="field__label">фамилия</span>
+          <input
+            class="field__input"
+            type="text"
+            id="rsvp-last"
+            name="lastName"
+            autocomplete="family-name"
+            autocapitalize="words"
+          />
+        </label>
+      </div>
+
+      <fieldset class="rsvp-attend" id="rsvp-attend">
+        <legend class="field__label">планируете быть?</legend>
+        <div class="segmented" role="radiogroup" aria-label="Планируете быть?">
+          <label class="seg">
+            <input type="radio" name="attend" value="yes" id="rsvp-yes" checked />
+            <span class="seg__face">буду</span>
+          </label>
+          <label class="seg">
+            <input type="radio" name="attend" value="no" id="rsvp-no" />
+            <span class="seg__face">не&nbsp;смогу</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="rsvp-when-yes" id="rsvp-when-yes">
+        <label class="check">
+          <input type="checkbox" id="rsvp-plus" />
+          <span class="check__box" aria-hidden="true"></span>
+          <span class="check__label">буду не&nbsp;один&nbsp;— парой или семьёй</span>
+        </label>
+
+        <label class="field field--plus" id="rsvp-plus-field" hidden>
+          <span class="field__label">имена тех, кто будет с&nbsp;вами</span>
+          <input
+            class="field__input"
+            type="text"
+            id="rsvp-plus-name"
+            autocomplete="off"
+            autocapitalize="words"
+            placeholder="например: Аня, Миша"
+          />
+        </label>
+
+        <fieldset class="rsvp-drinks">
+          <legend class="field__label">напитки на&nbsp;вечер</legend>
+          <p class="rsvp-drinks__note">
+            Отметьте за&nbsp;всех, кто идёт с&nbsp;вами,&nbsp;— так мы&nbsp;точнее накроем стол.
+          </p>
+          <div class="chips stagger">
+            {
+              DRINKS.map((drink) => (
+                <label class="chip">
+                  <input type="checkbox" name="drink" value={drink} />
+                  <span>{drink}</span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="rsvp-form__actions">
+        <button class="ink-btn" type="submit">отправить ответ</button>
+      </div>
+      <p class="rsvp__hint" id="rsvp-hint" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import '../scripts/rsvp';
+</script>

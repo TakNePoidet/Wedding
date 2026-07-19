@@ -1,0 +1,40 @@
+---
+import { MAP_EMBED, MAP_LINKS, VENUE } from '../data/wedding';
+/** КАРТА — фотокарточка с наклоном + текстовые ссылки */
+---
+
+<section class="map" id="map" aria-labelledby="map-h">
+  <div class="shell map__grid reveal">
+    <div class="map__text">
+      <h2 class="head" id="map-h">как нас<br />найти</h2>
+      <p>
+        Ресторан спрятан в&nbsp;тени парка Гафури, у&nbsp;самой воды. Приезжайте заранее&nbsp;—
+        прогуляться вдоль озера.
+      </p>
+      <div class="map__links">
+        {
+          MAP_LINKS.map((link) => (
+            <a target="_blank" rel="noopener" href={link.href} set:html={link.label} />
+          ))
+        }
+        <button class="map-copy" id="addr-copy" type="button" data-addr={VENUE.copyText}>
+          скопировать адрес
+        </button>
+      </div>
+    </div>
+    <figure class="map__card">
+      <div class="map__frame">
+        <iframe
+          title={`Карта: ${VENUE.name}, ${VENUE.city}, проспект Октября, 77/2`}
+          src={MAP_EMBED}
+          loading="lazy"
+          allowfullscreen></iframe>
+      </div>
+      <figcaption>проспект Октября, 77/2</figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+  import '../scripts/copy-address';
+</script>

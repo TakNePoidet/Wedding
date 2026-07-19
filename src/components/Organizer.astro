@@ -1,0 +1,16 @@
+---
+import { ORGANIZER } from '../data/wedding';
+/** ОРГАНИЗАТОР — узкая светлая строка */
+---
+
+<section class="organizer" id="organizer" aria-labelledby="organizer-h">
+  <div class="shell organizer__inner reveal">
+    <h2 class="head organizer__h" id="organizer-h">остались вопросы?</h2>
+    <p class="organizer__text">
+      На&nbsp;всё ответит наш организатор&nbsp;— <b>{ORGANIZER.name}</b>, агентство&nbsp;«{
+        ORGANIZER.agency
+      }».
+    </p>
+    <a class="organizer__tel" href={`tel:${ORGANIZER.tel}`}>{ORGANIZER.telPretty}</a>
+  </div>
+</section>

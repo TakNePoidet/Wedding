@@ -1,0 +1,75 @@
+---
+import { FLOWER_SUBSCRIPTION_URL } from '../data/wedding';
+/** ВМЕСТО ЦВЕТОВ — живые цветы от гостей как часть декора */
+---
+
+<section class="flowers" id="flowers" aria-labelledby="flowers-h">
+  <svg class="botanical botanical--flowers" aria-hidden="true"><use href="#sprig-rasp" /></svg>
+  <div class="shell flowers__grid reveal">
+    <div class="flowers__text">
+      <h2 class="head" id="flowers-h">вместо<br />цветов</h2>
+      <p class="flowers__lead">
+        Чтобы праздничное настроение длилось дольше, предлагаем не&nbsp;дарить цветы в&nbsp;день
+        торжества, а&nbsp;вложить эти средства в&nbsp;нашу цветочную подписку&nbsp;— и&nbsp;они будут
+        радовать нас ещё долго после свадьбы.
+      </p>
+      <p class="flowers__note">
+        А&nbsp;сразу после свадьбы мы&nbsp;улетаем в&nbsp;свадебное путешествие
+        и&nbsp;не&nbsp;успеем насладиться букетами&nbsp;— поэтому вместо цветов будем рады
+        и&nbsp;бутылочке хорошего вина.
+      </p>
+      <p class="flowers__cta">
+        <a class="link-btn" href={FLOWER_SUBSCRIPTION_URL} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"
+            ><path
+              d="M12 21s-7-4.7-9.3-9C1 8.6 2.5 5 6 5c2.2 0 3.4 1.4 4 2.5C10.6 6.4 11.8 5 14 5c3.5 0 5 3.6 3.3 7-2.3 4.3-5.3 9-5.3 9Z"
+              stroke="currentColor"
+              stroke-width="1.3"
+              stroke-linejoin="round"></path></svg
+          >
+          <span>оформить цветочную подписку</span>
+        </a>
+      </p>
+    </div>
+    <div class="flowers__art" aria-hidden="true">
+      <svg class="vase" viewBox="0 0 220 300" fill="none">
+        <g class="vase__stem" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M106 186 C 100 150, 96 118, 100 86"></path>
+          <path d="M112 186 C 120 152, 134 128, 148 106"></path>
+          <path d="M110 186 C 106 152, 90 130, 74 112"></path>
+          <path d="M114 186 C 118 144, 112 112, 120 82" stroke-width="1.5"></path>
+          <path d="M108 186 C 104 156, 88 148, 66 140" stroke-width="1.5"></path>
+        </g>
+        <g class="vase__leaf" fill="currentColor">
+          <ellipse cx="93" cy="122" rx="8.5" ry="7.5" transform="rotate(-16 93 122)"></ellipse>
+          <ellipse cx="106" cy="101" rx="7.5" ry="6.5" transform="rotate(12 106 101)"></ellipse>
+          <ellipse cx="99" cy="83" rx="6.5" ry="6" transform="rotate(-10 99 83)"></ellipse>
+          <path d="M136 126 c 10 -2, 17 -10, 16 -22 -9 2, -15 10, -16 22z"></path>
+          <path d="M146 110 c 9 -2, 15 -9, 14 -19 -8 2, -13 9, -14 19z"></path>
+          <path d="M84 124 c -10 -2, -17 -10, -16 -22 9 2, 15 10, 16 22z"></path>
+          <path d="M76 111 c -9 -2, -15 -9, -14 -19 8 2, 13 9, 14 19z"></path>
+        </g>
+        <g class="vase__bud" fill="currentColor">
+          <circle cx="120" cy="82" r="3"></circle>
+          <circle cx="113" cy="92" r="2.4"></circle>
+          <circle cx="124" cy="94" r="2.4"></circle>
+          <circle cx="66" cy="140" r="2.8"></circle>
+          <circle cx="75" cy="133" r="2.2"></circle>
+          <circle cx="72" cy="146" r="2"></circle>
+        </g>
+        <g class="vase__pot">
+          <path
+            d="M96 183 C 96 190, 93 196, 89 201 C 74 214, 74 246, 92 258 C 103 265, 117 265, 128 258 C 146 246, 146 214, 131 201 C 127 196, 124 190, 124 183 Z"
+            fill="var(--milk)"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"></path>
+          <ellipse cx="110" cy="183" rx="14" ry="4" fill="var(--milk)" stroke="currentColor" stroke-width="2"
+          ></ellipse>
+          <path d="M84 270 C 94 273, 126 273, 136 270" stroke="currentColor" stroke-width="1.6" opacity="0.55"
+          ></path>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>

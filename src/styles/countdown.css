@@ -1,0 +1,64 @@
+/* ============================================================
+   ОТСЧЁТ  (глубокий зелёный wash)
+   ============================================================ */
+.count {
+  position: relative;
+  padding: var(--sy) 0;
+  color: var(--cream-0);
+  overflow: hidden;
+  background:
+    radial-gradient(80% 120% at 15% 0%, #4d6142, transparent 60%),
+    radial-gradient(70% 100% at 100% 100%, #2c3a24, transparent 55%),
+    linear-gradient(160deg, var(--moss), var(--green-deep));
+}
+.count .head { margin-bottom: var(--sp-lg); }
+.count__row {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: clamp(0.6rem, 2.5vw, 1.618rem);
+}
+.count__unit { display: flex; flex-direction: column; align-items: flex-start; }
+.count__unit b {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(3.6rem, 1rem + 12vw, 9rem);
+  line-height: 0.9;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+.count__unit i {
+  font-style: italic;
+  font-size: clamp(1rem, 0.8rem + 0.5vw, 1.3rem);
+  color: var(--sage-label);
+  margin-top: var(--sp-2xs);
+  letter-spacing: 0.02em;
+}
+.count__sep {
+  font-size: clamp(2.4rem, 1rem + 6vw, 5rem);
+  color: rgba(174,190,159,0.5);
+  font-weight: 300;
+  align-self: center;
+}
+.count__done { font-family: var(--f-script); font-size: clamp(2.4rem,1rem+6vw,4rem); color: #fff; margin: 0; }
+
+/* На телефоне — фиксированная сетка 2×2: цифры не «скачут» при обновлении,
+   т.к. ширина колонок задана и не зависит от длины подписи (минута/минуты/минут). */
+@media (max-width: 600px) {
+  .count__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-md) var(--sp-sm);
+    justify-items: center;
+  }
+  .count__sep { display: none; }
+  .count__unit { align-items: center; text-align: center; }
+}
+
+/* Мягкий «тик» при смене значения */
+@media (prefers-reduced-motion: no-preference) {
+  .count__unit b.tick { animation: tickIn 0.55s cubic-bezier(.2,.7,.2,1); }
+  @keyframes tickIn {
+    from { opacity: 0.25; transform: translateY(9px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
