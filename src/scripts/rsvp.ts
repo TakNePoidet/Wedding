@@ -1,6 +1,6 @@
-import { COUPLE_GENITIVE, DATE_LONG, RSVP_CONFIG } from '../data/wedding';
+import { ORGANIZER, RSVP_ENDPOINT } from '../data/wedding';
 
-/* RSVP-форма: имя, фамилия и «+1» собираются в готовое сообщение для мессенджера */
+/* RSVP-форма: ответ уходит в воркер (worker/), тот пересылает его в Телеграм */
 function initRsvp() {
   const form = document.getElementById('rsvp-form') as HTMLFormElement | null;
   if (!form) return;
@@ -15,8 +15,7 @@ function initRsvp() {
   const plusNameEl = byId<HTMLInputElement>('rsvp-plus-name');
   const whenYes = byId<HTMLElement>('rsvp-when-yes');
   const attendEls = form.querySelectorAll<HTMLInputElement>('input[name="attend"]');
-
-  const phoneDigits = (RSVP_CONFIG.phone || '').replace(/\D/g, '');
+  const submitEl = form.querySelector<HTMLButtonElement>('button[type="submit"]');
 
   const setHint = (text?: string) => {
     if (hint) hint.textContent = text || '';
@@ -45,11 +44,13 @@ function initRsvp() {
     if (firstEl.value.trim()) firstEl.closest('.field')?.classList.remove('field--invalid');
   });
 
-  form.addEventListener('submit', (e) => {
+  /** Куда отправлять гостя, если автоматика не сработала */
+  const fallback = `Не удалось отправить ответ. Напишите, пожалуйста, организатору: ${ORGANIZER.telPretty}`;
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const first = firstEl.value.trim();
-    const last = lastEl.value.trim();
     if (!first) {
       const fieldEl = firstEl.closest('.field') as HTMLElement;
       // перезапуск «тряски», если гость жмёт отправить повторно
@@ -61,42 +62,50 @@ function initRsvp() {
       return;
     }
 
-    const who = first + (last ? ` ${last}` : '');
-    let msg: string;
-
-    if (!isComing()) {
-      msg = `Здравствуйте! Это ${who}. К сожалению, не смогу быть на свадьбе ${COUPLE_GENITIVE} ${DATE_LONG}. Обнимаю и поздравляю!`;
-    } else {
-      msg = `Здравствуйте! Это ${who}. Подтверждаю присутствие на свадьбе ${COUPLE_GENITIVE} ${DATE_LONG}.`;
-      if (plusEl.checked) {
-        const plusNames = plusNameEl.value.trim();
-        msg += plusNames
-          ? ` Со мной будут: ${plusNames}.`
-          : ' Буду с парой/семьёй, имена уточню позже.';
-      }
-      const drinks: string[] = [];
-      form
-        .querySelectorAll<HTMLInputElement>('input[name="drink"]:checked')
-        .forEach((d) => drinks.push(d.value));
-      if (drinks.length) {
-        msg += ` Из напитков предпочтём: ${drinks.join(', ')}.`;
-      }
+    if (!RSVP_ENDPOINT) {
+      setHint(fallback);
+      return;
     }
 
-    let href = '';
-    if (RSVP_CONFIG.type === 'telegram' && RSVP_CONFIG.telegram) {
-      href = `https://t.me/${RSVP_CONFIG.telegram.replace(/^@/, '')}`;
-      // t.me не принимает готовый текст — кладём его в буфер обмена
-      navigator.clipboard?.writeText(msg).catch(() => {});
-      setHint('Текст ответа скопирован — вставьте его в чате.');
-    } else if (RSVP_CONFIG.type === 'phone' && phoneDigits) {
-      href = `tel:+${phoneDigits}`;
-    } else if (phoneDigits) {
-      href = `https://wa.me/${phoneDigits}?text=${encodeURIComponent(msg)}`;
-      setHint('Открыли мессенджер с готовым ответом — останется нажать «отправить». Спасибо!');
-    }
+    const drinks: string[] = [];
+    form
+      .querySelectorAll<HTMLInputElement>('input[name="drink"]:checked')
+      .forEach((d) => drinks.push(d.value));
 
-    if (href) window.open(href, '_blank', 'noopener');
+    const attending = isComing();
+    const payload = {
+      first,
+      last: lastEl.value.trim(),
+      attending,
+      plus: attending && plusEl.checked,
+      plusNames: attending && plusEl.checked ? plusNameEl.value.trim() : '',
+      drinks: attending ? drinks : [],
+    };
+
+    if (submitEl) submitEl.disabled = true;
+    setHint('Отправляем…');
+
+    try {
+      const res = await fetch(RSVP_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+
+      // Форму закрываем: повторная отправка того же ответа никому не нужна
+      form.querySelectorAll('input, button').forEach((el) => {
+        (el as HTMLInputElement).disabled = true;
+      });
+      setHint(
+        attending
+          ? 'Спасибо! Ответ получен — ждём вас 13 сентября.'
+          : 'Спасибо, что дали знать. Будем скучать!',
+      );
+    } catch {
+      if (submitEl) submitEl.disabled = false;
+      setHint(fallback);
+    }
   });
 }
 

@@ -8,7 +8,7 @@ import { DETAILS } from '../data/wedding';
     class="shell reveal grid items-start gap-[clamp(var(--spacing-md),5vw,var(--spacing-xl))] grid-cols-[0.58fr_1.42fr] max-md:grid-cols-1"
   >
     <div class="details__lead relative">
-      <h2 class="head" id="details-h">коротко<br />о&nbsp;главном</h2>
+      <h2 class="head text-3xl" id="details-h">коротко<br />о&nbsp;главном</h2>
       <svg class="sprig-inline" aria-hidden="true"><use href="#sprig-euc" /></svg>
     </div>
     <ul class="stagger m-0 list-none p-0">
@@ -19,11 +19,17 @@ import { DETAILS } from '../data/wedding';
             <span class="details__v font-text text-base leading-normal text-green-deep">
               <Fragment set:html={row.v} />
               {'anchor' in row && row.anchor && (
-                <a
-                  class="font-serif text-sm text-moss mt-xs block w-fit border-b border-sage-2 pb-[2px] italic no-underline transition-colors duration-200 hover:border-brown-2 hover:text-brown-2"
-                  href={row.anchor.href}
-                >
-                  {row.anchor.label}
+                <a class="link-btn mt-xs flex w-fit text-sm" href={row.anchor.href}>
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.3" />
+                  </svg>
+                  <span>{row.anchor.label}</span>
                 </a>
               )}
             </span>

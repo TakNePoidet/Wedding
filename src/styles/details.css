@@ -2,17 +2,10 @@
    ДЕТАЛИ  (асимметричный разворот, без карточек)
 
    Секция переведена на утилиты Tailwind. Здесь осталось только то,
-   что утилитами не выражается или проигрывает по каскаду: base.css
-   подключён без слоя, а утилиты живут в @layer utilities — значит
-   селекторы из base.css сильнее любой утилиты в разметке.
+   до чего из разметки не дотянуться: вложенный <em> приходит внутрь
+   значения через set:html, навесить на него класс негде.
    ============================================================ */
 
-/* Веточка. Используется ещё в Footer.astro и Gifts.astro — не переносить. */
-
-/* Заголовок этого блока чуть компактнее — освобождает ширину для значений.
-   Утилитой не задать: .head из base.css идёт вне слоёв и перебьёт её. */
-.details__lead .head { font-size: clamp(2.3rem, 1rem + 3.2vw, 3.6rem); }
-
 /* Значения приходят через set:html — навесить классы на вложенный <em> негде.
-   Плюс font-style: normal должен победить `em { font-style: italic }` из base.css. */
+   font-style: normal отменяет `em { font-style: italic }` из base.css. */
 .details__v em { display: inline-block; font-family: var(--font-text); font-style: normal; font-size: 0.82em; color: var(--color-ink-soft); line-height: 1.5; margin-top: var(--spacing-xs); }

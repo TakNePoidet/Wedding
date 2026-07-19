@@ -67,29 +67,24 @@ export const VENUE = {
 export const VENUE_INLINE = VENUE.name.charAt(0).toLowerCase() + VENUE.name.slice(1);
 
 /* ------------------------------------------------------------
-   НАСТРОЙКА RSVP  ← замените контакт здесь (одно место)
-   type: 'whatsapp' | 'telegram' | 'phone'
-   whatsapp/phone: номер в международном формате без + и пробелов
-   telegram: ник без @
+   КУДА УХОДЯТ ОТВЕТЫ ГОСТЕЙ
+   Адрес воркера из worker/ — он пересылает заявку в Телеграм.
+   Токен бота живёт в секретах Cloudflare, а не здесь: код сайта
+   публичен, и любой ключ из него достаётся за полминуты.
+   Пустая строка → форма попросит написать организатору.
    ------------------------------------------------------------ */
-export const RSVP_CONFIG = {
-  type: 'whatsapp' as 'whatsapp' | 'telegram' | 'phone',
-  phone: '70000000000', // TODO: заменить на реальный номер
-  telegram: '', // либо укажите ник и type: 'telegram'
-};
+export const RSVP_ENDPOINT = 'https://wedding-rsvp.leranikita.workers.dev';
 
 /** Крайний срок ответа — показывается в секции RSVP */
 export const RSVP_DEADLINE = '10 августа';
 
 export const ORGANIZER = {
   name: 'Гульназ',
-  agency: 'ОГОНЬ',
+  /** Полное название — как просили указывать в приглашении */
+  agency: 'свадебное агентство Андрея Огнева «ОГОНЬ»',
   tel: '+79377804333',
   telPretty: '+7 937 780-43-33',
 };
-
-/** Ссылка на чат праздника. Пустая строка → кнопка показывает подсказку. */
-export const CHAT_URL = '';
 
 export const FLOWER_SUBSCRIPTION_URL =
   'https://verafox.ru/tsvetochnaya-podpiska-dlya-nikity-i-lery-13-09-2026.html';
@@ -158,19 +153,11 @@ export const DRINKS = [
 export const RULES = [
   {
     k: 'О&nbsp;детях',
-    v: 'Наш вечер&nbsp;— праздник для&nbsp;взрослых: ждём гостей от&nbsp;14&nbsp;лет. Будет громко и&nbsp;допоздна, а&nbsp;тихого уголка для&nbsp;малышей на&nbsp;площадке нет. Оставьте детишек дома под&nbsp;любящим присмотром&nbsp;— и&nbsp;выдохните вместе с&nbsp;нами.',
-  },
-  {
-    k: 'Без «Горько!»',
-    v: 'Мы&nbsp;за&nbsp;искренние моменты&nbsp;— целоваться будем тогда, когда захочется самим.',
+    v: 'Наш вечер&nbsp;— праздник для&nbsp;взрослых. Будет громко и&nbsp;допоздна, а&nbsp;тихого уголка для&nbsp;малышей на&nbsp;площадке нет. Оставьте детишек дома под&nbsp;любящим присмотром&nbsp;— и&nbsp;выдохните вместе с&nbsp;нами.',
   },
   {
     k: 'Фото',
-    v: 'Делитесь кадрами с&nbsp;хэштегом <b>#____</b>&nbsp;— так мы&nbsp;соберём вечер вашими глазами.',
-  },
-  {
-    k: 'За&nbsp;столом',
-    v: 'Говорим обо&nbsp;всём на&nbsp;свете&nbsp;— кроме политики. Пусть будет только доброе.',
+    v: 'Наверняка у&nbsp;вас получится много красивых кадров. На&nbsp;празднике будет QR-код с&nbsp;чатом&nbsp;— отсканируйте и&nbsp;выкладывайте туда всё самое яркое.',
   },
 ] as const;
 
@@ -189,3 +176,5 @@ export const MAP_LINKS = [
 ] as const;
 
 export const MAP_EMBED = `https://yandex.ru/map-widget/v1/?text=${addrQuery}&z=15`;
+
+
