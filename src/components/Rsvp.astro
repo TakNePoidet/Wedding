@@ -1,0 +1,139 @@
+---
+import { DRINKS, RSVP_DEADLINE } from '../data/wedding';
+/** RSVP — тёмный wash, тактильная кнопка. Сборку сообщения делает скрипт.
+    Классы .field / .field--invalid и все id ниже — крючки src/scripts/rsvp.ts. */
+---
+
+<section
+  class="rsvp relative overflow-hidden py-[var(--sy)] text-cream-0"
+  id="rsvp"
+  aria-labelledby="rsvp-h"
+>
+  <svg class="botanical botanical--rsvp" aria-hidden="true"><use href="#sprig-branch" /></svg>
+  <div class="shell reveal">
+    <h2 class="head text-cream-0" id="rsvp-h">отзовитесь</h2>
+    <p class="rsvp__line mx-0 mt-0 mb-lg max-w-[40ch] text-lg leading-normal text-cream-1">
+      Мы&nbsp;очень старались сделать праздник незабываемым, поэтому будем рады, если
+      вы&nbsp;подтвердите своё присутствие до&nbsp;<b set:html={RSVP_DEADLINE.replace(' ', '&nbsp;')}
+      />.
+    </p>
+
+    <form
+      class="mt-[0.4rem] flex max-w-[620px] flex-col gap-[1.7rem]"
+      id="rsvp-form"
+      novalidate
+    >
+      <div class="grid grid-cols-2 gap-[clamp(1.2rem,4vw,2.2rem)] max-sm:grid-cols-1">
+        <label class="field flex flex-col gap-[0.35rem]">
+          <span class="text-xs tracking-wide text-sage-label italic">имя</span>
+          <input
+            class="field__input"
+            type="text"
+            id="rsvp-first"
+            name="firstName"
+            autocomplete="given-name"
+            autocapitalize="words"
+            required
+          />
+        </label>
+        <label class="field flex flex-col gap-[0.35rem]">
+          <span class="text-xs tracking-wide text-sage-label italic">фамилия</span>
+          <input
+            class="field__input"
+            type="text"
+            id="rsvp-last"
+            name="lastName"
+            autocomplete="family-name"
+            autocapitalize="words"
+          />
+        </label>
+      </div>
+
+      <fieldset class="m-0 min-w-0 border-0 p-0" id="rsvp-attend">
+        <legend class="mb-[0.7rem] p-0 text-xs tracking-wide text-sage-label italic">
+          планируете быть?
+        </legend>
+        <div class="inline-flex gap-[0.5rem]" role="radiogroup" aria-label="Планируете быть?">
+          <label class="seg">
+            <input type="radio" name="attend" value="yes" id="rsvp-yes" checked />
+            <span class="seg__face">буду</span>
+          </label>
+          <label class="seg">
+            <input type="radio" name="attend" value="no" id="rsvp-no" />
+            <span class="seg__face">не&nbsp;смогу</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="rsvp-when-yes flex flex-col gap-[1.7rem]" id="rsvp-when-yes">
+        <label class="check">
+          <input type="checkbox" id="rsvp-plus" />
+          <span class="check__box" aria-hidden="true"></span>
+          <span class="text-xs text-cream-1 italic">буду не&nbsp;один&nbsp;— парой или семьёй</span>
+        </label>
+
+        <label class="field field--plus flex flex-col gap-[0.35rem]" id="rsvp-plus-field" hidden>
+          <span class="text-xs tracking-wide text-sage-label italic"
+            >имена тех, кто будет с&nbsp;вами</span
+          >
+          <input
+            class="field__input"
+            type="text"
+            id="rsvp-plus-name"
+            autocomplete="off"
+            autocapitalize="words"
+            placeholder="например: Аня, Миша"
+          />
+        </label>
+
+        <fieldset class="m-0 min-w-0 border-0 p-0">
+          <legend class="mb-[0.7rem] p-0 text-xs tracking-wide text-sage-label italic">
+            напитки на&nbsp;вечер
+          </legend>
+          <p class="mx-0 mt-[-0.3rem] mb-[0.9rem] font-text text-xs text-sage-label italic">
+            Отметьте за&nbsp;всех, кто идёт с&nbsp;вами,&nbsp;— так мы&nbsp;точнее накроем стол.
+          </p>
+          <div class="stagger flex flex-wrap gap-[0.6rem]">
+            {
+              DRINKS.map((drink) => (
+                <label class="chip">
+                  <input type="checkbox" name="drink" value={drink} />
+                  <span>{drink}</span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+      </div>
+
+      {/* Вне блока «буду»: тем, кто не сможет прийти, тоже есть что написать */}
+      <label class="field flex flex-col gap-[0.35rem]">
+        <span class="text-xs tracking-wide text-sage-label italic"
+          >если хочется что-то добавить</span
+        >
+        <textarea
+          class="field__input min-h-[4.5em] resize-y leading-normal"
+          id="rsvp-note"
+          rows="2"
+          autocapitalize="sentences"></textarea>
+      </label>
+
+      <div class="mt-[0.3rem]">
+        <button
+          class="inline-block cursor-pointer appearance-none rounded-[2px] border-0 bg-cream-0 px-[2.2em] py-[0.75em] font-serif text-sm tracking-wide text-green-deep italic no-underline shadow-[0_14px_30px_-14px_rgba(0,0,0,0.6)] transition-[translate,background-color] duration-200 ease-[ease] hover:-translate-y-[2px] hover:bg-white"
+          type="submit">отправить ответ</button
+        >
+      </div>
+      <p
+        class="mx-0 mt-sm mb-0 min-h-[1.4em] font-text text-xs text-sage-label italic"
+        id="rsvp-hint"
+        aria-live="polite"
+      >
+      </p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import '../scripts/rsvp';
+</script>

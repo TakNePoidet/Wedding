@@ -1,0 +1,95 @@
+---
+import { FLOWER_SUBSCRIPTION_URL, FLOWERS_TRIO } from '../data/wedding';
+/** ТРИ ЦВЕТКА — гости приносят не букет, а три цветка,
+    из которых на месте собирается убранство столов. */
+---
+
+<section
+  class="flowers relative overflow-hidden py-[var(--sy)]"
+  id="flowers"
+  aria-labelledby="flowers-h"
+>
+  <svg class="botanical botanical--flowers" aria-hidden="true"><use href="#sprig-rasp" /></svg>
+  <div
+    class="shell reveal grid items-center gap-[clamp(1.5rem,5vw,4rem)] [grid-template-columns:1.35fr_0.65fr] max-md:grid-cols-1"
+  >
+    <div class="max-w-[46ch]">
+      <h2 class="sr-only" id="flowers-h">Три цветка</h2>
+      <p class="font-serif text-lg leading-normal text-green-deep mb-md italic text-pretty">
+        Если хочется прийти с&nbsp;цветами&nbsp;— принесите три цветка.
+      </p>
+
+      <ul class="stagger m-0 list-none p-0">
+        {
+          FLOWERS_TRIO.map((item) => (
+            <li class="border-t border-brown-2/28 py-sm grid items-baseline gap-x-md grid-cols-[minmax(4.5rem,max-content)_1fr] max-sm:grid-cols-1 max-sm:gap-x-0 max-sm:gap-y-3xs">
+              <span class="font-script text-xl text-accent">{item.n}</span>
+              <span class="font-text text-sm leading-normal text-green-deep" set:html={item.v} />
+            </li>
+          ))
+        }
+      </ul>
+
+      <p
+        class="font-text text-sm leading-relaxed text-ink-soft mt-md mb-0 max-w-[42ch] text-pretty"
+      >
+        Мы&nbsp;соберём их&nbsp;вместе&nbsp;— и&nbsp;они станут убранством столов. Получится, что зал
+        украсите вы&nbsp;сами, и&nbsp;за&nbsp;каждой композицией будет чья-то мысль о&nbsp;нас.
+      </p>
+
+      <p class="font-text text-sm leading-relaxed text-ink-soft mt-md mb-0 max-w-[42ch] text-pretty">
+        Букету мы&nbsp;тоже будем рады. А&nbsp;если хочется, чтобы цветы радовали нас и&nbsp;после
+        свадьбы&nbsp;— можно оформить <a
+          class="text-moss border-b border-sage-2 pb-[1px] no-underline transition-colors duration-200 hover:border-brown-2 hover:text-brown-2"
+          href={FLOWER_SUBSCRIPTION_URL}
+          target="_blank"
+          rel="noopener">цветочную подписку</a
+        >.
+      </p>
+    </div>
+    <div class="justify-self-center max-md:order-[-1]" aria-hidden="true">
+      <svg
+        class="vase text-sage-2 h-auto w-[clamp(170px,20vw,240px)] max-md:w-[190px]"
+        viewBox="0 0 220 300"
+        fill="none"
+      >
+        <g class="vase__stem" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M106 186 C 100 150, 96 118, 100 86"></path>
+          <path d="M112 186 C 120 152, 134 128, 148 106"></path>
+          <path d="M110 186 C 106 152, 90 130, 74 112"></path>
+          <path d="M114 186 C 118 144, 112 112, 120 82" stroke-width="1.5"></path>
+          <path d="M108 186 C 104 156, 88 148, 66 140" stroke-width="1.5"></path>
+        </g>
+        <g class="vase__leaf" fill="currentColor">
+          <ellipse cx="93" cy="122" rx="8.5" ry="7.5" transform="rotate(-16 93 122)"></ellipse>
+          <ellipse cx="106" cy="101" rx="7.5" ry="6.5" transform="rotate(12 106 101)"></ellipse>
+          <ellipse cx="99" cy="83" rx="6.5" ry="6" transform="rotate(-10 99 83)"></ellipse>
+          <path d="M136 126 c 10 -2, 17 -10, 16 -22 -9 2, -15 10, -16 22z"></path>
+          <path d="M146 110 c 9 -2, 15 -9, 14 -19 -8 2, -13 9, -14 19z"></path>
+          <path d="M84 124 c -10 -2, -17 -10, -16 -22 9 2, 15 10, 16 22z"></path>
+          <path d="M76 111 c -9 -2, -15 -9, -14 -19 8 2, 13 9, 14 19z"></path>
+        </g>
+        <g class="text-brown-1" fill="currentColor">
+          <circle cx="120" cy="82" r="3"></circle>
+          <circle cx="113" cy="92" r="2.4"></circle>
+          <circle cx="124" cy="94" r="2.4"></circle>
+          <circle cx="66" cy="140" r="2.8"></circle>
+          <circle cx="75" cy="133" r="2.2"></circle>
+          <circle cx="72" cy="146" r="2"></circle>
+        </g>
+        <g class="text-brown-2">
+          <path
+            d="M96 183 C 96 190, 93 196, 89 201 C 74 214, 74 246, 92 258 C 103 265, 117 265, 128 258 C 146 246, 146 214, 131 201 C 127 196, 124 190, 124 183 Z"
+            fill="var(--color-milk)"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"></path>
+          <ellipse cx="110" cy="183" rx="14" ry="4" fill="var(--color-milk)" stroke="currentColor" stroke-width="2"
+          ></ellipse>
+          <path d="M84 270 C 94 273, 126 273, 136 270" stroke="currentColor" stroke-width="1.6" opacity="0.55"
+          ></path>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,76 @@
+---
+import { DATE_ISO, DATE_SHORT } from '../data/wedding';
+/**
+ * ОБЛОЖКА. Funko-персонажи опциональны: если assets/couple.webp нет,
+ * onerror убирает блок — вёрстка остаётся прежней.
+ */
+---
+
+<header
+  class="hero relative flex min-h-svh items-center justify-between gap-[clamp(1.5rem,4vw,4rem)] overflow-hidden px-[var(--pad)] pt-[clamp(4rem,12vh,8rem)] pb-[clamp(5rem,12vh,7rem)] max-lg:flex-col max-lg:items-start max-lg:justify-center"
+  id="top"
+>
+  <svg class="botanical botanical--tr" aria-hidden="true"><use href="#sprig-branch" /></svg>
+  <svg class="botanical botanical--bl" aria-hidden="true"><use href="#sprig-grass" /></svg>
+
+  <div class="reveal max-w-[760px] flex-auto text-left">
+    {/*
+      Амперсанд стоит под серединой «Никиты» и левее «Леры».
+      Центр «Никиты» — 1.772em заголовка от края, минус половина ширины
+      самого амперсанда (0.106em) даёт 1.666em. Значение задаётся в em
+      амперсанда, а он мельче заголовка в 0.42 раза, отсюда 3.97em.
+      Отдельное значение для узких экранов не нужно: «Никита» начинается
+      от нуля, а ширины букв масштабируются вместе с кеглем.
+      Отрицательные поля и короткая межстрочная поджимают имена друг
+      к другу — иначе строка с амперсандом раздвигает их слишком широко.
+    */}
+    <h1 class="font-script m-0 text-7xl leading-tight font-normal text-moss">
+      <span class="block">Никита</span>
+      <span class="mt-[-0.12em] mb-[-0.12em] ml-[3.97em] block text-[0.42em] leading-[0.72] text-accent"
+        >&amp;</span
+      >
+      <span class="ml-[1.9em] block max-sm:ml-[0.9em]">Лера</span>
+    </h1>
+    <p class="hero__date mt-lg mb-md flex items-center gap-md text-green-deep">
+      <time
+        class="font-display text-3xl font-medium tracking-widest [font-variant-numeric:tabular-nums]"
+        datetime={DATE_ISO}>{DATE_SHORT}</time
+      >
+    </p>
+    <p class="m-0 text-lg leading-snug text-ink-soft">
+      Будем счастливы разделить с&nbsp;вами<br />день нашей свадьбы
+    </p>
+  </div>
+
+  <div
+    class="hero__art absolute right-[clamp(0.5rem,3vw,4rem)] bottom-[clamp(1.5rem,5vh,3.5rem)] z-[1] flex w-[clamp(260px,34vw,540px)] justify-end max-lg:static max-lg:mt-[clamp(1.5rem,5vw,3rem)] max-lg:w-full max-lg:max-w-[300px] max-lg:justify-center max-lg:self-center"
+    aria-hidden="true"
+  >
+    <img
+      class="char-img w-full"
+      src="/assets/couple.webp"
+      alt=""
+      loading="eager"
+      onerror="this.closest('.hero__art').remove()"
+    />
+  </div>
+
+  <a
+    class="hero__down absolute bottom-[2.8rem] left-1/2 z-[2] flex -translate-x-1/2 flex-col items-center gap-[0.45rem] text-sage-2 no-underline transition-colors duration-200 hover:text-moss"
+    href="#invite"
+  >
+    <span class="sr-only">Листайте вниз</span>
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" aria-hidden="true">
+      <path
+        d="M6 9.5 12 15.5 18 9.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
+</header>
+
+<script>
+  import '../scripts/parallax';
+</script>

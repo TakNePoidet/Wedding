@@ -1,0 +1,20 @@
+---
+import { ORGANIZER } from '../data/wedding';
+/** ОРГАНИЗАТОР — узкая светлая строка */
+---
+
+<section class="py-2xl text-center" id="organizer" aria-labelledby="organizer-h">
+  <div class="shell reveal mx-auto max-w-[56ch]">
+    <h2 class="head mb-sm text-3xl" id="organizer-h">вопросы и&nbsp;сюрпризы</h2>
+    <p class="font-text text-sm leading-normal text-ink-soft mt-0 mb-md text-pretty">
+      Если вы&nbsp;приготовили для&nbsp;нас сюрприз или остались вопросы&nbsp;— всё можно
+      согласовать с&nbsp;нашим организатором. Это <b class="font-semibold text-green-deep"
+        >{ORGANIZER.name}</b
+      >, {ORGANIZER.agency}.
+    </p>
+    <a
+      class="font-display text-2xl tracking-wider text-moss no-underline border-b border-sage-2 pb-[2px] tabular-nums whitespace-nowrap transition-colors duration-200 hover:text-brown-2 hover:border-brown-2"
+      href={`tel:${ORGANIZER.tel}`}>{ORGANIZER.telPretty}</a
+    >
+  </div>
+</section>

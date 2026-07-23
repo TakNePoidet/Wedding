@@ -1,0 +1,134 @@
+/* ============================================================
+   RSVP  (тёмный wash, тактильная кнопка)
+
+   Раскладка и типографика формы переехали в утилиты Rsvp.astro.
+   Здесь осталось только то, что утилитами не выразить:
+   многослойный фон, кейфреймы, состояния, которыми управляет
+   src/scripts/rsvp.ts, и оформление полей ввода/переключателей —
+   оно держится на псевдоэлементах и соседних селекторах :checked.
+   ============================================================ */
+.rsvp {
+  background:
+    radial-gradient(70% 100% at 85% 0%, #4d6142, transparent 55%),
+    linear-gradient(200deg, var(--color-green-deep), var(--color-moss));
+}
+/* дата приходит через set:html — до <b> из разметки не дотянуться */
+.rsvp__line b {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Кнопка «сохранить дату в календарь».
+   Живёт тут исторически, но используется в Details, Flowers и Rules —
+   переносить её должен тот, кто будет переводить эти секции. */
+
+/* --- Поля ввода: подчёркивание, плейсхолдер, состояние ошибки --- */
+.field__input {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(241, 234, 219, 0.45);
+  border-radius: 0;
+  padding: 0.4em 0 0.45em;
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  color: #fff;
+  caret-color: var(--color-cream-0);
+  transition: border-color 0.25s ease;
+}
+.field__input:focus { outline: none; border-bottom-color: var(--color-cream-0); }
+.field__input::placeholder { color: rgba(241, 234, 219, 0.42); font-style: italic; font-size: 0.92em; }
+
+/* .field--invalid навешивает и снимает скрипт — правило обязано жить в CSS */
+.field--invalid .field__input { border-bottom-color: var(--color-milk); }
+
+/* Появление по снятию атрибута hidden (plusIn использует ещё и rules.css) */
+.field--plus:not([hidden]) { animation: plusIn 0.45s ease; }
+.rsvp-when-yes:not([hidden]) { animation: plusIn 0.4s ease; }
+
+/* Мягкая «тряска» поля при ошибке (перезапускается из JS) */
+@media (prefers-reduced-motion: no-preference) {
+  .field--invalid { animation: fieldShake 0.4s ease; }
+  @keyframes fieldShake {
+    0%, 100% { transform: none; }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(2px); }
+  }
+}
+
+/* --- Чекбокс «буду не один»: галочка нарисована псевдоэлементом --- */
+.check {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  align-self: flex-start;
+}
+/* невидимый input лежит поверх нарисованного квадратика — клики попадают в него */
+.check input {
+  position: absolute;
+  left: 0; top: 50%;
+  translate: 0 -50%;
+  width: 19px; height: 19px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+.check__box {
+  flex: none;
+  width: 19px; height: 19px;
+  border: 1px solid rgba(241, 234, 219, 0.55);
+  border-radius: 2px;
+  position: relative;
+  transition: background .2s ease, border-color .2s ease;
+}
+.check__box::after {
+  content: "";
+  position: absolute;
+  inset: 3px 3px 5px 3px;
+  border-left: 2px solid var(--color-green-deep);
+  border-bottom: 2px solid var(--color-green-deep);
+  transform: rotate(-45deg) scale(0);
+  transition: transform .2s ease;
+}
+.check input:checked + .check__box { background: var(--color-cream-0); border-color: var(--color-cream-0); }
+.check input:checked + .check__box::after { transform: rotate(-45deg) scale(1); }
+.check input:focus-visible + .check__box { outline: 2px solid var(--color-cream-0); outline-offset: 3px; }
+
+/* --- «Буду / Не смогу» — сегментированный переключатель --- */
+.seg { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.seg input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+.seg__face {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-xs);
+  color: var(--color-cream-1);
+  padding: 0.4em 1.4em;
+  border: 1px solid rgba(241, 234, 219, 0.45);
+  border-radius: 2px;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.seg input:checked + .seg__face { background: var(--color-cream-0); color: var(--color-green-deep); border-color: var(--color-cream-0); }
+.seg input:focus-visible + .seg__face { outline: 2px solid var(--color-cream-0); outline-offset: 3px; }
+
+/* --- Напитки — «фишки» с чекбоксами, мультивыбор --- */
+.chip { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.chip input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+.chip span {
+  display: block;
+  font-family: var(--font-text);
+  font-size: var(--text-xs);
+  color: var(--color-cream-1);
+  padding: 0.4em 1em;
+  border: 1px solid rgba(241, 234, 219, 0.4);
+  border-radius: 999px;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.chip input:checked + span { background: var(--color-cream-0); color: var(--color-green-deep); border-color: var(--color-cream-0); }
+.chip input:focus-visible + span { outline: 2px solid var(--color-cream-0); outline-offset: 3px; }

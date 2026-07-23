@@ -1,0 +1,15 @@
+/* ============================================================
+   ЦВЕТЫ — осталось только невыразимое утилитами.
+   ============================================================ */
+
+/* Многослойный фон секции */
+.flowers {
+  background:
+    radial-gradient(55% 80% at 88% 18%, rgba(124,144,112,0.16), transparent 60%),
+    linear-gradient(180deg, rgba(174,190,159,0.14), rgba(236,227,208,0.34));
+}
+
+/* Парение вазы — общий кейфрейм floatArt из shared.css */
+@media (prefers-reduced-motion: no-preference) {
+  .vase { animation: floatArt 8s ease-in-out infinite alternate; }
+}

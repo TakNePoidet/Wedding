@@ -1,0 +1,62 @@
+---
+import { MAP_EMBED, MAP_LINKS, VENUE } from '../data/wedding';
+/** КАРТА — фотокарточка с наклоном + текстовые ссылки */
+
+/* Ссылки и кнопка «скопировать адрес» оформлены одинаково */
+const linkClass =
+  'font-serif text-sm text-moss italic no-underline border-x-0 border-t-0 border-b border-sage-2 bg-transparent p-0 pb-[2px] cursor-pointer transition-[color,border-color] duration-200 ease-[ease] hover:text-brown-2 hover:border-brown-2';
+---
+
+<section class="map py-[var(--sy)]" id="map" aria-labelledby="map-h">
+  <div
+    class="shell reveal grid items-center gap-[clamp(2rem,6vw,5rem)] [grid-template-columns:0.9fr_1.1fr] max-md:grid-cols-1"
+  >
+    <div>
+      <h2 class="head" id="map-h">как нас<br />найти</h2>
+      <p class="font-text text-sm leading-relaxed text-ink-soft mb-md max-w-[40ch]">
+        Ресторан спрятан в&nbsp;тени парка Гафури, у&nbsp;самой воды. Приезжайте заранее&nbsp;—
+        прогуляться вдоль озера.
+      </p>
+      <div class="flex flex-wrap items-baseline gap-md">
+        {
+          MAP_LINKS.map((link) => (
+            <a
+              class={linkClass}
+              target="_blank"
+              rel="noopener"
+              href={link.href}
+              set:html={link.label}
+            />
+          ))
+        }
+        <button
+          class:list={['map-copy', linkClass]}
+          id="addr-copy"
+          type="button"
+          data-addr={VENUE.copyText}
+        >
+          скопировать адрес
+        </button>
+      </div>
+    </div>
+    <figure class="m-0 [transform:rotate(1.6deg)] max-md:mt-sm max-md:[transform:none]">
+      <div
+        class="bg-cream-0 rounded-[3px] px-[12px] pt-[12px] pb-0 shadow-[0_26px_50px_-28px_rgba(46,42,36,0.55)]"
+      >
+        <iframe
+          class="h-[clamp(280px,42vw,420px)] w-full rounded-[2px] border-0"
+          title={`Карта: ${VENUE.name}, ${VENUE.city}, проспект Октября, 77/2`}
+          src={MAP_EMBED}
+          loading="lazy"
+          allowfullscreen></iframe>
+      </div>
+      <figcaption class="font-script text-base text-brown-2 pt-[0.7rem] pb-[0.9rem] text-center">
+        проспект Октября, 77/2
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+  import '../scripts/copy-address';
+</script>

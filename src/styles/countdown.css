@@ -1,0 +1,32 @@
+/* ============================================================
+   ОТСЧЁТ — только невыразимое утилитами:
+   многослойный зелёный wash и «тик» смены цифры.
+   ============================================================ */
+.count {
+  background:
+    radial-gradient(80% 120% at 15% 0%, #4d6142, transparent 60%),
+    radial-gradient(70% 100% at 100% 100%, #2c3a24, transparent 55%),
+    linear-gradient(160deg, var(--color-moss), var(--color-green-deep));
+}
+
+/* .head живёт в base.css без слоя, поэтому утилита mb-* его не перебьёт */
+.count .head {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Мягкий «тик» при смене значения — класс вешает countdown.ts */
+@media (prefers-reduced-motion: no-preference) {
+  #timer b.tick {
+    animation: tickIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  @keyframes tickIn {
+    from {
+      opacity: 0.25;
+      transform: translateY(9px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

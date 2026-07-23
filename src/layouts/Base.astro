@@ -1,0 +1,184 @@
+---
+import {
+  COUPLE,
+  COUPLE_GENITIVE,
+  DATE_LONG,
+  END_ISO,
+  SITE_URL,
+  START_ISO,
+  VENUE,
+} from '../data/wedding';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const ogImage = `${SITE_URL}/assets/og-image.jpg`;
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: `Свадьба ${COUPLE_GENITIVE}`,
+  description: `Приглашение на свадьбу ${COUPLE_GENITIVE}.`,
+  startDate: START_ISO,
+  endDate: END_ISO,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  image: ogImage,
+  url: `${SITE_URL}/`,
+  location: {
+    '@type': 'Place',
+    name: VENUE.name,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: VENUE.street,
+      addressLocality: VENUE.city,
+      addressCountry: VENUE.country,
+    },
+  },
+  organizer: { '@type': 'Person', name: COUPLE },
+};
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+    <meta name="yandex-verification" content="072ff904650b373b" />
+    <meta name="theme-color" content="#41543A" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Open Graph (превью при отправке ссылки) -->
+    <meta property="og:site_name" content={COUPLE} />
+    <meta property="og:title" content={`${COUPLE} — свадьба ${DATE_LONG}`} />
+    <meta
+      property="og:description"
+      content="Приглашаем разделить с нами этот день. Уфа, ресторан «Лебединое озеро». Дата, программа, дресс-код и подтверждение присутствия — на сайте."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${COUPLE} — ${DATE_LONG}, ${VENUE.city}`} />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${COUPLE} — свадьба ${DATE_LONG}`} />
+    <meta
+      name="twitter:description"
+      content="Уфа, ресторан «Лебединое озеро». Дата, программа, дресс-код и подтверждение присутствия — на сайте."
+    />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Иконки -->
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+    <!-- Структурированные данные (schema.org Event) -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
+
+    <!-- Шрифты лежат на своём домене (см. src/styles/fonts.css).
+         Предзагружаем только то, что видно на первом экране: имена
+         на обложке, дату и основной текст. Остальные подтянутся по мере
+         прокрутки — предзагружать всё значит отобрать канал у картинки,
+         которая и есть LCP-элемент. -->
+    <link
+      rel="preload"
+      href="/fonts/marck-script-400-cyrillic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/playfair-display-500-cyrillic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-400-cyrillic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Без JS reveal-анимации не запускаются — показываем всё сразу.
+         Добавили новый анимируемый селектор? Продублируйте его здесь. -->
+    <noscript
+      ><style>
+        .reveal,
+        .reveal > *,
+        .stagger > * {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .swan path {
+          stroke-dashoffset: 0 !important;
+        }
+      </style></noscript
+    >
+  </head>
+  <body>
+    <slot />
+
+    <!-- Яндекс.Метрика. В конце body и с is:inline: счётчик не должен
+         задерживать первую отрисовку, а Astro не должен его бандлить —
+         код обязан выполниться как есть. -->
+    <script is:inline type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        k = e.createElement(t);
+        a = e.getElementsByTagName(t)[0];
+        k.async = 1;
+        k.src = r;
+        a.parentNode.insertBefore(k, a);
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=110864190', 'ym');
+
+      ym(110864190, 'init', {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: 'dataLayer',
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true,
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/110864190"
+          style="position:absolute; left:-9999px;"
+          alt=""
+        />
+      </div></noscript
+    >
+  </body>
+</html>

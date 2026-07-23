@@ -1,0 +1,28 @@
+---
+import { RULES } from '../data/wedding';
+/** ПРАВИЛА ВЕЧЕРА — светлая washed-полоса */
+---
+
+<section class="rules relative overflow-hidden py-[var(--sy)]" id="rules" aria-labelledby="rules-h">
+  <svg class="botanical botanical--rules" aria-hidden="true"><use href="#sprig-grass" /></svg>
+  <div
+    class="shell reveal grid items-start gap-[clamp(var(--spacing-md),5vw,var(--spacing-xl))] [grid-template-columns:0.7fr_1.3fr] max-md:grid-cols-1"
+  >
+    <div>
+      <h2 class="head text-3xl" id="rules-h">хорошо<br />знать</h2>
+      <p class="mx-0 mt-sm mb-0 max-w-[26ch] font-text text-xs leading-normal text-ink-soft italic">
+        Несколько просьб, чтобы вечер получился таким, как мы&nbsp;его задумали.
+      </p>
+    </div>
+    <ul class="stagger m-0 list-none p-0">
+      {
+        RULES.map((rule) => (
+          <li class="grid items-baseline gap-x-lg gap-y-2xs border-t border-brown-2/28 py-md [grid-template-columns:minmax(7rem,max-content)_1fr] last:border-b max-md:grid-cols-1 max-md:gap-[0.15rem]">
+            <span class="text-base text-brown-2 italic" set:html={rule.k} />
+            <span class="rules__v font-text text-sm leading-normal text-green-deep" set:html={rule.v} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

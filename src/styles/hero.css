@@ -1,0 +1,60 @@
+/* ============================================================
+   ОБЛОЖКА — только то, что не выражается утилитами:
+   градиентный псевдоэлемент у даты, «капля» со своим кейфреймом
+   и каскад появления строк.
+   ============================================================ */
+
+/* Хвост-линия после даты */
+.hero__date::after {
+  content: '';
+  height: 1px;
+  flex: 0 0 clamp(56px, 14vw, 150px);
+  background: linear-gradient(90deg, var(--color-sage-2), transparent);
+}
+
+/* Указатель «вниз». Раньше здесь была тонкая линия со стекающей каплей —
+   красиво, но гости не понимали, что это приглашение листать. Теперь
+   подпись со стрелкой, а стрелка мягко покачивается, чтобы притянуть взгляд.
+   Покачивание задаётся здесь: утилиты Tailwind пишут в отдельное свойство
+   translate, а не в transform, и с кейфреймом бы передрались. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__down svg {
+    animation: nudge 2.2s ease-in-out infinite;
+  }
+}
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* Каскад обложки: строки поднимаются по очереди */
+@media (prefers-reduced-motion: no-preference) {
+  .hero .reveal > * {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.9s ease,
+      transform 1.05s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .hero .reveal.is-visible > * {
+    opacity: 1;
+    transform: none;
+  }
+  .hero .reveal.is-visible > *:nth-child(1) {
+    transition-delay: 0.05s;
+  }
+  .hero .reveal.is-visible > *:nth-child(2) {
+    transition-delay: 0.22s;
+  }
+  .hero .reveal.is-visible > *:nth-child(3) {
+    transition-delay: 0.42s;
+  }
+  .hero .reveal.is-visible > *:nth-child(4) {
+    transition-delay: 0.58s;
+  }
+}

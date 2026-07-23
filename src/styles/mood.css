@@ -1,0 +1,25 @@
+/* ============================================================
+   АТМОСФЕРА  (тёмный wash с пудровым свечением — отсылка к залу)
+
+   Секция переведена на утилиты Tailwind. Здесь осталось только то,
+   что утилитами не выражается: многослойный фон и анимация лебедя.
+   ============================================================ */
+.mood {
+  background:
+    radial-gradient(55% 80% at 82% 12%, rgba(228,196,198,0.32), transparent 60%),
+    radial-gradient(70% 90% at 10% 100%, #2c3a24, transparent 55%),
+    linear-gradient(155deg, var(--color-moss), var(--color-green-deep));
+}
+
+/* Лебедь: парение силуэта и линии воды, которые дорисовываются при появлении */
+@media (prefers-reduced-motion: no-preference) {
+  .swan { animation: floatArt 9s ease-in-out infinite alternate; }
+  .swan__wing, .swan__wave {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.25,1);
+  }
+  .reveal.is-visible .swan__wing { stroke-dashoffset: 0; transition-delay: 0.9s; }
+  .reveal.is-visible .swan__wave { stroke-dashoffset: 0; transition-delay: 0.5s; }
+  .reveal.is-visible .swan__wave:last-child { transition-delay: 0.75s; }
+}

@@ -1,0 +1,34 @@
+/* ============================================================
+   Никита и Лера · 13.09.2026
+
+   theme.css идёт первым: он объявляет порядок слоёв
+   (theme → project → utilities) и подключает Tailwind.
+
+   Весь собственный CSS проекта заходит в слой project — он слабее
+   утилит, поэтому утилита в разметке всегда перебивает секционное
+   правило. Без слоя было бы наоборот: бесслойный CSS сильнее любого
+   слоёного, и, например, mb-lg на .head просто не сработал бы.
+
+   Токены — только из theme.css. Временный мост со старыми именами
+   (--moss, --f-serif, --sp-md) удалён: секций на них не осталось.
+
+   Порядок импортов внутри слоя = порядок каскада в исходном styles.css.
+   Менять его нельзя: секции опираются на общие классы из base.css
+   и переопределяют друг друга по месту.
+   ============================================================ */
+@import './theme.css';
+
+@import './fonts.css' layer(project);
+@import './base.css' layer(project);
+@import './shared.css' layer(project);
+@import './hero.css' layer(project);
+@import './countdown.css' layer(project);
+@import './details.css' layer(project);
+@import './mood.css' layer(project);
+@import './map.css' layer(project);
+@import './dress.css' layer(project);
+@import './flowers.css' layer(project);
+@import './rsvp.css' layer(project);
+@import './rules.css' layer(project);
+@import './footer.css' layer(project);
+@import './reveal.css' layer(project);

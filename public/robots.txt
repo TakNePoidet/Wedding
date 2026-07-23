@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://leranikita.ru/sitemap-index.xml
+
+# Выжимка для языковых моделей
+# https://leranikita.ru/llms.txt

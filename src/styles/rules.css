@@ -1,0 +1,37 @@
+/* ============================================================
+   ПРАВИЛА ВЕЧЕРА  (светлая washed-полоса)
+   Всё выразимое переехало в утилиты Rules.astro. Здесь остались
+   многослойный фон, качающаяся ветка и <b> внутри set:html,
+   до которого из разметки не дотянуться.
+   ============================================================ */
+.rules {
+  background:
+    radial-gradient(55% 80% at 12% 16%, rgba(124, 144, 112, 0.16), transparent 60%),
+    linear-gradient(180deg, rgba(236, 227, 208, 0.34), rgba(174, 190, 159, 0.14));
+}
+
+/* Ветка: базовый transform живёт в --t, чтобы покачивание складывалось с ним */
+.botanical--rules {
+  top: 0;
+  right: -60px;
+  width: 220px;
+  height: 330px;
+  --t: rotate(20deg) scaleX(-1);
+  transform-origin: 50% 0;
+  opacity: 0.34;
+  color: var(--color-sage-2);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .botanical--rules {
+    animation: sway 12s ease-in-out infinite alternate;
+    animation-duration: 13.5s;
+    animation-delay: -3s;
+  }
+}
+
+/* Текст правила приходит через set:html — до <b> из разметки не дотянуться */
+.rules__v b {
+  color: var(--color-brown-3);
+  font-weight: 600;
+}
+

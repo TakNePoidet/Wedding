@@ -1,0 +1,14 @@
+---
+/** Прогресс чтения страницы (тонкая линия сверху) */
+---
+
+<div class="fixed inset-x-0 top-0 z-20 h-[3px] pointer-events-none" aria-hidden="true">
+  <!-- scaleX задаёт src/scripts/progress.ts через inline-style -->
+  <span
+    class="block h-full origin-left [transform:scaleX(0)] will-change-transform bg-linear-to-r from-sage-2 via-moss via-60% to-brown-2"
+    id="scroll-progress"></span>
+</div>
+
+<script>
+  import '../scripts/progress';
+</script>

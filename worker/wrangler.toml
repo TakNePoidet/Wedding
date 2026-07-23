@@ -1,0 +1,14 @@
+name = "wedding-rsvp"
+main = "src/index.ts"
+compatibility_date = "2026-07-19"
+
+# Откуда принимаем заявки, через запятую. Заявки с других источников
+# воркер отклоняет; тот же адрес уходит в Access-Control-Allow-Origin.
+# Локальные адреса нужны, чтобы проверять форму до публикации сайта —
+# перед свадьбой их стоит убрать, оставив один боевой домен.
+[vars]
+ALLOWED_ORIGIN = "https://leranikita.ru,http://localhost:4321,http://[::1]:4321"
+
+# TELEGRAM_TOKEN и TELEGRAM_CHAT_ID здесь НЕ указываются —
+# это секреты, задаются командой `wrangler secret put` и хранятся
+# на стороне Cloudflare. В репозиторий они попасть не должны.
