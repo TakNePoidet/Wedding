@@ -84,6 +84,8 @@ export const ORGANIZER = {
   agency: 'свадебное агентство Андрея Огнева «ОГОНЬ»',
   tel: '+79377804333',
   telPretty: '+7 937 780-43-33',
+  /** Чат в Telegram по номеру — чтобы гость мог сразу написать */
+  tg: 'https://t.me/+79377804333',
 };
 
 export const FLOWER_SUBSCRIPTION_URL =

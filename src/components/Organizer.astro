@@ -13,8 +13,30 @@ import { ORGANIZER } from '../data/wedding';
       >, {ORGANIZER.agency}.
     </p>
     <a
-      class="font-display text-2xl tracking-wider text-moss no-underline border-b border-sage-2 pb-[2px] tabular-nums whitespace-nowrap transition-colors duration-200 hover:text-brown-2 hover:border-brown-2"
-      href={`tel:${ORGANIZER.tel}`}>{ORGANIZER.telPretty}</a
+      class="group inline-flex items-center gap-[0.45em] font-display text-2xl tracking-wider text-moss no-underline border-b border-sage-2 pb-[2px] tabular-nums whitespace-nowrap transition-colors duration-200 hover:text-brown-2 hover:border-brown-2"
+      href={ORGANIZER.tg}
+      target="_blank"
+      rel="noopener"
     >
+      <svg
+        class="w-[0.85em] h-[0.85em] flex-none text-sage-2 transition-[color,transform] duration-200 group-hover:text-brown-2 group-hover:translate-x-[2px] group-hover:-rotate-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+        ><path
+          d="M21 4.5 3.6 11.3c-.9.35-.88 1.65.03 1.97l4.3 1.5 1.66 5.02c.27.8 1.32.96 1.82.28l2.35-3.2 4.4 3.24c.62.46 1.5.12 1.66-.63L22.9 5.6c.2-.9-.7-1.64-1.9-1.1Z"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linejoin="round"></path></svg
+      >
+      <span>{ORGANIZER.telPretty}</span>
+    </a>
+    <p class="mx-0 mt-sm mb-0 font-text text-xs text-ink-soft italic">
+      откроется чат в&nbsp;Telegram&nbsp;·
+      <a
+        class="text-moss underline decoration-sage-2 underline-offset-[3px] transition-colors duration-200 hover:text-brown-2"
+        href={`tel:${ORGANIZER.tel}`}>или&nbsp;позвоните</a
+      >
+    </p>
   </div>
 </section>
