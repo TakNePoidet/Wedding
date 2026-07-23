@@ -1025,6 +1025,9 @@ section[id] { scroll-margin-top: 0.75rem; }
 }
 .organizer__text b { color: var(--green-deep); font-weight: 600; }
 .organizer__tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
   font-family: var(--f-display);
   font-size: clamp(1.6rem, 1rem + 2vw, 2.6rem);
   letter-spacing: 0.06em;
@@ -1036,7 +1039,18 @@ section[id] { scroll-margin-top: 0.75rem; }
   transition: color .2s ease, border-color .2s ease;
   white-space: nowrap;
 }
+.organizer__tel svg { color: var(--sage-2); flex: none; width: 0.85em; height: 0.85em; transition: color .2s ease, transform .25s ease; }
 .organizer__tel:hover { color: var(--brown-2); border-color: var(--brown-2); }
+.organizer__tel:hover svg { color: var(--brown-2); transform: translateX(2px) rotate(-8deg); }
+.organizer__alt {
+  font-family: var(--f-text);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  margin: var(--sp-sm) 0 0;
+}
+.organizer__alt a { color: var(--moss); text-decoration-color: var(--sage-2); text-underline-offset: 3px; }
+.organizer__alt a:hover { color: var(--brown-2); }
 
 /* ============================================================
    FOOTER
