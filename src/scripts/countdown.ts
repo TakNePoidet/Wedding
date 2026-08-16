@@ -22,52 +22,39 @@ function initCountdown() {
 
   const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`);
 
-  /** Длительность переката — держать в паре с rollOut в countdown.css */
-  const ROLL_MS = 500;
+  /** Момент подмены текста — нижняя точка digitSwap (42% от 0.4s) */
+  const SWAP_AT_MS = 168;
 
-  /* Обновляет цифру «перекатом»: прежнее значение уезжает вверх,
-     новое приходит снизу. Два элемента живут одновременно — иначе
-     это не перекат, а подмена с миганием.
+  /* Меняет цифру коротким «вдохом»: элемент гаснет, в нижней точке
+     подменяется текст, элемент проступает обратно.
 
-     Уходящую цифру снимаем по таймеру, а не по animationend: секунды
-     тикают, даже когда вкладка в фоне, а там анимации не запускаются
-     и событие не приходит — призраки копились бы в разметке, и
-     `aria-live` зачитывал бы их все подряд. Заодно перед каждой
-     сменой подчищаем всё, что осталось с прошлого раза. */
+     Цифра всегда одна. Схема с двумя (уходящая + приходящая) уже
+     была: она либо требовала обрезающей маски, которая срезала
+     Playfair, либо показывала обе разом и превращала «58»→«59»
+     в нечитаемое «5859». Заодно исчез повод плодить узлы: ничего
+     не накапливается и `aria-live` читает ровно одно значение. */
   const setNum = (el: HTMLElement, value: string | number) => {
     const s = String(value);
+    if (el.dataset.v === s) return;
+    const first = el.dataset.v === undefined;
+    el.dataset.v = s;
 
-    // всё, что уже уехало, живым цифрам не родня
-    el.querySelectorAll('.d.is-out').forEach((ghost) => ghost.remove());
-
-    const cur = el.querySelector<HTMLElement>('.d');
-
-    if (!cur) {
-      el.textContent = '';
-      const first = document.createElement('span');
-      first.className = 'd';
-      first.textContent = s;
-      el.appendChild(first);
+    // первый расчёт заменяет прочерк из разметки — молча, без «вдоха»:
+    // анимировать появление начального значения незачем
+    if (reduceMotion || first) {
+      el.textContent = s;
       return;
     }
 
-    if (cur.textContent === s) return;
+    // перезапуск анимации, если предыдущая ещё идёт
+    el.classList.remove('is-swap');
+    void el.offsetWidth;
+    el.classList.add('is-swap');
 
-    if (reduceMotion) {
-      cur.textContent = s;
-      return;
-    }
-
-    cur.classList.add('is-out');
-    // пока уходящая цифра на экране, для скринридера её уже нет:
-    // иначе `aria-live` прочитал бы старое и новое значение слитно
-    cur.setAttribute('aria-hidden', 'true');
-    window.setTimeout(() => cur.remove(), ROLL_MS);
-
-    const next = document.createElement('span');
-    next.className = 'd is-in';
-    next.textContent = s;
-    el.appendChild(next);
+    window.setTimeout(() => {
+      // за 168 мс значение могло смениться снова — пишем актуальное
+      el.textContent = el.dataset.v ?? s;
+    }, SWAP_AT_MS);
   };
 
   let handle: ReturnType<typeof setInterval>;

@@ -14,43 +14,48 @@
   margin-bottom: var(--spacing-lg);
 }
 
-/* Перекат цифры. Разметку (.d) создаёт countdown.ts: в HTML её нет,
-   потому что без скрипта цифр всё равно не будет.
+/* Смена цифры — короткий «вдох»: цифра гаснет, беззвучно
+   подменяется в нижней точке и проступает обратно.
 
-   `b` — окно переката: уходящая и приходящая цифры существуют
-   одновременно, и всё, что вылезает за строку, окно срезает.
-   Высота задана em: у окна нет содержимого фиксированной высоты
-   в момент, когда обе цифры позиционированы абсолютно. */
+   Две вещи, которые здесь пробовали и от которых отказались:
+
+   1. Перекат в маске (overflow:hidden, высота 1em). Резал цифры:
+      у Playfair строчный бокс при кегле 120px занимает ~160px, то
+      есть на 40px выше маски. Подобрать высоту нельзя — она зависит
+      от метрик шрифта, а не от кегля, и на подстановочном шрифте
+      разъедется снова.
+   2. Наложение двух цифр (старая тает, новая проявляется). Не режет,
+      но в середине обе видны наполовину и читаются как каша: «58»
+      поверх «59» превращалось в «5859».
+
+   Отсюда однокадровая схема: элемент всегда один, перекрытия нет
+   в принципе, обрезать нечего. Текст меняет countdown.ts в нижней
+   точке анимации. */
 #timer b {
-  position: relative;
   display: inline-block;
-  overflow: hidden;
-  height: 1em;
-  vertical-align: bottom;
-}
-#timer b .d {
-  display: block;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  #timer b .d.is-out {
-    position: absolute;
-    inset: 0;
-    animation: rollOut 0.5s var(--ease-out-mask) forwards;
+  #timer b.is-swap {
+    animation: digitSwap 0.4s var(--ease-inout);
   }
-  #timer b .d.is-in {
-    animation: rollIn 0.5s var(--ease-out-mask);
-  }
-  @keyframes rollOut {
-    to {
-      transform: translateY(-105%);
-      opacity: 0;
+  @keyframes digitSwap {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
     }
-  }
-  @keyframes rollIn {
-    from {
-      transform: translateY(105%);
+    /* нижняя точка: здесь скрипт подменяет текст */
+    42% {
       opacity: 0;
+      transform: translateY(-0.09em);
+    }
+    43% {
+      opacity: 0;
+      transform: translateY(0.09em);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }

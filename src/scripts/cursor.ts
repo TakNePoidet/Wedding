@@ -14,8 +14,12 @@
 const HOT = 'a, button, .dot, input, label.chip, label.seg, summary';
 /** Крупный текст — над ним кольцо поджимается, чтобы не заслонять */
 const QUIET = 'h1, h2, .head, .intro__names';
-/** Кнопки, которые слегка тянутся к курсору */
-const MAGNETS = '.link-btn, .to-top, .ink-btn, .hero__down';
+/** Кнопки, которые слегка тянутся к курсору.
+    Магнит пишет в свойство `translate`, поэтому сюда нельзя брать
+    элементы, которых это свойство уже держит: у стрелки обложки
+    центрирование сделано утилитой -translate-x-1/2, и притяжение
+    сбивало её вправо на половину ширины. */
+const MAGNETS = '.link-btn, .to-top, .ink-btn';
 
 function initCursor() {
   if (!window.matchMedia('(pointer: fine)').matches) return;
@@ -40,7 +44,13 @@ function initCursor() {
   const loop = () => {
     rx += (mx - rx) * 0.18;
     ry += (my - ry) * 0.18;
-    ring.style.transform = `translate(${rx.toFixed(1)}px, ${ry.toFixed(1)}px)`;
+    // Именно `translate`, а не `transform`. Раскрытие кольца задано
+    // отдельным свойством `scale`, а порядок применения —
+    // translate → rotate → scale → transform: при записи позиции
+    // в `transform` масштаб умножал бы уже смещённые координаты,
+    // и кольцо улетало бы тем дальше, чем дальше курсор от левого
+    // верхнего угла (на 1.75 из точки 533,402 — в 933,704).
+    ring.style.translate = `${rx.toFixed(1)}px ${ry.toFixed(1)}px`;
 
     // Магниты: пока курсор рядом, кнопка тянется к нему
     for (const el of magnets) {
@@ -67,7 +77,7 @@ function initCursor() {
     if (Math.abs(mx - rx) < 0.5 && Math.abs(my - ry) < 0.5) {
       rx = mx;
       ry = my;
-      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+      ring.style.translate = `${rx}px ${ry}px`;
       raf = null;
       return;
     }

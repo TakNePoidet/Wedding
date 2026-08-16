@@ -24,15 +24,19 @@ html.has-cursor .cursor {
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  /* позицию двигает скрипт через translate, масштаб — здесь через scale:
-     свойства независимы и не затирают друг друга */
+  /* Позицию скрипт пишет в `translate`, раскрытие — здесь в `scale`.
+     Оба свойства отдельные и складываются в порядке
+     translate → scale, то есть кольцо масштабируется вокруг своего
+     центра и лишь потом уезжает к курсору. Записывать позицию
+     в `transform` нельзя: он применяется последним, и scale
+     умножал бы координаты — кольцо улетало бы от указателя. */
   scale: 1;
   transition:
     opacity 0.3s ease,
     scale 0.32s var(--ease-back),
     background-color 0.32s ease,
     border-color 0.32s ease;
-  will-change: transform;
+  will-change: translate, scale;
 }
 
 /* Появляется, когда указатель вошёл в окно */
