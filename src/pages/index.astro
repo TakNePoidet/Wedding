@@ -7,6 +7,7 @@ import Flowers from '../components/Flowers.astro';
 import Footer from '../components/Footer.astro';
 import Gifts from '../components/Gifts.astro';
 import Hero from '../components/Hero.astro';
+import Intro from '../components/Intro.astro';
 import Invite from '../components/Invite.astro';
 import MapSection from '../components/MapSection.astro';
 import Mood from '../components/Mood.astro';
@@ -25,6 +26,7 @@ import { COUPLE, COUPLE_GENITIVE, DATE_LONG, VENUE, VENUE_INLINE } from '../data
 >
   <div class="grain" aria-hidden="true"></div>
   <Sprite />
+  <Intro />
   <Progress />
 
   <Hero />
@@ -51,5 +53,9 @@ import { COUPLE, COUPLE_GENITIVE, DATE_LONG, VENUE, VENUE_INLINE } from '../data
 </Base>
 
 <script>
+  // split-lines до reveal: маски должны появиться раньше, чем
+  // наблюдатель начнёт помечать секции видимыми
+  import '../scripts/split-lines';
   import '../scripts/reveal';
+  import '../scripts/cursor';
 </script>

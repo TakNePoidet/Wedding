@@ -33,3 +33,5 @@
 @import './rules.css' layer(project);
 @import './footer.css' layer(project);
 @import './reveal.css' layer(project);
+@import './intro.css' layer(project);
+@import './cursor.css' layer(project);

@@ -1,0 +1,31 @@
+---
+import { COUPLE, DATE_SHORT } from '../data/wedding';
+/**
+ * ИНТРО — занавес на первую загрузку: имена проступают на кремовом
+ * поле, затем полотно уходит вверх и открывает обложку.
+ *
+ * Занавес нарисован в разметке, но по умолчанию скрыт: показывает его
+ * только класс `is-intro` на <html>, который ставит встроенный скрипт
+ * в <head>. Поэтому без JS (и у поисковика) занавеса нет вовсе —
+ * иначе он навсегда закрыл бы страницу тем, у кого скрипты отключены.
+ *
+ * Тот же встроенный скрипт снимает занавес мгновенно, если гость
+ * просил не анимировать или уже видел его в этой сессии.
+ */
+---
+
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__inner">
+    <p class="intro__names">
+      <span>{COUPLE.split(' и ')[0]}</span>
+      <span class="intro__amp">&amp;</span>
+      <span>{COUPLE.split(' и ')[1]}</span>
+    </p>
+    <p class="intro__date">{DATE_SHORT}</p>
+    <span class="intro__line" aria-hidden="true"></span>
+  </div>
+</div>
+
+<script>
+  import '../scripts/intro';
+</script>

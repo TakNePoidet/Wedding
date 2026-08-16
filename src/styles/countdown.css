@@ -14,19 +14,43 @@
   margin-bottom: var(--spacing-lg);
 }
 
-/* Мягкий «тик» при смене значения — класс вешает countdown.ts */
+/* Перекат цифры. Разметку (.d) создаёт countdown.ts: в HTML её нет,
+   потому что без скрипта цифр всё равно не будет.
+
+   `b` — окно переката: уходящая и приходящая цифры существуют
+   одновременно, и всё, что вылезает за строку, окно срезает.
+   Высота задана em: у окна нет содержимого фиксированной высоты
+   в момент, когда обе цифры позиционированы абсолютно. */
+#timer b {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  vertical-align: bottom;
+}
+#timer b .d {
+  display: block;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  #timer b.tick {
-    animation: tickIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  #timer b .d.is-out {
+    position: absolute;
+    inset: 0;
+    animation: rollOut 0.5s var(--ease-out-mask) forwards;
   }
-  @keyframes tickIn {
-    from {
-      opacity: 0.25;
-      transform: translateY(9px);
-    }
+  #timer b .d.is-in {
+    animation: rollIn 0.5s var(--ease-out-mask);
+  }
+  @keyframes rollOut {
     to {
-      opacity: 1;
-      transform: none;
+      transform: translateY(-105%);
+      opacity: 0;
+    }
+  }
+  @keyframes rollIn {
+    from {
+      transform: translateY(105%);
+      opacity: 0;
     }
   }
 }

@@ -118,6 +118,28 @@ const eventSchema = {
       crossorigin
     />
 
+    <!-- Занавес-интро включается отсюда, до первой отрисовки: иначе
+         обложка успела бы моргнуть под ним. Без JS класс не появится,
+         и занавеса не будет вовсе — он не должен закрыть страницу
+         тем, у кого скрипты отключены.
+
+         Показываем один раз за сессию и никогда — при переходе по
+         якорю (#map из закладки) или если гость просил не анимировать. -->
+    <script is:inline>
+      (function () {
+        try {
+          var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var seen = sessionStorage.getItem('intro-seen');
+          if (!reduce && !seen && !location.hash) {
+            document.documentElement.classList.add('is-intro');
+          }
+          sessionStorage.setItem('intro-seen', '1');
+        } catch (e) {
+          /* приватный режим — просто без занавеса */
+        }
+      })();
+    </script>
+
     <!-- Без JS reveal-анимации не запускаются — показываем всё сразу.
          Добавили новый анимируемый селектор? Продублируйте его здесь. -->
     <noscript
@@ -130,6 +152,10 @@ const eventSchema = {
         }
         .swan path {
           stroke-dashoffset: 0 !important;
+        }
+        .rise > * {
+          transform: none !important;
+          opacity: 1 !important;
         }
       </style></noscript
     >

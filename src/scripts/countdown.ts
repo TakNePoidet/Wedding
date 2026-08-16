@@ -22,16 +22,52 @@ function initCountdown() {
 
   const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`);
 
-  /* Обновляет цифру с мягким «тиком», если значение сменилось */
+  /** Длительность переката — держать в паре с rollOut в countdown.css */
+  const ROLL_MS = 500;
+
+  /* Обновляет цифру «перекатом»: прежнее значение уезжает вверх,
+     новое приходит снизу. Два элемента живут одновременно — иначе
+     это не перекат, а подмена с миганием.
+
+     Уходящую цифру снимаем по таймеру, а не по animationend: секунды
+     тикают, даже когда вкладка в фоне, а там анимации не запускаются
+     и событие не приходит — призраки копились бы в разметке, и
+     `aria-live` зачитывал бы их все подряд. Заодно перед каждой
+     сменой подчищаем всё, что осталось с прошлого раза. */
   const setNum = (el: HTMLElement, value: string | number) => {
     const s = String(value);
-    if (el.textContent === s) return;
-    el.textContent = s;
-    if (!reduceMotion) {
-      el.classList.remove('tick');
-      void el.offsetWidth; // перезапуск анимации
-      el.classList.add('tick');
+
+    // всё, что уже уехало, живым цифрам не родня
+    el.querySelectorAll('.d.is-out').forEach((ghost) => ghost.remove());
+
+    const cur = el.querySelector<HTMLElement>('.d');
+
+    if (!cur) {
+      el.textContent = '';
+      const first = document.createElement('span');
+      first.className = 'd';
+      first.textContent = s;
+      el.appendChild(first);
+      return;
     }
+
+    if (cur.textContent === s) return;
+
+    if (reduceMotion) {
+      cur.textContent = s;
+      return;
+    }
+
+    cur.classList.add('is-out');
+    // пока уходящая цифра на экране, для скринридера её уже нет:
+    // иначе `aria-live` прочитал бы старое и новое значение слитно
+    cur.setAttribute('aria-hidden', 'true');
+    window.setTimeout(() => cur.remove(), ROLL_MS);
+
+    const next = document.createElement('span');
+    next.className = 'd is-in';
+    next.textContent = s;
+    el.appendChild(next);
   };
 
   let handle: ReturnType<typeof setInterval>;

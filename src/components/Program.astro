@@ -12,8 +12,18 @@ import { TIMELINE } from '../data/wedding';
   <div
     class="shell reveal grid items-start gap-[clamp(var(--spacing-md),5vw,var(--spacing-xl))] grid-cols-[0.8fr_1.2fr] max-md:grid-cols-1"
   >
-    <div>
+    {/*
+      Заголовок липнет к верху, пока рядом прокручивается тайминг:
+      колонка слева иначе простаивает на всю высоту списка, а так
+      она держит контекст — видно, к чему относятся часы.
+      На узких экранах колонки схлопываются в одну, липкость там
+      только мешала бы, поэтому max-md:static.
+    */}
+    <div class="sticky top-[max(var(--spacing-xl),18vh)] max-md:static">
       <h2 class="head" id="program-h">программа<br />дня</h2>
+      <span
+        class="draw mt-md block h-px w-[clamp(3rem,8vw,7rem)] bg-brown-2/40 max-md:hidden"
+        aria-hidden="true"></span>
     </div>
     <ol
       class="stagger m-0 grid list-none p-0 gap-x-[clamp(var(--spacing-sm),3vw,var(--spacing-lg))] grid-cols-[minmax(5.5rem,auto)_1fr]"

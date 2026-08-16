@@ -24,18 +24,29 @@ import { DATE_ISO, DATE_SHORT } from '../data/wedding';
       Отрицательные поля и короткая межстрочная поджимают имена друг
       к другу — иначе строка с амперсандом раздвигает их слишком широко.
     */}
+    {/*
+      Каждая строка имени — в своей маске (.rise): текст выезжает
+      из-под её края. Горизонтальные и отрицательные вертикальные
+      поля переехали на маску: если оставить их на внутреннем span,
+      overflow:hidden срежет ему выносные элементы.
+    */}
     <h1 class="font-script m-0 text-7xl leading-tight font-normal text-moss">
-      <span class="block">Никита</span>
-      <span class="mt-[-0.12em] mb-[-0.12em] ml-[3.97em] block text-[0.42em] leading-[0.72] text-accent"
-        >&amp;</span
+      <span class="rise block"><span>Никита</span></span>
+      <span
+        class="rise mt-[-0.12em] mb-[-0.12em] ml-[3.97em] block text-[0.42em] leading-[0.72] text-accent"
+        ><span>&amp;</span></span
       >
-      <span class="ml-[1.9em] block max-sm:ml-[0.9em]">Лера</span>
+      <span class="rise ml-[1.9em] block max-sm:ml-[0.9em]"><span>Лера</span></span>
     </h1>
     <p class="hero__date mt-lg mb-md flex items-center gap-md text-green-deep">
-      <time
-        class="font-display text-3xl font-medium tracking-widest [font-variant-numeric:tabular-nums]"
-        datetime={DATE_ISO}>{DATE_SHORT}</time
+      <span class="rise block"
+        ><time
+          class="font-display block text-3xl font-medium tracking-widest [font-variant-numeric:tabular-nums]"
+          datetime={DATE_ISO}>{DATE_SHORT}</time
+        ></span
       >
+      <span class="draw h-px w-[clamp(2rem,7vw,6rem)] flex-none bg-sage-2/70" aria-hidden="true"
+      ></span>
     </p>
     <p class="m-0 text-lg leading-snug text-ink-soft">
       Будем счастливы разделить с&nbsp;вами<br />день нашей свадьбы
@@ -73,4 +84,5 @@ import { DATE_ISO, DATE_SHORT } from '../data/wedding';
 
 <script>
   import '../scripts/parallax';
+  import '../scripts/hero-scroll';
 </script>
