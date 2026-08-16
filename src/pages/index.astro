@@ -13,7 +13,6 @@ import Mood from '../components/Mood.astro';
 import Organizer from '../components/Organizer.astro';
 import Program from '../components/Program.astro';
 import Progress from '../components/Progress.astro';
-import Rsvp from '../components/Rsvp.astro';
 import Rules from '../components/Rules.astro';
 import Sprite from '../components/Sprite.astro';
 import ToTop from '../components/ToTop.astro';
@@ -22,7 +21,7 @@ import { COUPLE, COUPLE_GENITIVE, DATE_LONG, VENUE, VENUE_INLINE } from '../data
 
 <Base
   title={`${COUPLE} — свадьба ${DATE_LONG}, ${VENUE.city}`}
-  description={`Приглашение на свадьбу ${COUPLE_GENITIVE} — ${DATE_LONG}, ${VENUE.city}, ${VENUE_INLINE}. Программа дня, дресс-код, карта проезда и подтверждение присутствия.`}
+  description={`Приглашение на свадьбу ${COUPLE_GENITIVE} — ${DATE_LONG}, ${VENUE.city}, ${VENUE_INLINE}. Программа дня, дресс-код и карта проезда.`}
 >
   <div class="grain" aria-hidden="true"></div>
   <Sprite />
@@ -40,7 +39,6 @@ import { COUPLE, COUPLE_GENITIVE, DATE_LONG, VENUE, VENUE_INLINE } from '../data
     <Flowers />
     <Gifts />
     <Rules />
-    <Rsvp />
     <Organizer />
     {/* Карта — в самом низу, последней секцией страницы. Читают её
         не по порядку, а по якорю «как нас найти» из «Коротко

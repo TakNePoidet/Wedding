@@ -27,14 +27,14 @@ export const GET: APIRoute = () => {
   const body = `# ${COUPLE} — свадьба ${DATE_LONG}
 
 > Сайт-приглашение на свадьбу ${COUPLE_GENITIVE}. ${DATE_LONG}, ${DATE_WEEKDAY}, ${VENUE.city}.
-> Одна страница: программа дня, дресс-код, как добраться и форма подтверждения.
+> Одна страница: программа дня, дресс-код и как добраться.
 
 ## Коротко
 
 - Дата: ${DATE_LONG}, ${DATE_WEEKDAY}
 - Сбор гостей: к ${GATHERING_TIME}
 - Место: ${VENUE.name}, ${VENUE.street}, ${VENUE.city}
-- Подтвердить присутствие: до ${RSVP_DEADLINE}
+- Подтвердить присутствие: до ${RSVP_DEADLINE}, через организатора
 - Организатор: ${ORGANIZER.name}, ${ORGANIZER.agency}, ${ORGANIZER.telPretty}
 
 ## Программа дня
@@ -54,7 +54,6 @@ ${timeline}
 - [Программа дня](${SITE_URL}/#program)
 - [Коротко о главном](${SITE_URL}/#details)
 - [Дресс-код](${SITE_URL}/#dress)
-- [Подтверждение присутствия](${SITE_URL}/#rsvp)
 - [Как нас найти](${SITE_URL}/#map)
 `;
 

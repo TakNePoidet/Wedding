@@ -28,7 +28,8 @@
 @import './map.css' layer(project);
 @import './dress.css' layer(project);
 @import './flowers.css' layer(project);
-@import './rsvp.css' layer(project);
+/* rsvp.css не подключён: секция анкеты убрана из index.astro.
+   Вернёте секцию — верните и импорт (место в каскаде: до rules). */
 @import './rules.css' layer(project);
 @import './footer.css' layer(project);
 @import './reveal.css' layer(project);
