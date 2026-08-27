@@ -1,5 +1,6 @@
 ---
-/** АТМОСФЕРА — тёмный wash. Лебедь: молочный силуэт + линии воды, которые дорисовываются. */
+/** АТМОСФЕРА — тёмный wash. Цветущая ветка: стебли прочерчиваются,
+ *  следом проступают листья и соцветия — под текст «зелень и цветы». */
 ---
 
 <section
@@ -17,28 +18,38 @@
       Всё так, как мы&nbsp;любим&nbsp;— природно, светло и&nbsp;по-настоящему тепло.
     </p>
     <svg
-      class="swan absolute right-0 bottom-[-14%] h-auto w-[clamp(200px,26vw,330px)] max-lg:static max-lg:mx-auto max-lg:mt-lg max-lg:mb-0 max-lg:w-[min(240px,64vw)]"
-      viewBox="0 0 260 200"
+      class="bloom absolute right-0 bottom-[-12%] h-auto w-[clamp(200px,26vw,330px)] max-lg:static max-lg:mx-auto max-lg:mt-lg max-lg:mb-0 max-lg:w-[min(240px,64vw)]"
+      viewBox="0 0 260 210"
       fill="none"
       aria-hidden="true"
     >
-      <path
-        class="swan__body fill-milk opacity-[0.92]"
-        d="M70 46 C 79 39, 87 35, 93 35 C 101 35, 105 42, 102 50 C 98 57, 95 65, 96 75 C 97 85, 100 95, 106 104 C 112 108, 124 110, 142 111 C 162 112, 184 113, 200 109 L 212 103 C 211 120, 202 135, 186 143 C 160 154, 124 153, 106 141 C 96 133, 92 122, 94 112 C 95 104, 93.5 96, 91 88 C 89 78, 87.5 66, 86 56 C 84.5 51, 82 48, 78 46.5 C 75 45.5, 72 45.5, 70 46 Z"
-      ></path>
-      <circle class="swan__eye fill-green-deep" cx="93" cy="42" r="1.5"></circle>
-      <path
-        class="swan__wing stroke-green-deep [stroke-width:1.6] opacity-50 [stroke-linecap:round]"
-        pathLength="1"
-        d="M120 136 C 134 118, 160 110, 186 116"></path>
-      <path
-        class="swan__wave stroke-milk [stroke-width:1.7] opacity-70 [stroke-linecap:round]"
-        pathLength="1"
-        d="M16 162 C 60 156, 110 168, 158 162 C 194 158, 226 160, 244 162"></path>
-      <path
-        class="swan__wave stroke-milk [stroke-width:1.7] opacity-70 [stroke-linecap:round]"
-        pathLength="1"
-        d="M42 176 C 92 170, 150 182, 214 174"></path>
+      <path class="bloom__stem" pathLength="1" d="M64 198 C 74 150, 92 112, 132 74 C 150 56, 166 44, 178 36"></path>
+      <path class="bloom__stem" pathLength="1" d="M66 198 C 62 156, 66 122, 78 86 C 84 66, 92 52, 98 42"></path>
+      <path class="bloom__stem" pathLength="1" d="M66 197 C 84 162, 116 140, 158 126 C 186 116, 212 112, 232 110"></path>
+      <g class="bloom__leaf">
+        <ellipse cx="84" cy="150" rx="10" ry="7.5" transform="rotate(-34 84 150)"/>
+        <ellipse cx="100" cy="122" rx="10.5" ry="8" transform="rotate(-30 100 122)"/>
+        <ellipse cx="120" cy="96" rx="10" ry="7.5" transform="rotate(-26 120 96)"/>
+        <ellipse cx="140" cy="72" rx="9" ry="7" transform="rotate(-22 140 72)"/>
+        <ellipse cx="158" cy="54" rx="8" ry="6" transform="rotate(-20 158 54)"/>
+        <ellipse cx="70" cy="158" rx="9" ry="7" transform="rotate(22 70 158)"/>
+        <ellipse cx="74" cy="128" rx="9.5" ry="7" transform="rotate(18 74 128)"/>
+        <ellipse cx="82" cy="100" rx="9" ry="6.5" transform="rotate(14 82 100)"/>
+        <ellipse cx="90" cy="74" rx="8" ry="6" transform="rotate(12 90 74)"/>
+        <ellipse cx="96" cy="168" rx="9.5" ry="7" transform="rotate(16 96 168)"/>
+        <ellipse cx="124" cy="150" rx="10" ry="7.5" transform="rotate(10 124 150)"/>
+        <ellipse cx="154" cy="136" rx="9.5" ry="7" transform="rotate(6 154 136)"/>
+        <ellipse cx="184" cy="126" rx="8.5" ry="6.5" transform="rotate(4 184 126)"/>
+        <ellipse cx="210" cy="118" rx="7.5" ry="5.5" transform="rotate(2 210 118)"/>
+      </g>
+      <g class="bloom__flower">
+        <g><circle cx="178.0" cy="30.8" r="3.4"/><circle cx="183.0" cy="34.4" r="3.4"/><circle cx="181.1" cy="40.2" r="3.4"/><circle cx="174.9" cy="40.2" r="3.4"/><circle cx="173.0" cy="34.4" r="3.4"/><circle class="bloom__heart" cx="178" cy="36" r="2.5"/></g>
+        <g><circle cx="98.0" cy="37.2" r="3.1"/><circle cx="102.5" cy="40.5" r="3.1"/><circle cx="100.8" cy="45.8" r="3.1"/><circle cx="95.2" cy="45.8" r="3.1"/><circle cx="93.5" cy="40.5" r="3.1"/><circle class="bloom__heart" cx="98" cy="42" r="2.2"/></g>
+        <g><circle cx="232.0" cy="105.7" r="2.8"/><circle cx="236.1" cy="108.7" r="2.8"/><circle cx="234.5" cy="113.5" r="2.8"/><circle cx="229.5" cy="113.5" r="2.8"/><circle cx="227.9" cy="108.7" r="2.8"/><circle class="bloom__heart" cx="232" cy="110" r="2.0"/></g>
+        <g><circle cx="150.0" cy="58.6" r="2.2"/><circle cx="153.3" cy="60.9" r="2.2"/><circle cx="152.0" cy="64.8" r="2.2"/><circle cx="148.0" cy="64.8" r="2.2"/><circle cx="146.7" cy="60.9" r="2.2"/><circle class="bloom__heart" cx="150" cy="62" r="1.6"/></g>
+        <g><circle cx="86.0" cy="59.0" r="2.0"/><circle cx="88.9" cy="61.1" r="2.0"/><circle cx="87.8" cy="64.5" r="2.0"/><circle cx="84.2" cy="64.5" r="2.0"/><circle cx="83.1" cy="61.1" r="2.0"/><circle class="bloom__heart" cx="86" cy="62" r="1.4"/></g>
+        <g><circle cx="200.0" cy="112.8" r="2.1"/><circle cx="203.1" cy="115.0" r="2.1"/><circle cx="201.9" cy="118.6" r="2.1"/><circle cx="198.1" cy="118.6" r="2.1"/><circle cx="196.9" cy="115.0" r="2.1"/><circle class="bloom__heart" cx="200" cy="116" r="1.5"/></g>
+      </g>
     </svg>
   </div>
 </section>

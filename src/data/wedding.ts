@@ -54,15 +54,15 @@ export const COUPLE_GENITIVE = 'Никиты и Леры';
 export const SITE_URL = 'https://leranikita.ru';
 
 export const VENUE = {
-  name: 'Ресторан «Лебединое озеро»',
-  street: 'проспект Октября, 77/2, ПКиО им. М. Гафури',
+  name: 'Ресторан «Юна»',
+  street: 'улица Менделеева, 160/9',
   city: 'Уфа',
   country: 'RU',
   /** Строка, которую копирует кнопка «скопировать адрес» */
-  copyText: 'Уфа, проспект Октября, 77/2, ресторан «Лебединое озеро»',
+  copyText: 'Уфа, улица Менделеева, 160/9, ресторан «Юна»',
 } as const;
 
-/** «ресторан «Лебединое озеро»» — для середины предложения.
+/** «ресторан «Юна»» — для середины предложения.
     Опускаем только первую букву: toLowerCase() убил бы и заглавную в названии. */
 export const VENUE_INLINE = VENUE.name.charAt(0).toLowerCase() + VENUE.name.slice(1);
 
@@ -122,7 +122,7 @@ export const DETAILS = [
   { k: 'Сбор гостей', v: `к&nbsp;${GATHERING_TIME}, просим не&nbsp;опаздывать` },
   {
     k: 'Место',
-    v: 'ресторан «Лебединое озеро»<br /><em>ПКиО им.&nbsp;М.&nbsp;Гафури, проспект Октября, 77/2</em>',
+    v: `${VENUE_INLINE}<br /><em>${VENUE.street}</em>`,
     anchor: { href: '#map', label: 'как нас найти' },
   },
 ] as const;
@@ -163,17 +163,17 @@ export const RULES = [
   },
 ] as const;
 
-const addrQuery = encodeURIComponent('Уфа, проспект Октября, 77/2');
+const addrQuery = encodeURIComponent(`${VENUE.city}, ${VENUE.street}`);
 
 export const MAP_LINKS = [
   { label: 'Яндекс.Карты', href: `https://yandex.ru/maps/?text=${addrQuery}` },
   {
     label: '2ГИС',
-    href: `https://2gis.ru/ufa/search/${encodeURIComponent('проспект Октября 77/2')}`,
+    href: `https://2gis.ru/ufa/search/${addrQuery}`,
   },
   {
     label: 'Google&nbsp;Maps',
-    href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Уфа проспект Октября 77/2')}`,
+    href: `https://www.google.com/maps/search/?api=1&query=${addrQuery}`,
   },
 ] as const;
 

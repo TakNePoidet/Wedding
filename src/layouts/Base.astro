@@ -7,6 +7,7 @@ import {
   SITE_URL,
   START_ISO,
   VENUE,
+  VENUE_INLINE,
 } from '../data/wedding';
 import '../styles/global.css';
 
@@ -63,7 +64,7 @@ const eventSchema = {
     <meta property="og:title" content={`${COUPLE} — свадьба ${DATE_LONG}`} />
     <meta
       property="og:description"
-      content="Приглашаем разделить с нами этот день. Уфа, ресторан «Лебединое озеро». Дата, программа, дресс-код и подтверждение присутствия — на сайте."
+      content={`Приглашаем разделить с нами этот день. ${VENUE.city}, ${VENUE_INLINE}. Дата, программа, дресс-код и как добраться — на сайте.`}
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
@@ -80,7 +81,7 @@ const eventSchema = {
     <meta name="twitter:title" content={`${COUPLE} — свадьба ${DATE_LONG}`} />
     <meta
       name="twitter:description"
-      content="Уфа, ресторан «Лебединое озеро». Дата, программа, дресс-код и подтверждение присутствия — на сайте."
+      content={`${VENUE.city}, ${VENUE_INLINE}. Дата, программа, дресс-код и как добраться — на сайте.`}
     />
     <meta name="twitter:image" content={ogImage} />
 
@@ -150,7 +151,7 @@ const eventSchema = {
           opacity: 1 !important;
           transform: none !important;
         }
-        .swan path {
+        .bloom__stem {
           stroke-dashoffset: 0 !important;
         }
         .rise > * {
